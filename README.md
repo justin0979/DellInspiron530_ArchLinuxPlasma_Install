@@ -8,7 +8,9 @@
 ### After a lot of pain and closely, but not comprehensively, reading the ArchWiki docs, I was able to finally boot to a lighter weight plasma-desktop. I re-did the install 2 more times to ensure I started to understand some of what I was doing. I then went ahead and just installed full plasma, which I'm very glad I did. The Dell handles this DE very well. I have a dual monitor setup, and plasma came with everything, plasma-desktop didn't come with "out-of-the-box" dual monitor work (or at least one of the packages didn't). 
 
 
-## There could be several typos here.
+## There could be several typos here. 
+Plus the styling might have highlighted or omitted something, making it hard to read.
+
 I followed the docs about 95% and some youtube videos (about 5%) that coincided with the docs (hence some of the commands being in a slightly different order than the docs).
 
 The docs jumped around and it was very easy to miss a link (like the boot loader part) or to just not understand what an entire section was talking about. If it wasn't for the videos, I would have missed some of the commands I needed to use.
@@ -94,7 +96,7 @@ After booting from usb
 
 `# vim /etc/locale.gen`
 
--- type: `176 gg` <Enter> <Delete> `:wq`
+-- type: `176 gg`, the press: Enter, then press: Delete, then type `:wq`
 -- the above uses Vim to uncomment en_US.UTF-8 UTF-8
 
 `# locale-gen`
@@ -106,7 +108,7 @@ After booting from usb
 `# vim /etc/locale.conf`
 
 -- press "i" then type: LANG=en_US.UTF-8
--- press <cntl>-c and type: `:wq`
+-- press cntl-c and type: `:wq`
 
 `# passwd`
 
@@ -165,11 +167,11 @@ I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
 
 `# vim /etc/sddm.conf.d/autologin.conf`
   -- press i then type:  
-     [Autologin]
-     User=justin
-     Session=plasma.desktop
+     `[Autologin]`
+     `User=justin`
+     `Session=plasma.desktop`
 
-  -- then press <cntl>-c then type `:wq`
+  -- then press cntl-c then type `:wq`
   -- note: Session=plasma.desktop also is used for a plasma-desktop install, I've used both
 
 `# reboot`
