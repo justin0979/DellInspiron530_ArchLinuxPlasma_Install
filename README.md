@@ -157,9 +157,9 @@ I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
 
 `# pacman -S sddm sddm-kcm`
 
-`# systemctl enable sddm.service`
+`# systemctl enable sddm.service` <-- Not sure if I had to do this, haven't tried installing without doing this.
 
-`# pacman -S plasma konsole dolphin kde-applications firefox git`
+`# pacman -S plasma kde-applications firefox git`
 
 -- the following is for auto-login, which is nice
 
