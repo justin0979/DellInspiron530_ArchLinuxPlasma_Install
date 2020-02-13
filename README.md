@@ -87,8 +87,8 @@ After booting from usb
 
 `# mount` <--- just checks to verify that /dev/sda1 and /dev/sda3 are mounted
 
-`# pacstrap /mnt base base-devel vim linux linux-firmware dhcpcd grub linux-headers wpa_supplicant wireless_tools os-prober mtools network-manager-applet networkmanager dialog netctl` <-- netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu.
-
+`# pacstrap /mnt base base-devel vim linux linux-firmware dhcpcd grub linux-headers wpa_supplicant dialog netctl` <-- netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. `networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl (hope I termed that correctly).
+ 
 `# genfstab -U -p /mnt >> /mnt/etc/fstab`
 
 `# cat /mnt/etc/fstab` <--- shows partititions
@@ -136,7 +136,7 @@ then your password from earlier
 `# wifi-menu`
   -- select router, I used default name, type in router password
 
-  *** If you have ethernet and installed dhcpch (not sure if comes standard already) you can use:
+  *** If you have ethernet and installed dhcpcd (not sure if comes standard already) you can use:
      `# systemctl start NetworkManager`
 
 `# pacman xorg-server xorg`
