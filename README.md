@@ -95,18 +95,18 @@ After booting from usb
 
 `# arch-chroot /mnt`
 
-`# ip link set wlan0 up` <--- saw this in the docs, so I don't know if this sets the wlan0 interface up for after initial reboot.
+`# ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime`
+
+`# hwclock --systohc`
+
+`# locale-gen`
 
 `# vim /etc/locale.gen`
 
 -- type: `176 gg`, the press: Enter, then press: Delete, then type `:wq`
 -- the above uses Vim to uncomment en_US.UTF-8 UTF-8
 
-`# locale-gen`
 
-`# ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime`
-
-`# hwclock --systohc`
 
 `# vim /etc/locale.conf`
 
@@ -118,12 +118,19 @@ After booting from usb
 -- type in your password twice, as with most linux pw's, you won't see what you are typing.
 
 `# grub-install --target=i386-pc /dev/sda` <--- UEFI has other instructions
+  -- outputs: "Installing for i386-pc platform'
+  "Installation finished. No error reported."
 
 `# grub-mkconfig -o /boot/grub/grub.cfg`
-
+  -- outputs:
+"Generating grub configuration file ...
+ Found linux image: /boot/vmlinuz-linux
+ Fount initrd image: /boot/initramfs-linux.img
+ Found fallback initrd image(s) in /boot:  initramfs-linux-fallback.img
+ done"
+ if nothing was output after grub-mkconfig, something wasn't input correctly.
+ 
 `# exit` <-- leave arch-chroot mode
-
-`# umount -R /mnt/home`
 
 `# umount -R /mnt`
 
@@ -139,7 +146,7 @@ then your password from earlier
   *** If you have ethernet and installed dhcpcd (not sure if comes standard already) you can use:
      `# systemctl start NetworkManager`
 
-`# pacman xorg-server xorg`
+`# pacman -S xorg-server xorg`
 
 `# lspci | grep -e VGA -e 3D`
   -- shows your video card
@@ -149,20 +156,20 @@ then your password from earlier
 
 I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
   -- I had installed just nvidia instead of nvidia-390xx on a prior install attempt and nothing showed on monitor; so, be sure to check the docs for what you need for your card.
-`# pacman -S nvidia-390xx nvidia-390xx-utils`
+`# pacman -S nvidia-390xx`
 
-`# useradd -m -g users -G wheel justin`
-
+`# useradd -m -G users,wheel justin`
+ -- later, type `# EDITOR=vim visudo`
 `# passwd justin`
    -- just type in this users pw, same as root pw process
 
 -- the following is for selecting a Desktop Environment, I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
 
-`# pacman -S sddm sddm-kcm`
+`# pacman -S sddm` sddm-kcm is dependency of plasma and is installed with plasma
 
 `# systemctl enable sddm.service`
 
-`# pacman -S plasma kde-applications firefox git` <--- if you want chrome, it's in AUR, which is easy to get with git.
+`# pacman -S plasma konsole dolphin` <--- if you want chrome, it's in AUR, which is easy to get with git.
 
 -- the following is for auto-login, which is nice
   -- if you don't use this, then on reboot it just asks you to enter in the user's pw before going to desktop, otherwise, with this, just goes straight to your desktop.
@@ -184,3 +191,4 @@ The doc's go on to help set up iptables, which is a really easy step by step exp
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
 Also, some videos show to update with `pacman -Sy`, but the doc's clearly state to not use that and instead use `pacman -Syu` (At least at the time of me typing this up).
+If you forgot to install a console, you can either tty console or use boot disk and mount everything and install.
