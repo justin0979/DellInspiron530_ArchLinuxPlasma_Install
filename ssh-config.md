@@ -8,9 +8,9 @@ Install openssh `sudo pacman -S openssh`
 
 make config file in `./.ssh/config`
 
-in config
-`IdentityFile ~/.ssh/gitHubKey`
-`IdentityFile ~/.ssh/id_rsa`
+in config <br />
+`IdentityFile ~/.ssh/gitHubKey` <br />
+`IdentityFile ~/.ssh/id_rsa` <br />
 
 If you entered passphrase during keygen, enter it when using ssh.
 

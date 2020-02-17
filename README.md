@@ -183,12 +183,12 @@ I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
 `# mkdir /etc/sddm.conf.d/`
 
 `# vim /etc/sddm.conf.d/autologin.conf`
--- press i then type:  
- `[Autologin]`
-`User=justin`
+-- press i then type: <br />
+`[Autologin]` <br />
+`User=justin` <br />
 `Session=plasma.desktop`
 
--- then press cntl-c then type `:wq`
+-- then press cntl-c then type `:wq` <br />
 -- note: Session=plasma.desktop also is used for a plasma-desktop install, I've used both
 
 `# reboot`
