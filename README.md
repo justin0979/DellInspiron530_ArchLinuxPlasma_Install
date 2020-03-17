@@ -149,7 +149,7 @@ then your password from earlier
 \*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard already) you can use:
 `# systemctl start NetworkManager`
 
-`# pacman -S xorg-server xorg`
+`# pacman -S xorg-server xorg` -- GUI stuff starting here
 
 `# lspci | grep -e VGA -e 3D`
 -- shows your video card
