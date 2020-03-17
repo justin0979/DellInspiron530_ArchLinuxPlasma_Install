@@ -39,5 +39,3 @@ uncomment the varables in each respective section [General] and [Policy] <br />
 in /etc/pulse/default.pa <br />
 `load-module module-switch-on-connect` <br />
 
-For PDF: <br />
-`pacman -S okular` <br />

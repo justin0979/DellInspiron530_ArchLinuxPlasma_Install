@@ -160,11 +160,15 @@ then your password from earlier
 `# pacman -Ss xf86-video`
 -- shows possible list to use (I think, it's in the Arch Linux doc's).
 
+***** I may have left below out on last install
+
 I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
 
 -- I had installed just nvidia instead of nvidia-390xx on a prior install attempt and nothing showed on monitor; so, be sure to check the docs for what you need for your card.
 
 `# pacman -S nvidia` -- `nvidia-390xx` is only AUR now.
+
+***** I may have left above out on last install
 
 `# useradd -m -G users,wheel justin`
 
