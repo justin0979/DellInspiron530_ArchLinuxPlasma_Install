@@ -41,7 +41,7 @@ After booting from usb
 
 `# First sector: <Enter>`
 
-`# Last sector: +30G`
+`# Last sector: +32G`
 
 `# command (m for help): a` <---- make partition 1 bootable
 
@@ -53,7 +53,7 @@ After booting from usb
 
 `# First sector: <Enter>`
 
-`# Last sector: +2G`
+`# Last sector: +2G (used +12G on latest install just to do it)`
 
 `# command (m for help): type`
 
