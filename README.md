@@ -142,8 +142,11 @@ for username, type: root
 then your password from earlier
 
 `# wifi-menu`
+
 -- select router, I used default name, type in router password
--- in order to auto-login with wifi-menu, type in `$ systemctl enable netctl-auto@wlp3s0.service`, substitute your `interface` for `wlp3s0` if it is different.
+
+-- in order to auto-login with wifi-menu, type in `systemctl enable netctl-auto@wlp3s0.service` now or after having set everything up, substitute your `interface` for `wlp3s0` if it is different.
+
 -- the `enable` will occur everytime the system boots, to start in the current session, you can use `start` instead of `enable`
 
 \*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard already) you can use:
@@ -158,11 +161,15 @@ then your password from earlier
 -- shows possible list to use (I think, it's in the Arch Linux doc's).
 
 I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
+
 -- I had installed just nvidia instead of nvidia-390xx on a prior install attempt and nothing showed on monitor; so, be sure to check the docs for what you need for your card.
-`# pacman -S nvidia-390xx`
+
+`# pacman -S nvidia` -- `nvidia-390xx` is only AUR now.
 
 `# useradd -m -G users,wheel justin`
--- later, type `# EDITOR=vim visudo`
+
+-- later, type `# EDITOR=vim visudo` and uncomment `%wheel ALL=(ALL) ALL` to give wheel group members root privileges
+
 `# passwd justin`
 -- just type in this users pw, same as root pw process
 
@@ -173,8 +180,11 @@ I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
 `# systemctl enable sddm.service`
 
 `# pacman -S plasma konsole dolphin` <--- if you want chrome, it's in AUR, which is easy to get with git.
+
 -- Also, in case I forgot to mention this, you can install `kde-applications` and remove `konsole dolphin` (since those two are include with kde-applications) to install a lot of helpful packages for kde, just google 'kde applications' and either check the kde website or arch to see all of the packages included.
+
 -- For instace, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
+
 -- So, the command would be `#pacman -S plasma kde-applications`
 
 -- the following is for auto-login, which is nice
