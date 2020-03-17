@@ -15,6 +15,7 @@ LGRAY='\033[00;37m'
 
 
 alias ls='ls --color=auto'
+alias l='ls'
 alias ll='ls -lah'
 
 #PS1='[\u@\h \W]\$ '
