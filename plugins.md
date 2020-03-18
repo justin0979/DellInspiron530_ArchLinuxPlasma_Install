@@ -8,6 +8,7 @@ add: <br />
 - indent_guide.vim
 
 create .vim/bundle <br />
+`git clone <following pkgs in .vim/bundle>`<br/>
 add: <br />
 
 - ale
