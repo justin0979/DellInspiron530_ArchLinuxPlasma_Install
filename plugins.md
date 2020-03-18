@@ -4,7 +4,6 @@ create .vim/autoload <br />
 add: <br />
 
 - pathogen.vim
-- color_helper.vim
 
 create .vim/bundle <br />
 `git clone <following pkgs in .vim/bundle>`<br/>
