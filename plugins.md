@@ -5,7 +5,6 @@ add: <br />
 
 - pathogen.vim
 - color_helper.vim
-- indent_guide.vim
 
 create .vim/bundle <br />
 `git clone <following pkgs in .vim/bundle>`<br/>
@@ -18,5 +17,6 @@ add: <br />
 - vim-css-color
 - vim-es6
 - vim-prettier
+- indent_guide.vim
 
 (if not using pathogen, then create .vim/plugin and add auto-pairs there)
