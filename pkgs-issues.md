@@ -39,3 +39,8 @@ uncomment the varables in each respective section [General] and [Policy] <br />
 in /etc/pulse/default.pa <br />
 `load-module module-switch-on-connect` <br />
 
+Open window on same monitor as mouse:<br />
+1.) System Settings
+2.) Window Management
+3.) Window Behavior
+4.) Click "Active screen follows moust" in Multiscreen behavior section
