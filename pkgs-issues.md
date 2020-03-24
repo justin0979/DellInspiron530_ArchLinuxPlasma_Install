@@ -44,3 +44,7 @@ Open window on same monitor as mouse:<br />
 2.) Window Management
 3.) Window Behavior
 4.) Click "Active screen follows moust" in Multiscreen behavior section
+
+If kdewallet keeps showing up:<br />
+(from arch linux docs, if using google-chrome aur)<br />
+run `vim .config/chrome-flags.conf` and add `--password-store=basic`
