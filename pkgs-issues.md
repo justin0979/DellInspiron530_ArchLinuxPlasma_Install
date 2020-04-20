@@ -1,9 +1,10 @@
+## AutoLogin
 Autologin after screen sleep/off: <br />
 1.) Go to System Settings <br />
 2.) type `lock` in search <br />
 3.) Go to Screen Locking <br />
 4.) uncheck Lock screen: \_\_ Automatically After: 5 minutes <br />
-
+## Bluetooth
 Bluetooth: <br />
 -- pulseaudio-bluetooth pkg contains bluez && pulseaudio
 
@@ -38,13 +39,19 @@ uncomment the varables in each respective section [General] and [Policy] <br />
 
 in /etc/pulse/default.pa <br />
 `load-module module-switch-on-connect` <br />
-
+## Open window on monitor mouse is on
 Open window on same monitor as mouse:<br />
 1.) System Settings
 2.) Window Management
 3.) Window Behavior
-4.) Click "Active screen follows moust" in Multiscreen behavior section
-
+4.) Click "Active screen follows mouse" in Multiscreen behavior section
+## kdewallet
 If kdewallet keeps showing up:<br />
 (from arch linux docs, if using google-chrome aur)<br />
 run `vim .config/chrome-flags.conf` and add `--password-store=basic`
+## external usb
+`sudo pacman -S ntfs-3g`<br />
+restart <br />
+(prior to restarting, I had tried several things like: <br />
+`sudo pacman -S udisks2` and <br />
+immediately after `sudo pacman -S ntfs-3g` then `mount /dev/sdb1 /mnt/usb` ... be sure to `sudo mkdir /mnt/usb` first... then restart)
