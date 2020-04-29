@@ -55,3 +55,7 @@ restart <br />
 (prior to restarting, I had tried several things like: <br />
 `sudo pacman -S udisks2` and <br />
 immediately after `sudo pacman -S ntfs-3g` then `mount /dev/sdb1 /mnt/usb` ... be sure to `sudo mkdir /mnt/usb` first... then restart)
+## Docker without sudo
+Instead of `sudo docker ps`, add user to docker group by running `sudo gpasswd -a <user> <group>`<br />
+(e.g. `sudo gpasswd -a justin docker`)<br />
+then, reboot and now run `docker ps`.
