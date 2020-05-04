@@ -59,3 +59,5 @@ immediately after `sudo pacman -S ntfs-3g` then `mount /dev/sdb1 /mnt/usb` ... b
 Instead of `sudo docker ps`, add user to docker group by running `sudo gpasswd -a <user> <group>`<br />
 (e.g. `sudo gpasswd -a justin docker`)<br />
 then, reboot and now run `docker ps`.
+## Virtualbox
+`sudo pacman -S virtualbox-host-dkms` not `virtual-host-modules-arch`. `virtual-host-modules-arch` did not have vboxdrv.
