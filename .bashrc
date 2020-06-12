@@ -21,5 +21,10 @@ alias ll='ls -lah'
 #PS1='[\u@\h \W]\$ '
 #PS1='\w\n [\u@\h \W]\$ '
 #PS1='\[\033[01;30m\]\w\n\[\033[01;32m\] [\u@\h \W]\$ '
+#PS1="\[${GRAY}\]\w
+#\[${LGRAY}\][\[${LGREEN}\]\u\[${LGRAY}\]@\[${LGREEN}\]\h \[${GRAY}\]\W\[${LGRAY}\]]\[${BLUE}\]\$ \[${NOCOL}\]"
 PS1="\[${GRAY}\]\w
-\[${LGRAY}\][\[${LGREEN}\]\u\[${LGRAY}\]@\[${LGREEN}\]\h \[${GRAY}\]\W\[${LGRAY}\]]\[${BLUE}\]\$ \[${NOCOL}\]"
+\[${LGRAY}\][\[${LGREEN}\]\u \[${GRAY}\]\W\[${LGRAY}\]]\[${BLUE}\]\$ \[${NOCOL}\]"
+
+export "PATH=$PATH:$HOME/.deno/bin"
+export DENO_DIR=./deno_dir
