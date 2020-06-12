@@ -16,6 +16,6 @@ add: <br />
 - vim-css-color
 - vim-es6
 - vim-prettier
-- indent_guide.vim
+- vim-indent-guide
 
 (if not using pathogen, then create .vim/plugin and add auto-pairs there)
