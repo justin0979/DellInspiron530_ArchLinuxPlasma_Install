@@ -1,16 +1,18 @@
 # Arch Linux Installation onto Dell Inspiron 530
 
-A reference for me later. I randomly update some of the text here, so some specs will be mismatched in places.
+A reference for me later. I randomly update some of the text here, so some specs will be mismatched in places.<br />
+Use this as my main computer. No serious issues so far.
 
 ## Specs
  Motherboard: G33M03 <br />
  RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz) <br />
  CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
- x86_64
+ Architecture: x86_64 <br />
+ Power Supply: 350W <br />
 ## Upgrades
- 500 GB Samsung 860 SSD <br />
+ 500 GB Samsung 860 SSD (from 1TB HDD, I think 1TB or 500GB) <br />
  uBit wifi 6 PCI-e card with bluetooth. <br />
- NVIDIA GeForce GT 610 <br />
+ NVIDIA Corporation GF119 [GeForce GT 610] (from an AMD, not sure specs) <br />
 
 ### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.47-1-lts, currently) kernel, which Intel states is required for wifi ax cards.
 
