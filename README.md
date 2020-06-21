@@ -1,12 +1,18 @@
 # Arch Linux Installation onto Dell Inspiron 530
 
-(a reference for me later)
+A reference for me later. I randomly update some of the text here, so some specs will be mismatched in places.
 
-## The Dell has an upgraded 500 GB Samsung 860 SSD and uBit wifi 6 PCI-e card with bluetooth. I upgraded the video card from I think an amd to an nvidia so that my daughter could play Wizard101 about 8-10 years ago (the amd couldn't handle that game).
+## Specs
+ Motherboard: G33M03 <br />
+ RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz) <br />
+ CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
+ x86_64
+## Upgrades
+ 500 GB Samsung 860 SSD <br />
+ uBit wifi 6 PCI-e card with bluetooth. <br />
+ NVIDIA GeForce GT 610 <br />
 
-## It still has the original intel core 2 quad (which is more than good enough) and all the other components are the original.
-
-### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.5.2, currently) kernel, which Intel states is required for wifi ax cards.
+### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.47-1-lts, currently) kernel, which Intel states is required for wifi ax cards.
 
 ### After a lot of pain and closely, but not comprehensively, reading the ArchWiki docs, I was able to finally boot to a lighter weight plasma-desktop. I re-did the install 2 more times to ensure I started to understand some of what I was doing. I then went ahead and just installed full Plasma, which I'm very glad I did. The Dell handles this desktop environment very well. I have a dual monitor setup, and plasma came with everything. Plasma-desktop didn't come with "out-of-the-box" dual monitor work (or at least one of the packages didn't).
 
