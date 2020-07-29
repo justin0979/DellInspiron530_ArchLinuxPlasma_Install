@@ -61,3 +61,6 @@ Instead of `sudo docker ps`, add user to docker group by running `sudo gpasswd -
 then, reboot and now run `docker ps`.
 ## Virtualbox
 `sudo pacman -S virtualbox-host-dkms` not `virtual-host-modules-arch`. `virtual-host-modules-arch` did not have vboxdrv.
+## gimp screenshot
+Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
+then go to File >> Create >> Screenshot
