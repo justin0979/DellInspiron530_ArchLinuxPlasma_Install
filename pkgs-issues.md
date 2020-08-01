@@ -64,3 +64,7 @@ then, reboot and now run `docker ps`.
 ## gimp screenshot
 Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
 then go to File >> Create >> Screenshot
+## minikube
+`minikube start`<br />
+`minikube status`<br />
+if get `machine does not exist` or `Error: No such container: minikube` then run: `minikube delete` and then `minikube start` again.
