@@ -1,9 +1,10 @@
 ## Chrome Extensions
 
-Honey
-JSON Formatter
-Plasma Integration
-Surfing keys <--- let's you use vim commands for scrolling (`h`,`j`,`k`,`l`) etc for moving around website
+Honey<br />
+JSON Formatter<br />
+Plasma Integration<br />
+Audio Only Youtube<br />
+Surfing keys <--- let's you use vim commands for scrolling (`h`,`j`,`k`,`l`) etc for moving around website<br />
 
 - press `f` to get list of keys to press to access different parts of site.
 
