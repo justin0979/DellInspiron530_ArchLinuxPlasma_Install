@@ -1,3 +1,7 @@
+## Error while updating (something like "error: liburing: signature from ...")
+`sudo pacman -Sy archlinux-keyring`</br>
+`sudo pacman -Syyu`
+
 ## AutoLogin
 Autologin after screen sleep/off: <br />
 1.) Go to System Settings <br />
