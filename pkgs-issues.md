@@ -6,6 +6,11 @@
 Go to the `pacman` arch wiki at:
 https://wiki.archlinux.org/index.php/pacman
 
+### Reminder for ethernet access on Dell Inspiron laptop
+Get interface with `ip addr`<br />
+Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
+Then ping a site.
+
 ## AutoLogin
 Autologin after screen sleep/off: <br />
 1.) Go to System Settings <br />
