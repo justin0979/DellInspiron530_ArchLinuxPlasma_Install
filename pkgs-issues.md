@@ -2,6 +2,10 @@
 `sudo pacman -Sy archlinux-keyring`</br>
 `sudo pacman -Syyu`
 
+## Error upgrading due to conflicting files, or any other upgrade issue
+Go to the `pacman` arch wiki at:
+https://wiki.archlinux.org/index.php/pacman
+
 ## AutoLogin
 Autologin after screen sleep/off: <br />
 1.) Go to System Settings <br />
