@@ -5,8 +5,7 @@ sudo pacman -Sy archlinux-keyring
 sudo pacman -Syyu
 ```
 ## Error upgrading due to conflicting files, or any other upgrade issue
-Go to the `pacman` arch wiki at:
-https://wiki.archlinux.org/index.php/pacman
+[Click for `pacman` arch wiki](https://wiki.archlinux.org/index.php/pacman)
 
 ### Reminder for ethernet access on Dell Inspiron laptop
 Get interface with `ip addr`<br />
