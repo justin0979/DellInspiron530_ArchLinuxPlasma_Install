@@ -1,7 +1,9 @@
-## Error while updating (something like "error: liburing: signature from ...")
-`sudo pacman -Sy archlinux-keyring`</br>
-`sudo pacman -Syyu`
-
+## Error while updating 
+### (something like "error: liburing: signature from ...")
+```sh
+sudo pacman -Sy archlinux-keyring
+sudo pacman -Syyu
+```
 ## Error upgrading due to conflicting files, or any other upgrade issue
 Go to the `pacman` arch wiki at:
 https://wiki.archlinux.org/index.php/pacman
@@ -44,11 +46,13 @@ if connection for bluetooth fails: <br />
 power Bluetooth adapter on after reboot: <br />
 in /etc/bluetooth/main.conf, there are a lot of commented out commands. <br />
 uncomment the varables in each respective section [General] and [Policy] <br />
-`[General]` <br />
-`DiscoverableTimeout = 0` <br />
-`Discoverable=true` <br />
-`[Policy]` <br />
-`AutoEnable=true` <br />
+```sh
+[General]
+DiscoverableTimeout = 0
+Discoverable=true
+[Policy]
+AutoEnable=true
+```
 
 in /etc/pulse/default.pa <br />
 `load-module module-switch-on-connect` <br />
