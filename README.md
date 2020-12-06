@@ -154,22 +154,19 @@ After booting from usb
 ```
 
 If all went well, then you'll reboot to Arch Linux<br />
-For username, type: root <br />
-then enter your password from earlier
+For username, type: `root` <br />
+then enter your password from earlier and type in the following:
 
 ```sh
- wifi-menu
-
-# select router, I used default name, type in router password
+ wifi-menu # select router, I used default name, type in router password
 ```
 
-In order to auto-login with wifi-menu, type:
+In order to auto-login with wifi-menu, either now or after having finished all of these instructions, type:
 
 ```sh
 systemctl enable netctl-auto@wlp3s0.service
 ```
 
-now or after having set everything up <br />
 The above command has `wlp3s0` as the `interface`<br/>
 substitute your `interface` for `wlp3s0` if it is different.
 
@@ -188,11 +185,11 @@ pacman -S xorg-server xorg
 
 lspci | grep -e VGA -e 3D # shows your video card
 
-pacman -Ss xf86-video # shows possible list to use (I think, it's in the Arch Linux doc's).
+pacman -Ss xf86-video # I think this shows possible list to use (it's in the Arch Linux doc's if I'm wrong).
 ```
 
 ```diff
-- **\*** I may have left below (pacman -S nvidia) out on my most recent install
+- I may have left below (pacman -S nvidia) out on my most recent install. BE SURE TO REFERENCE THE DOC's
 ```
 
 I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
@@ -204,7 +201,7 @@ pacman -S nvidia # nvidia-390xx is only AUR now.
 ```
 
 ```diff
-- **\*** I may have left above (pacman -S nvidia) out on last install
+- I may have left above (pacman -S nvidia) out on last install BE SURE TO REFERENCE THE DOC'S
 ```
 
 ```sh
@@ -215,7 +212,11 @@ Later in a console, type:
 
 ```sh
 EDITOR=vim visudo # Then uncomment`%wheel ALL=(ALL) ALL` to give wheel group members root privileges
+```
 
+Setup user's password:
+
+```sh
 passwd justin # just type in this users pw, same as root pw process
 ```
 
@@ -231,7 +232,7 @@ systemctl enable sddm.service
 pacman -S plasma konsole dolphin # if you want chrome, it's in AUR, which is easy to get with git.
 ```
 
-Also, in case I forgot to mention this, you can install `kde-applications` and remove `konsole dolphin` (since those two are included with `kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications' and either check the kde website or arch to see all of the packages included.
+You can install `kde-applications` and remove `konsole dolphin` (since those two are included with `kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications' and either check the kde website or arch to see all of the packages included.
 
 -- For instance, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
 
@@ -255,7 +256,7 @@ User=justin
 Session=plasma.desktop
 ```
 
--- then press cntl-c then type `:wq` <br />
+-- then press `Cntl-c` then type `:wq` (be sure to type `:` befor `wq`) <br />
 -- note: Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
 
 ```sh
