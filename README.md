@@ -256,7 +256,7 @@ User=justin
 Session=plasma.desktop
 ```
 
--- then press `Cntl-c` then type `:wq` (be sure to type `:` befor `wq`) <br />
+-- then press `Cntl-c` then type `:wq` (be sure to type `:` before `wq`) <br />
 -- note: Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
 
 ```sh
