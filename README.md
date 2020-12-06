@@ -4,16 +4,19 @@ A reference for me later. I randomly update some of the text here, so some specs
 Use this as my main computer. No serious issues so far.
 
 ## Specs
- Motherboard: G33M03 <br />
- ~~RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz)~~ <br />
- CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
- Architecture: x86_64 <br />
- Power Supply: 350W <br />
+
+Motherboard: G33M03 <br />
+~~RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz)~~ <br />
+CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
+Architecture: x86_64 <br />
+Power Supply: 350W <br />
+
 ## Upgrades
- 500 GB Samsung 860 SSD (from 1TB HDD, I think 1TB or 500GB) <br />
- uBit wifi 6 PCI-e card with bluetooth. <br />
- NVIDIA Corporation GF119 [GeForce GT 610] (from an AMD, not sure specs) <br />
- RAM: 8GB
+
+500 GB Samsung 860 SSD (from 1TB HDD, I think 1TB or 500GB) <br />
+uBit wifi 6 PCI-e card with bluetooth. <br />
+NVIDIA Corporation GF119 [GeForce GT 610] (from an AMD, not sure specs) <br />
+RAM: 8GB
 
 ### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.72-1-lts, currently) kernel, which Intel states is required for wifi ax cards.
 
@@ -33,191 +36,238 @@ I used `dd` to get a usb iso and booted that way.
 
 After booting from usb
 
-`# wifi-menu`
--- select your router, I used default name given and then typed in my networks pw
+```sh
+ wifi-menu
+# select your router, I used default name given and then typed in my networks pw
 
-`# timedatectl set-ntp true`
+ timedatectl set-ntp true
 
-`# fdisk /dev/sda`
+ fdisk /dev/sda
 
-`# command (m for help): o` <-- this clears everything out, so if you want to dual boot, research another way.
+ command (m for help): o # this clears everything out, so if you want to dual boot, research another way.
 
-`# command (m for help): n`
+ command (m for help): n
 
-`# Partition type: p`
+ Partition type: p
 
-`# partition number: 1`
+ partition number: 1
 
-`# First sector: <Enter>`
+ First sector: <Enter>
 
-`# Last sector: +32G`
+ Last sector: +32G
 
-`# command (m for help): a` <---- make partition 1 bootable
+ command (m for help): a # make partition 1 bootable
 
-`# command (m for help): n`
+ command (m for help): n
 
-`# Partition type: p`
+ Partition type: p
 
-`# partition number: 2`
+ partition number: 2
 
-`# First sector: <Enter>`
+ First sector: <Enter>
 
-`# Last sector: +2G (used +12G on latest install just to do it)`
+ Last sector: +2G # used +12G on latest install just to do it
 
-`# command (m for help): type`
+ command (m for help): type
 
-`# partition number: 2`
+ partition number: 2
 
-`# Hex value: 82` <--- swap
+ Hex value: 82 # swap
 
-`# command (m for help): n`
+ command (m for help): n
 
-`# Partition type: p`
+ Partition type: p
 
-`# partition number: 3`
+ partition number: 3
 
-`# First sector: <Enter>`
+ First sector: <Enter>
 
-`# Last sector: <Enter>` <--- take up the rest of the hard drive
+ Last sector: <Enter> # take up the rest of the hard drive
 
-`# command (m for help): w`
+ command (m for help): w
 
-`# mkfs.ext4 /dev/sda1`
+ mkfs.ext4 /dev/sda1
 
-`# mkfs.ext4 /dev/sda3`
+ mkfs.ext4 /dev/sda3
 
-`# mkswap /dev/sda2`
+ mkswap /dev/sda2
 
-`# swapon /dev/sda2`
+ swapon /dev/sda2
 
-`# mount /dev/sda1 /mnt`
+ mount /dev/sda1 /mnt
 
-`# mkdir /mnt/home`
+ mkdir /mnt/home
 
-`# mount /dev/sda3 /mnt/home`
+ mount /dev/sda3 /mnt/home
 
-`# mount` <--- just checks to verify that /dev/sda1 and /dev/sda3 are mounted
+ mount # just checks to verify that /dev/sda1 and /dev/sda3 are mounted
 
-`# pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl` <-- netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. `networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl (hope I termed that correctly).
+ pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
+# netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. `networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl (hope I termed that correctly).
 
-`# genfstab -U -p /mnt >> /mnt/etc/fstab`
+ genfstab -U -p /mnt >> /mnt/etc/fstab
 
-`# cat /mnt/etc/fstab` <--- shows partititions
+ cat /mnt/etc/fstab # shows partititions
 
-`# arch-chroot /mnt`
+ arch-chroot /mnt
 
-`# ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime`
+ ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 
-`# hwclock --systohc`
+ hwclock --systohc
 
-`# locale-gen`
+ locale-gen
 
-`# vim /etc/locale.gen`
+ vim /etc/locale.gen
 
--- type: `176 gg`, the press: Enter, then press: Delete, then type `:wq`
--- the above uses Vim to uncomment en_US.UTF-8 UTF-8
--- without doing this, you will see something like "cannot set LC_MESSAGES...no such file or directory", but you'll still be able to "sudo wifi-menu" and select your network and browse internet
+# type: "176 gg" and press "Enter". This will put cursor on line 176 where "#en_US.UTF-U UTF-8" is located at this time.
+# then press: Delete to delete "#" symbol, then type `:wq` to save and exit file.
+# the above uses Vim to uncomment en_US.UTF-8 UTF-8
+# without doing this, you will see something like "cannot set LC_MESSAGES...no such file or directory", but you'll still be able to "sudo wifi-menu" and select your network and browse internet
 
-`# vim /etc/locale.conf`
+ vim /etc/locale.conf
 
--- press "i" then type: LANG=en_US.UTF-8
--- press cntl-c and type: `:wq`
+# press "i" then type: LANG=en_US.UTF-8
+# press cntl-c and type: `:wq`
 
-`# passwd`
+ passwd
 
--- type in your password twice, as with most linux pw's, you won't see what you are typing.
+# type in your password twice, as with most linux pw's, you won't see what you are typing.
 
-`# grub-install --target=i386-pc /dev/sda` <--- UEFI has other instructions
--- outputs: "Installing for i386-pc platform'
-"Installation finished. No error reported."
+ grub-install --target=i386-pc /dev/sda # UEFI has other instructions
+# outputs: "Installing for i386-pc platform'
+#          "Installation finished. No error reported."
 
-`# grub-mkconfig -o /boot/grub/grub.cfg`
--- outputs:
-"Generating grub configuration file ...
-Found linux image: /boot/vmlinuz-linux
-Fount initrd image: /boot/initramfs-linux.img
-Found fallback initrd image(s) in /boot: initramfs-linux-fallback.img
-done"
-if nothing was output after grub-mkconfig, something wasn't input correctly.
+ grub-mkconfig -o /boot/grub/grub.cfg
+# outputs:
+#   "Generating grub configuration file ...
+#   Found linux image: /boot/vmlinuz-linux
+#   Found initrd image: /boot/initramfs-linux.img
+#   Found fallback initrd image(s) in /boot: initramfs-linux-fallback.img
+#   done"
+#   if nothing was output after grub-mkconfig, something wasn't input correctly.
 
-`# exit` <-- leave arch-chroot mode
+ exit # leave arch-chroot mode
 
-`# umount -R /mnt`
+ umount -R /mnt
 
-`# reboot`
+ reboot
+```
 
-If all went well, then you'll reboot to Arch Linux,
-for username, type: root
-then your password from earlier
+If all went well, then you'll reboot to Arch Linux<br />
+For username, type: root <br />
+then enter your password from earlier
 
-`# wifi-menu`
+```sh
+ wifi-menu
 
--- select router, I used default name, type in router password
+# select router, I used default name, type in router password
+```
 
--- in order to auto-login with wifi-menu, type in `systemctl enable netctl-auto@wlp3s0.service` now or after having set everything up, substitute your `interface` for `wlp3s0` if it is different.
+In order to auto-login with wifi-menu, type:
 
--- the `enable` will occur everytime the system boots, to start in the current session, you can use `start` instead of `enable`
+```sh
+systemctl enable netctl-auto@wlp3s0.service
+```
+
+now or after having set everything up <br />
+The above command has `wlp3s0` as the `interface`<br/>
+substitute your `interface` for `wlp3s0` if it is different.
+
+the `enable` will occur everytime the system boots, to start in the current session, you can use `start` instead of `enable`
 
 \*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard already) you can use:
-`# systemctl start NetworkManager`
 
-`# pacman -S xorg-server xorg` -- GUI stuff starting here
+```sh
+systemctl start NetworkManager
+```
 
-`# lspci | grep -e VGA -e 3D`
--- shows your video card
+## Setting up GUI stuff starts here
 
-`# pacman -Ss xf86-video`
--- shows possible list to use (I think, it's in the Arch Linux doc's).
+```sh
+pacman -S xorg-server xorg
 
-***** I may have left below out on last install
+lspci | grep -e VGA -e 3D # shows your video card
+
+pacman -Ss xf86-video # shows possible list to use (I think, it's in the Arch Linux doc's).
+```
+
+```diff
+- **\*** I may have left below (pacman -S nvidia) out on my most recent install
+```
 
 I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
 
--- I had installed just nvidia instead of nvidia-390xx on a prior install attempt and nothing showed on monitor; so, be sure to check the docs for what you need for your card.
+-- I had installed just `nvidia` instead of `nvidia-390xx` on a prior install attempt and nothing showed on monitor; so, be sure to check the docs for what you need for your card.
 
-`# pacman -S nvidia` -- `nvidia-390xx` is only AUR now.
+```sh
+pacman -S nvidia # nvidia-390xx is only AUR now.
+```
 
-***** I may have left above out on last install
+```diff
+- **\*** I may have left above (pacman -S nvidia) out on last install
+```
 
-`# useradd -m -G users,wheel justin`
+```sh
+useradd -m -G users,wheel justin
+```
 
--- later, type `# EDITOR=vim visudo` and uncomment `%wheel ALL=(ALL) ALL` to give wheel group members root privileges
+Later in a console, type:
 
-`# passwd justin`
--- just type in this users pw, same as root pw process
+```sh
+EDITOR=vim visudo # Then uncomment`%wheel ALL=(ALL) ALL` to give wheel group members root privileges
 
--- the following is for selecting a Desktop Environment, I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
+passwd justin # just type in this users pw, same as root pw process
+```
 
-`# pacman -S sddm` sddm-kcm is dependency of plasma and is installed with plasma
+## The following is for selecting a Desktop Environment
 
-`# systemctl enable sddm.service`
+I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
 
-`# pacman -S plasma konsole dolphin` <--- if you want chrome, it's in AUR, which is easy to get with git.
+```sh
+pacman -S sddm # sddm-kcm is dependency of plasma and is installed with plasma
 
--- Also, in case I forgot to mention this, you can install `kde-applications` and remove `konsole dolphin` (since those two are include with kde-applications) to install a lot of helpful packages for kde, just google 'kde applications' and either check the kde website or arch to see all of the packages included.
+systemctl enable sddm.service
 
--- For instace, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
+pacman -S plasma konsole dolphin # if you want chrome, it's in AUR, which is easy to get with git.
+```
 
--- So, the command would be `#pacman -S plasma kde-applications`
+Also, in case I forgot to mention this, you can install `kde-applications` and remove `konsole dolphin` (since those two are included with `kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications' and either check the kde website or arch to see all of the packages included.
 
--- the following is for auto-login, which is nice
--- if you don't use this, then on reboot it just asks you to enter in the user's pw before going to desktop, otherwise, with this, just goes straight to your desktop.
+-- For instance, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
 
-`# mkdir /etc/sddm.conf.d/`
+-- So, the command would be: `pacman -S plasma kde-applications`
 
-`# vim /etc/sddm.conf.d/autologin.conf`
--- press i then type: <br />
-`[Autologin]` <br />
-`User=justin` <br />
-`Session=plasma.desktop`
+## The following is for auto-login, which is nice
+
+If you don't use this, then on reboot it just asks you to enter in the user's pw before going to desktop; otherwise, just goes straight to your desktop.
+
+```sh
+mkdir /etc/sddm.conf.d/
+
+vim /etc/sddm.conf.d/autologin.conf
+```
+
+After opening `autologin.conf` file from above command, press `i` then type: <br />
+
+```sh
+[Autologin]
+User=justin
+Session=plasma.desktop
+```
 
 -- then press cntl-c then type `:wq` <br />
--- note: Session=plasma.desktop also is used for a plasma-desktop install, I've used both
+-- note: Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
 
-`# reboot`
+```sh
+reboot
+```
 
-The doc's go on to help set up iptables, which is a really easy step by step explanation with a good (short) explanation of what each line does.
+The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
-Also, some videos show to update with `pacman -Sy`, but the doc's clearly state to not use that and instead use `pacman -Syu` (At least at the time of me typing this up).
+Also, some videos show to update with `pacman -Sy`, but the doc's clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
 If you forgot to install a console, you can either tty console or use boot disk and mount everything and install.
+
+-- Note: For tty, type `Ctrl+Alt+F3` or whichever F# key (I'm not sure which are all console). <br />
+To get back to GUI, I read `Ctrl+Alt+F2` will work, but it didn't for me.
+I also read somewhere a long time ago to use `Ctrl+Alt+F7`, but I could be mistaken. Just look it up to be sure, otherwise just type `reboot` in whatever console envrionment that you are in and you will reboot to GUI.
