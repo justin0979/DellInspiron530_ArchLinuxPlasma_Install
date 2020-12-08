@@ -1,3 +1,7 @@
+## pacman
+
+installed packages are in `/var/lib/pacman/local`
+
 ## npm
 
 ### check globally installed
