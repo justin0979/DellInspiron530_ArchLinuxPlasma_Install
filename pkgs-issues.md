@@ -7,6 +7,12 @@ sudo pacman -Syyu
 ## Error upgrading due to conflicting files, or any other upgrade issue
 [Click for `pacman` arch wiki](https://wiki.archlinux.org/index.php/pacman)
 
+### npm errors with upgrade
+```sh
+npm uninstall -g npm
+```
+then re-ran `sudo pacman -Syyu`
+
 ### Reminder for ethernet access on Dell Inspiron laptop
 Get interface with `ip addr`<br />
 Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
