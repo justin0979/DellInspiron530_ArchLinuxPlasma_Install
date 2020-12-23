@@ -9,13 +9,18 @@ create .vim/bundle <br />
 `git clone <following pkgs in .vim/bundle>`<br/>
 add: <br />
 
-- ale
+- ale (not currently using)
 - auto-pairs
+- emmet-vim
 - nerdtree
 - vim-airline
-- vim-css-color
-- vim-es6
+- vim-css-color (not currently using)
+- vim-es6 (not currently using)
 - vim-prettier
 - vim-indent-guide
 
 (if not using pathogen, then create .vim/plugin and add auto-pairs there)
+
+with pathogen, in `.vim/autoload`:<br />
+
+- airline
