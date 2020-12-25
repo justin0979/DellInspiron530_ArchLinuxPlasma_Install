@@ -16,7 +16,7 @@ add: <br />
 - vim-airline
 - vim-css-color (not currently using)
 - vim-es6 (not currently using)
-- vim-prettier
+- vim-prettier (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
 - vim-indent-guide
 
 (if not using pathogen, then create .vim/plugin and add auto-pairs there)
