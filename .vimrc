@@ -7,7 +7,7 @@ filetype plugin indent on
 
 set showcmd " shows typed commands in bottom left
 set history=1000
-set hidden
+set hidden " edit multiple files without saving b4 switching buffers
 set wildmenu " shows a menu when using tab completion
 set scrolloff=5 " has 5 lines above cursor with 'z' then enter
 set hlsearch " highligts all search terms
@@ -22,7 +22,8 @@ set smartindent
 set shiftwidth=2
 set expandtab
 set softtabstop=2
-set list lcs=tab:\|\
+" set list lcs=tab:\|\
+set termwinsize=10x0 " sets window height to 10 with ':bel term'
 
 let &t_SI = "\e[5 q"
 let &t_EI = "\e[2 q"
@@ -105,11 +106,13 @@ let g:closetag_close_shortcut = '<leader>>'
 
 " =================== vim-NERDTree =====================
 " Open NERDTree automatically
+" Open in already open file with ':NERDTree'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize=25
+let g:NERDTreeShowHidden=1
 "
 " =================== vim-NERDTree =====================
 "
@@ -119,3 +122,12 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
 "; =================== vim-indent-guides =====================
+"
+" =================== typescript-vim =====================
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
+" =================== typescript-vim =====================
+"
+" =================== coc =====================
+let g:coc_global_extensions = [ 'coc-tsserver' ]
+" =================== coc =====================
