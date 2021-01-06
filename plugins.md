@@ -12,7 +12,7 @@ curl --fail -L https:github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzf
 ```
 
 AFTER the service has started (just wait a few minutes or just open a file in vim and it will tell you it is still installing) run `:CocInfo` to get some info.<br />
-Go to ['https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim#using-vim8s-native-package-manager'](Install coc.nvim: Using vim8's native package manager) for more information.
+Go to [Install coc.nvim: Using vim8's native package manager]('https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim#using-vim8s-native-package-manager') for more information.
 
 Add to `.vimrc`:
 
