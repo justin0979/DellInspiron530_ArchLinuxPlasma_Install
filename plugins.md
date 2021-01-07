@@ -22,7 +22,7 @@ let g:coc_global_extensions = ['coc-tsserver']
 
 ### Other packages to possibly get
 
-(Look into coc, b/c things like `coc-prettier` can bu used instead)
+(Look into coc, b/c things like `coc-prettier` can be used instead)
 
 - ale (not currently using)
 - auto-pairs
