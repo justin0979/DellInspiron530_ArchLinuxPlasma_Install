@@ -20,16 +20,9 @@ Add to `.vimrc`:
 let g:coc_global_extensions = ['coc-tsserver']
 ```
 
-### Pathogen
+### Other packages to possibly get
 
-create .vim/autoload <br />
-add: <br />
-
-- pathogen.vim
-
-create .vim/bundle <br />
-`git clone <following pkgs in .vim/bundle>`<br/>
-add: <br />
+(Look into coc, b/c things like `coc-prettier` can bu used instead)
 
 - ale (not currently using)
 - auto-pairs
@@ -40,9 +33,8 @@ add: <br />
 - vim-es6 (not currently using)
 - vim-prettier (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
 - vim-indent-guide
-
-(if not using pathogen, then create .vim/plugin and add auto-pairs there)
-
-with pathogen, in `.vim/autoload`:<br />
-
 - airline
+
+### Colors
+
+Colors can be added to `.vim/colors` and set in `.vimrc`
