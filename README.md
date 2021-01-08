@@ -13,7 +13,7 @@ Power Supply: 350W <br />
 
 <details>
  
-<summary><h3> Upgrades </h3></summary>
+<summary><strong> Upgrades </strong><hr /></summary>
 
 500 GB Samsung 860 SSD (from 1TB HDD, I think 1TB or 500GB) <br />
 uBit wifi 6 PCI-e card with bluetooth. <br />
