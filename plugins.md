@@ -19,12 +19,14 @@ Add to `.vimrc`:
 ```sh
 let g:coc_global_extensions = ['coc-tsserver']
 ```
-
-### Other packages to possibly get
+<details>
+<summary>
+  <strong>
+  Other packages to possibly get
+  </strong>
+  </summary>
 
 (Look into coc, b/c things like `coc-prettier` can be used instead)
-<details>
-  <summary>extra vim plugins</summary>
   
 - ale (not currently using)
 - auto-pairs
