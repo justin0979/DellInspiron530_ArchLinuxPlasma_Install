@@ -3,13 +3,17 @@
 A reference for me later. I randomly update some of the text here, so some specs will be mismatched in places.<br />
 Use this as my main computer. No serious issues so far.
 
-## Specs
+<details>
+ 
+<summary><string> Specs </strong><hr /></summary>
 
 Motherboard: G33M03 <br />
 ~~RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz)~~ <br />
 CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
 Architecture: x86_64 <br />
 Power Supply: 350W <br />
+
+</details>
 
 <details>
  
