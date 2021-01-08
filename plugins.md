@@ -23,7 +23,9 @@ let g:coc_global_extensions = ['coc-tsserver']
 ### Other packages to possibly get
 
 (Look into coc, b/c things like `coc-prettier` can be used instead)
-
+<details>
+  <summary>extra vim plugins</summary>
+  
 - ale (not currently using)
 - auto-pairs
 - emmet-vim
@@ -34,6 +36,7 @@ let g:coc_global_extensions = ['coc-tsserver']
 - vim-prettier (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
 - vim-indent-guide
 - airline
+</details>
 
 ### Colors
 
