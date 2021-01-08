@@ -195,5 +195,7 @@ hi LineNr guifg=#696969
 hi CocErrorSign guifg=#add8e6 ctermfg=lightblue
 hi typescriptParens ctermfg=117 guifg=#87d7ff
 hi typescriptBraces ctermfg=117 guifg=#87d7ff
-hi typescriptDotNotation ctermfg=11 guifg=#ffff00
+hi typescriptDotNotation ctermfg=227 guifg=#ffff87
 hi typescriptType ctermfg=green guifg=green
+autocmd BufRead,BufNewFile * syn match parens /[(){}]/ | hi parens ctermfg=117 guifg=#87d6ff
+autocmd BufRead,BufNewFile * syn match brack /[\[\]]/ | hi brack ctermfg=161 guifg=#d7005f
