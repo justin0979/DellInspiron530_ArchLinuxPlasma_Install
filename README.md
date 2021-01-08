@@ -11,12 +11,16 @@ CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
 Architecture: x86_64 <br />
 Power Supply: 350W <br />
 
-## Upgrades
+<details>
+ 
+<summary><h3> Upgrades </h3></summary>
 
 500 GB Samsung 860 SSD (from 1TB HDD, I think 1TB or 500GB) <br />
 uBit wifi 6 PCI-e card with bluetooth. <br />
 NVIDIA Corporation GF119 [GeForce GT 610] (from an AMD, not sure specs) <br />
 RAM: 8GB
+
+</details>
 
 ### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.72-1-lts, currently) kernel, which Intel states is required for wifi ax cards.
 
