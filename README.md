@@ -5,7 +5,7 @@ Use this as my main computer. No serious issues so far.
 
 <details>
  
-<summary><string> Specs </strong><hr /></summary>
+<summary><strong> Specs </strong><hr /></summary>
 
 Motherboard: G33M03 <br />
 ~~RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz)~~ <br />
