@@ -84,9 +84,9 @@ in /etc/pulse/default.pa <br />
   <summary>Open window on monitor mouse is on<hr/></summary>
   
 Open window on same monitor as mouse:<br />
-1.) System Settings
-2.) Window Management
-3.) Window Behavior
+1.) System Settings<br />
+2.) Window Management<br />
+3.) Window Behavior<br />
 4.) Click "Active screen follows mouse" in Multiscreen behavior section
 
 </details>
