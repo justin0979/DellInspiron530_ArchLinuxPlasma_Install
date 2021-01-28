@@ -19,6 +19,7 @@ Add to `.vimrc`:
 ```sh
 let g:coc_global_extensions = ['coc-tsserver']
 ```
+
 <details>
 <summary>
   <strong>
@@ -27,14 +28,14 @@ let g:coc_global_extensions = ['coc-tsserver']
   </summary>
 
 (Look into coc, b/c things like `coc-prettier` can be used instead)
-  
-- ale (not currently using)
+
+- ~~ale (not currently using)~~
 - auto-pairs
 - emmet-vim
 - nerdtree
 - vim-airline
-- vim-css-color (not currently using)
-- vim-es6 (not currently using)
+- ~~vim-css-color (not currently using)~~
+- ~~vim-es6 (not currently using)~~
 - vim-prettier (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
 - vim-indent-guide
 - airline
