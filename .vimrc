@@ -1,5 +1,18 @@
+"colorscheme codedark
+syntax enable
+filetype plugin indent on
+set termguicolors
+
+packloadall
+
 let mapleader = "," 
 let maplocalleader = "\~"
+
+" From Vim Tips Wiki, author Charles E. Campbell, Jr.
+" Identify the syntax highlighting group used at the cursor
+nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"name") . '> transparent<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 augroup jsbasedgroup
   autocmd!
@@ -27,7 +40,7 @@ nnoremap <leader>w :set wrap<cr>
 nnoremap <leader>nw :set nowrap<cr>
 
 "open .vimrc horizontal split screen
-nnoremap <leader>eh :split $MYVIMRC<cr>
+nnoremap <leader>eh :execute "rightbelow split " . $MYVIMRC<cr>
 " open .vimrc vertical split screen
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
@@ -37,13 +50,6 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 iabbrev Compenent Component
 iabbrev componetns components
 
-
-colorscheme codedark
-syntax enable
-filetype plugin indent on
-set termguicolors
-
-packloadall
 
 set showcmd " shows incomplete typed commands in bottom left
 set history=1000 " keep 1000 items in vim history, just hit up arrow for prev entries
@@ -319,9 +325,9 @@ augroup end
 "; =================== END vim-indent-guides =====================
 "
 " =================== vim-javascript =====================
-let g:javascript_conceal_arrow_function       = "⇒"
-let g:javascript_plugin_flow = 1
-let g:vim_jsx_pretty_colorful_config = 1 " default 0
+" let g:javascript_conceal_arrow_function       = "⇒"
+" let g:javascript_plugin_flow = 1
+" let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 " =================== END vim-javascript =====================
 "
@@ -338,40 +344,72 @@ let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-highli
 
 highlight String ctermfg=76 guifg=#5fd700
 highlight Pmenu ctermbg=lightgray guibg=#555555
-hi Statement ctermfg=227 guifg=LightGoldenrod1
-hi LineNr ctermfg=240 guifg=Grey35
-hi CocErrorSign guifg=#add8e6 ctermfg=lightblue
+highlight Number ctermfg=255 guifg=#eeeeee
+highlight Statement ctermfg=227 guifg=LightGoldenrod1
+highlight LineNr ctermfg=240 guifg=Grey35
+
+hi CocErrorFloat ctermfg=195 guifg=#d7ffff
+hi CocErrorHighlight cterm=underline ctermfg=9 guifg=#ff0000
+hi CocErrorSign ctermfg=9 guifg=#ff0000
+
+hi htmlTag ctermfg=117 guifg=#87d7ff
+hi htmlTagName cterm=bold ctermfg=83 guifg=#5fff5f
+
 hi jsFuncCall ctermfg=191 guifg=DarkOliveGreen1
 hi jsParens ctermfg=105 guifg=LightSlateBlue
+
+hi tsxAttrib ctermfg=75 guifg=#5fafff
+hi tsxCloseTag ctermfg=247 guifg=#9e9e9e
+hi tsxTag ctermfg=247 guifg=#9e9e9e
 
 hi typescriptArrowFunc ctermfg=81 guifg=#5fd7ff
 hi typescriptArrowFuncArg ctermfg=227 guifg=#ffff87
 hi typescriptArrowFuncDef ctermfg=227 guifg=#ffff87
 
+hi typescriptBlock ctermfg=51 guifg=#00ffff
 hi typescriptBraces ctermfg=117 guifg=#87d7ff
 
+hi typescriptCall ctermfg=51 guifg=#00ffff
+hi typescriptCase ctermfg=147 guifg=#afafff
+hi typescriptClassKeyword cterm=bold ctermfg=155 guifg=#afff5f
 hi typescriptClassName ctermfg=112 guifg=#87d700
 
+hi typescriptConditional ctermfg=147 guifg=#afafff
+hi typescriptConditionalParen ctermfg=51 guifg=#00ffff
 hi typescriptConstructor ctermfg=86 guifg=#5fffd7
 
 hi typescriptDotNotation ctermfg=227 guifg=#ffff87
 
+hi typescriptEnumKeyword ctermfg=14 guifg=#40ffff
+hi typescriptExport ctermfg=yellow  guifg=yellow
+
+hi typescriptFuncArg ctermfg=153 guifg=#afd7ff
+hi typescriptFuncCallArg ctermfg=153 guifg=#afd7ff
+hi typescriptFuncImpl ctermfg=green guifg=green
 hi typescriptFunctionMethod ctermfg=yellow guifg=yellow
-hi typescriptFuncName ctermfg=228 guifg=#ffff87
+hi typescriptFuncName ctermfg=195 guifg=#d7ffff
+
+hi typescriptImport ctermfg=171 guifg=#d75fff
 
 hi typescriptObjectLabel ctermfg=229 guifg=#ffffaf
 "hi typescriptObjectStaticMethod ctermfg=yellow guifg=yellow
-hi typescriptObjectLiteral ctermfg=249 guifg=#b2b2b2
+hi typescriptObjectLiteral ctermfg=51 guifg=#00ffff
 "hi typescriptObjectMethod ctermfg=yellow guifg=yellow
 "hi typescriptObjectAsyncKeyword ctermfg=yellow guifg=yellow
 
 hi typescriptParens ctermfg=159 guifg=#afffff
 hi typescriptType ctermfg=green guifg=green
+hi typescriptTypeReference ctermfg=10 guifg=#00ff00
 
 hi typescriptVars ctermfg=green guifg=green
+hi typescriptVariable ctermfg=105 guifg=#8787ff
 hi typescriptVariableDeclaration ctermfg=10 guifg=#00ff00
 
 hi Function ctermfg=50 guifg=#00FFD7
+
+hi cssBraces ctermfg=yellow guifg=yellow
+" value of declaration
+hi cssProp ctermfg=45 guifg=#00d7ff
 
 augroup parenspairgroup
   autocmd!
@@ -386,5 +424,6 @@ augroup end
 
 augroup filetype_html
   autocmd!
+  " Create a fold in html
   autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup end
