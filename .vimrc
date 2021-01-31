@@ -19,9 +19,11 @@ augroup jsbasedgroup
   " setup if statement
   autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
   autocmd FileType typescript :iabbrev <buffer> iff if ()<left>
+  autocmd FileType typescriptreact :iabbrev <buffer> iff if ()<left>
   " comment out current line cursor is on
   autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
   autocmd FileType typescript nnoremap <buffer> <localleader>c I//<esc>
+  autocmd FileType typescriptreact nnoremap <buffer> <localleader>c I//<esc>
   " have .json files open with nowrap set
   autocmd BufNewFile,BufRead *.json setlocal nowrap
 augroup end
@@ -76,7 +78,6 @@ let &t_SI = "\e[5 q"
 let &t_EI = "\e[2 q"
 
 " =================== coc config =====================
-" Configuraton taken from coc.nvim
 set nobackup " Some servers have issues with backup files
 set nowritebackup
 
@@ -236,8 +237,8 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" End coc.nvim configuration
-" =================== coc config =====================
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-highlight', 'coc-json', 'coc-html', 'coc-css']
+" =================== END coc config =====================
 
 " =================== vim-prettier =====================
 
@@ -247,7 +248,7 @@ augroup vimprettier
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 augroup end
 
-let g:prettier#config#print_width = "auto"
+let g:prettier#config#print_width = 78
 
 let g:prettier#config#bracket_spacing = 'true'
 
@@ -322,25 +323,18 @@ augroup vimindentgroup
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444444   ctermbg=240
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333333   ctermbg=246
 augroup end
-"; =================== END vim-indent-guides =====================
-"
-" =================== vim-javascript =====================
-" let g:javascript_conceal_arrow_function       = "⇒"
-" let g:javascript_plugin_flow = 1
-" let g:vim_jsx_pretty_colorful_config = 1 " default 0
+" =================== END vim-indent-guides =====================
 
-" =================== END vim-javascript =====================
-"
-" =================== typescript-vim =====================
-
-  "let g:typescript_compiler_binary = 'tsc'
-  "let g:typescript_compiler_options = ''
-
-" =================== END typescript-vim =====================
-"
-" =================== coc =====================
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-highlight', 'coc-json', 'coc-html', 'coc-css']
-" =================== END coc =====================
+" =================== emmet-vim =====================
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\  'typescript' : {
+\      'extends' : 'tsx',
+\  },
+\}
+" =================== END emmet-vim =====================
 
 highlight String ctermfg=76 guifg=#5fd700
 highlight Pmenu ctermbg=lightgray guibg=#555555
@@ -349,7 +343,7 @@ highlight Statement ctermfg=227 guifg=LightGoldenrod1
 highlight LineNr ctermfg=240 guifg=Grey35
 
 hi CocErrorFloat ctermfg=195 guifg=#d7ffff
-hi CocErrorHighlight cterm=underline ctermfg=9 guifg=#ff0000
+hi CocErrorHighlight cterm=strikethrough ctermfg=9 guifg=#ff0000
 hi CocErrorSign ctermfg=9 guifg=#ff0000
 
 hi htmlTag ctermfg=117 guifg=#87d7ff
@@ -378,6 +372,7 @@ hi typescriptConditional ctermfg=147 guifg=#afafff
 hi typescriptConditionalParen ctermfg=51 guifg=#00ffff
 hi typescriptConstructor ctermfg=86 guifg=#5fffd7
 
+hi typescriptDestructureVariable ctermfg=39 guifg=#00afff
 hi typescriptDotNotation ctermfg=227 guifg=#ffff87
 
 hi typescriptEnumKeyword ctermfg=14 guifg=#40ffff
@@ -389,6 +384,7 @@ hi typescriptFuncImpl ctermfg=green guifg=green
 hi typescriptFunctionMethod ctermfg=yellow guifg=yellow
 hi typescriptFuncName ctermfg=195 guifg=#d7ffff
 
+hi typescriptIdentifierName ctermfg=10 guifg=#00ff00
 hi typescriptImport ctermfg=171 guifg=#d75fff
 
 hi typescriptObjectLabel ctermfg=229 guifg=#ffffaf
