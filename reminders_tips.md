@@ -1,3 +1,4 @@
+# See installed pkgs from pacman and npm
 ## pacman
 
 installed packages are in `/var/lib/pacman/local`
