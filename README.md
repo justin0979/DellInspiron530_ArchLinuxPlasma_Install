@@ -8,7 +8,7 @@ Use this as my main computer. No serious issues so far.
 <summary><strong> Specs </strong><hr /></summary>
 
 Motherboard: G33M03 <br />
-~~RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz)~~ <br />
+~~RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz)~~ (Upgraded)<br />
 CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
 Architecture: x86_64 <br />
 Power Supply: 350W <br />
@@ -26,7 +26,7 @@ RAM: 8GB
 
 </details>
 
-### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.72-1-lts, currently) kernel, which Intel states is required for wifi ax cards.
+### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.72-1-lts, at time of install) kernel, which Intel states is required for wifi ax cards.
 
 ### After a lot of pain and closely, but not comprehensively, reading the ArchWiki docs, I was able to finally boot to a lighter weight plasma-desktop. I re-did the install 2 more times to ensure I started to understand some of what I was doing. I then went ahead and just installed full Plasma, which I'm very glad I did. The Dell handles this desktop environment very well. I have a dual monitor setup, and plasma came with everything. Plasma-desktop didn't come with "out-of-the-box" dual monitor work (or at least one of the packages didn't).
 
