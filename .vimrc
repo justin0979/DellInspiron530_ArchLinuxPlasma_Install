@@ -1,3 +1,6 @@
+"To unfold an area, type "za" when cursor is on line
+"To fold, place cursor anywhere in marked area and type "za"
+"
 "colorscheme codedark
 syntax enable
 filetype plugin indent on
@@ -8,27 +11,45 @@ packloadall
 let mapleader = "," 
 let maplocalleader = "\~"
 
+nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+
+" setup folding
+" "za" folds and unfolds marked area where cursor is at
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" Operator mappings --------------------- {{{
+" find '}' and delete contents with either 'dc' or 'cc', c = curly braces
+onoremap c :normal! f}vi{<cr>
+onoremap C :normal! F{vi{<cr>
+" find ')' and delete contents with eithe 'dp' or 'dp', p = parenthesis
+onoremap p :normal! f)vi(<cr>
+onoremap P :normal! F(vi(<cr>
+" }}}
+
+" key remappings ----------------- {{{
+" surround current string with {}
+nnoremap sc ciw{<esc>pa}<esc>
+inoremap <c-s>c <esc>ciw{<esc>pa}
+
+" surround current string with []
+nnoremap sb ciw[<esc>pa]<esc>
+inoremap <c-s>b <esc>ciw[<esc>pa]
+
+" surround current string with "
+nnoremap sq ciw"<esc>pa"<esc>
+nnoremap <c-s>q <esc>ciw"<esc>pa"
+
 " From Vim Tips Wiki, author Charles E. Campbell, Jr.
 " Identify the syntax highlighting group used at the cursor
 nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"name") . '> transparent<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-augroup jsbasedgroup
-  autocmd!
-  " setup if statement
-  autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
-  autocmd FileType typescript :iabbrev <buffer> iff if ()<left>
-  autocmd FileType typescriptreact :iabbrev <buffer> iff if ()<left>
-  " comment out current line cursor is on
-  autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-  autocmd FileType typescript nnoremap <buffer> <localleader>c I//<esc>
-  autocmd FileType typescriptreact nnoremap <buffer> <localleader>c I//<esc>
-  " have .json files open with nowrap set
-  autocmd BufNewFile,BufRead *.json setlocal nowrap
-augroup end
-
 "echo '(>^.^<)'
+
 " execute deleting line while in insert mode
 inoremap <c-d> <esc>ddO
 nnoremap <leader>d dd
@@ -49,10 +70,21 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " source .vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" set no highlighting
+nnoremap <leader>nh :nohlsearch<cr>
+
+" make all searches very magic
+nnoremap / /\v
+
+" Find excess white spaces after line
+nnoremap <leader>ws :match Error /\v[^ ]\s+$/<cr>
+"}}}
+
+
 iabbrev Compenent Component
 iabbrev componetns components
 
-
+" Basic settings ---------------- {{{
 set showcmd " shows incomplete typed commands in bottom left
 set history=1000 " keep 1000 items in vim history, just hit up arrow for prev entries
 set hidden " edit multiple files without saving b4 switching buffers
@@ -76,7 +108,10 @@ set termwinsize=10x0 " sets window height to 10 with ':bel term'
 
 let &t_SI = "\e[5 q"
 let &t_EI = "\e[2 q"
+" }}}
 
+" plugin configuratons -------------------- {{{
+" COC configurations --------------------- {{{
 " =================== coc config =====================
 set nobackup " Some servers have issues with backup files
 set nowritebackup
@@ -239,7 +274,9 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-highlight', 'coc-json', 'coc-html', 'coc-css']
 " =================== END coc config =====================
+" }}}
 
+" vim-prettier configuraton -------------------------- {{{
 " =================== vim-prettier =====================
 
 let g:prettier#autoformat = 0
@@ -248,14 +285,16 @@ augroup vimprettier
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 augroup end
 
-let g:prettier#config#print_width = 78
+let g:prettier#config#print_width = 63
 
 let g:prettier#config#bracket_spacing = 'true'
 
 let g:prettier#config#trailing_comma = 'all'
 
 " =================== END vim-prettier =====================
+" }}}
  
+" vim-closetag configuration ------------------- {{{
 " =================== vim-closetag =====================
  
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx,*ts'
@@ -297,7 +336,9 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 "
 " =================== END vim-closetag =====================
+" }}}
 
+" NERDTree configuraton ------------------------- {{{
 " =================== vim-NERDTree =====================
 " Open NERDTree automatically
 " Open in already open file with ':NERDTree'
@@ -312,7 +353,9 @@ let g:NERDTreeWinSize=25
 let g:NERDTreeShowHidden=1
 "
 " =================== END vim-NERDTree =====================
+" }}}
 "
+" vim-indent-guides configuration ---------------- {{{
 " =================== vim-indent-guides =====================
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
@@ -324,7 +367,9 @@ augroup vimindentgroup
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333333   ctermbg=246
 augroup end
 " =================== END vim-indent-guides =====================
+" }}}
 
+" emmet-vim configuration --------------------- {{{
 " =================== emmet-vim =====================
 let g:user_emmet_settings = {
 \  'javascript' : {
@@ -335,16 +380,21 @@ let g:user_emmet_settings = {
 \  },
 \}
 " =================== END emmet-vim =====================
+" }}}
+" }}}
 
+" highligting configurations --------------- {{{
 highlight String ctermfg=76 guifg=#5fd700
 highlight Pmenu ctermbg=lightgray guibg=#555555
 highlight Number ctermfg=255 guifg=#eeeeee
 highlight Statement ctermfg=227 guifg=LightGoldenrod1
 highlight LineNr ctermfg=240 guifg=Grey35
 
+" coc highlight settings --------------- {{{
 hi CocErrorFloat ctermfg=195 guifg=#d7ffff
 hi CocErrorHighlight cterm=strikethrough ctermfg=9 guifg=#ff0000
 hi CocErrorSign ctermfg=9 guifg=#ff0000
+" }}}
 
 hi htmlTag ctermfg=117 guifg=#87d7ff
 hi htmlTagName cterm=bold ctermfg=83 guifg=#5fff5f
@@ -352,6 +402,7 @@ hi htmlTagName cterm=bold ctermfg=83 guifg=#5fff5f
 hi jsFuncCall ctermfg=191 guifg=DarkOliveGreen1
 hi jsParens ctermfg=105 guifg=LightSlateBlue
 
+" typescript highlighting ------------- {{{
 hi tsxAttrib ctermfg=75 guifg=#5fafff
 hi tsxCloseTag ctermfg=247 guifg=#9e9e9e
 hi tsxTag ctermfg=247 guifg=#9e9e9e
@@ -400,12 +451,42 @@ hi typescriptTypeReference ctermfg=10 guifg=#00ff00
 hi typescriptVars ctermfg=green guifg=green
 hi typescriptVariable ctermfg=105 guifg=#8787ff
 hi typescriptVariableDeclaration ctermfg=10 guifg=#00ff00
+" }}}
 
 hi Function ctermfg=50 guifg=#00FFD7
 
 hi cssBraces ctermfg=yellow guifg=yellow
 " value of declaration
 hi cssProp ctermfg=45 guifg=#00d7ff
+" }}}
+
+" Groupings ----------------- {{{
+" Javascript based autocmd group ------------- {{{
+augroup jsbasedgroup
+  autocmd!
+  "setup function ())
+  autocmd FileType javascript,typescript :iabbrev <buffer> f()) () {}<left><cr><left><up><end><left><left><left>
+  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> f()) () {}<left><cr><left><up><end><left><left><left>
+  " setup arrow function for export ()=
+  autocmd FileType typescript,javascript :iabbrev <buffer> ()= () => {}<left><cr><left><up><end><left><left><left><left><left><left>
+  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> ()= () => {}<left><cr><left><up><end><left><left><left><left><left><left>
+  " setup useEffect Hook
+  autocmd FileType typescriptreact,javascriptreact :iabbrev <buffer> useEffect() useEffect(() => {}, [])<left><left><left><left><left><left><cr>
+  " setup if statement
+  autocmd FileType javascript,typescript :iabbrev <buffer> iff if ()<left>
+  autocmd FileType javascriptreact :iabbrev <buffer> iff if ()<left>
+  autocmd FileType typescriptreact :iabbrev <buffer> iff if ()<left>
+  " setup for loop
+  autocmd FileType javascript,typescript :iabbrev <buffer> forr for ()<left>
+  autocmd FileType javascriptreact :iabbrev <buffer> forr for ()<left>
+  autocmd FileType typescriptreact :iabbrev <buffer> forr for ()<left>
+  " comment out current line cursor is on
+  autocmd FileType javascript,typescript nnoremap <buffer> <leader>c I//<esc>
+  autocmd FileType javascriptreact,typescriptreact nnoremap <buffer> <leader>c I//<esc>
+  " have .json files open with nowrap set
+  autocmd BufNewFile,BufRead *.json setlocal nowrap
+augroup end
+" }}}
 
 augroup parenspairgroup
   autocmd!
@@ -423,3 +504,4 @@ augroup filetype_html
   " Create a fold in html
   autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup end
+" }}}

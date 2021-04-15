@@ -26,6 +26,7 @@ NOBLINK='\e[25m'
 alias ls='ls --color=auto'
 alias ll='ls -l'
 alias l='ls -lah'
+alias cls='clear && ls'
 alias dr='deno run'
 alias k='kubectl'
 
