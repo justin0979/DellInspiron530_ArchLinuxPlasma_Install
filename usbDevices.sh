@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# List USB connected devices
+# Copied from StackOverflow
+# May need to change permissions with something like 'chmod 744 usbDevices.sh'
+
 for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
     (
         syspath="${sysdevpath%/dev}"
