@@ -1,6 +1,5 @@
-"To unfold an area, type "za" when cursor is on line
-"To fold, place cursor anywhere in marked area and type "za"
-"
+"To unfold an area, type 'za' when cursor is on line
+"To fold, place cursor anywhere in marked area and type 'za'
 "colorscheme codedark
 syntax enable
 filetype plugin indent on
@@ -14,7 +13,7 @@ let maplocalleader = "\~"
 nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
 " setup folding
-" "za" folds and unfolds marked area where cursor is at
+" 'za' folds and unfolds marked area where cursor is at
 augroup filetype_vim
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
@@ -22,31 +21,46 @@ augroup END
 
 " Operator mappings --------------------- {{{
 " find '}' and delete contents with either 'dc' or 'cc', c = curly braces
+onoremap { :normal! f}vi{<cr>
+onoremap } :normal! F{vi{<cr>
 onoremap c :normal! f}vi{<cr>
 onoremap C :normal! F{vi{<cr>
-" find ')' and delete contents with eithe 'dp' or 'dp', p = parenthesis
+" find ')' and delete contents with either 'dp' or 'dp', p = parenthesis
+onoremap ( :normal! f)vi(<cr>
+onoremap ) :normal! F(vi(<cr>
 onoremap p :normal! f)vi(<cr>
 onoremap P :normal! F(vi(<cr>
 " }}}
 
 " key remappings ----------------- {{{
-" surround current string with {}
-nnoremap sc ciw{<esc>pa}<esc>
-inoremap <c-s>c <esc>ciw{<esc>pa}
 
-" surround current string with []
-nnoremap sb ciw[<esc>pa]<esc>
-inoremap <c-s>b <esc>ciw[<esc>pa]
-
-" surround current string with "
-nnoremap sq ciw"<esc>pa"<esc>
-nnoremap <c-s>q <esc>ciw"<esc>pa"
-
+" ID syntax highlighting group ----------------- {{{
 " From Vim Tips Wiki, author Charles E. Campbell, Jr.
 " Identify the syntax highlighting group used at the cursor
 nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"name") . '> transparent<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" }}}
+
+" surround current string with {}
+nnoremap s{ ciw{<esc>pa}<esc>
+nnoremap s} ciw{<esc>pa}<esc>
+inoremap <c-s>c <esc>ciw{<esc>pa}
+
+" surround current string with []
+nnoremap s[ ciw[<esc>pa]<esc>
+inoremap <c-s>b <esc>ciw[<esc>pa]
+
+" surround current string with ""
+nnoremap s" ciw"<esc>pa"<esc>
+nnoremap <c-s>q <esc>ciw"<esc>pa"
+
+" surround current string with ''
+nnoremap s' ciw'<esc>pa'<esc>
+
+" surround current string with <>
+nnoremap s< ciw<<esc>pa><esc>
+nnoremap s> ciw<<esc>pa><esc>
 
 "echo '(>^.^<)'
 
@@ -502,6 +516,7 @@ augroup end
 augroup filetype_html
   autocmd!
   " Create a fold in html
+  " To unfold: zd
   autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup end
 " }}}
