@@ -10,6 +10,7 @@ Use this as my main computer. No serious issues so far.
 Motherboard: G33M03 <br />
 ~~RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz)~~ (Upgraded)<br />
 CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
+~~GPU: AMD (don't remember specs)~~ (Upgraded)
 Architecture: x86_64 <br />
 Power Supply: 350W <br />
 
@@ -21,24 +22,24 @@ Power Supply: 350W <br />
 
 500 GB Samsung 860 SSD (from 1TB HDD, I think 1TB or 500GB) <br />
 uBit wifi 6 PCI-e card with bluetooth. <br />
-NVIDIA Corporation GF119 [GeForce GT 610] (from an AMD, not sure specs) <br />
-RAM: 8GB
+NVIDIA Corporation GF119 [GeForce GT 610] <br />
+RAM: 8GB (cheap 2GB sticks from Amazon)
 
 </details>
 
-### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.72-1-lts, at time of install) kernel, which Intel states is required for wifi ax cards.
+### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.72-1-lts, at time of install and as of June 5, 2021, 5.10.42-1-lts) kernel, which Intel states is required for wifi ax cards.
 
 ### After a lot of pain and closely, but not comprehensively, reading the ArchWiki docs, I was able to finally boot to a lighter weight plasma-desktop. I re-did the install 2 more times to ensure I started to understand some of what I was doing. I then went ahead and just installed full Plasma, which I'm very glad I did. The Dell handles this desktop environment very well. I have a dual monitor setup, and plasma came with everything. Plasma-desktop didn't come with "out-of-the-box" dual monitor work (or at least one of the packages didn't).
 
-Now, my Dell has DL speeds of up to 230 Mbps (thanks to my non-provider modem and WiFi 6 router) on a 200 Mbps plan and bluetooth capabilities.
+Now, my Dell has DL speeds of up to 230 Mbps (thanks to my non-provider modem and router) on a 200 Mbps plan.
 
 ## There could be several typos here.
 
-I followed the docs about 95-99% and some youtube videos (about 1%, I watched those first so I could at least have some idea of what I was reading in the docs) that coincided with the docs (hence some of the commands being in a slightly different order than the docs). Oddly, a youtube series on Arch is dated from Spring 2019, but some of their methods are already outdated and editors like vim and nano are not included in `base`. The youtube series even talked about the AUR and used a little bit longer way instead of simply cloning from github and running a couple other simple commands to get repo's, like the doc's show.
+I followed the docs about 95-99% and some youtube videos (about 1%) that coincided with the docs (hence some of the commands being in a slightly different order than the docs). Editors like vim and nano are not included in `base`.
 
-The docs link to other pages for more detail and it was very easy to miss a link (like the boot loader part) or to just not understand what an entire section was talking about. If it wasn't for the videos, I would have missed some of the commands I needed to use. But, after spending more time reading the doc's for setting things up like `iptables`, the doc's ARE the only source you need to use for anything Arch related.
+The docs link to other pages for more detail and it was very easy to miss a link (I missed the boot loader part) or to just not understand what an entire section was talking about. If it wasn't for some youtube videos, I would have missed some of the commands I needed to use. But, after spending more time reading the doc's for setting things up like `iptables`, the doc's ARE the only source you need to use for anything Arch related.
 
-UEFI has only a slightly different method than what follows.
+UEFI has only a slightly different method than what follows, I believe I used UEFI in the [thinkpadarch.md](https://github.com/justin0979/DellInspiron530_ArchLinuxPlasma_Install/blob/main/thinkpadarch.md) for my laptop.
 
 I used `dd` to get a usb iso and booted that way.
 
