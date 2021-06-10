@@ -36,18 +36,18 @@ let g:coc_global_extensions = ['coc-tsserver']
   </summary>
 
 (Look into coc, b/c things like `coc-prettier` can be used instead)
+The `git clone` here uses for `ssh` setup.
 
-- [vim-jsonc](https://github.com/kevinoid/vim-jsonc) `git clone git@github.com:kevinoid/vim-jsonc.git`
+- [vim-jsonc](https://github.com/kevinoid/vim-jsonc) `git clone git@github.com:kevinoid/vim-jsonc.git` allows comments in .json
 - ~~ale (not currently using)~~
 - auto-pairs
-- emmet-vim
-- nerdtree
-- vim-airline
+- [emmet-vim](https://github.com/mattn/emmet-vim) `git clone git@github.com:mattn/emmet-vim.git`
+- [nerdtree](https://github.com/preservim/nerdtree) `git clone git@github.com:preservim/nerdtree.git`
+- [vim-airline](https://github.com/vim-airline/vim-airline) `git clone git@github.com:vim-airline/vim-airline.git`
 - ~~vim-css-color (not currently using)~~
 - ~~vim-es6 (not currently using)~~
-- vim-prettier (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
-- vim-indent-guide
-- airline
+- [vim-prettier](https://github.com/prettier/vim-prettier) `git clone git@github.com:prettier/vim-prettier.git` (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
+- [vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) `git clone git@github.com:nathanaelkane/vim-indent-guides.git`
 </details>
 
 ### Colors
