@@ -37,7 +37,7 @@ let g:coc_global_extensions = ['coc-tsserver']
 
 (Look into coc, b/c things like `coc-prettier` can be used instead)
 
-- [vim-jsonc](https://github.com/kevinoid/vim-jsonc) `git@github.com:kevinoid/vim-jsonc.git`
+- [vim-jsonc](https://github.com/kevinoid/vim-jsonc) `git clone git@github.com:kevinoid/vim-jsonc.git`
 - ~~ale (not currently using)~~
 - auto-pairs
 - emmet-vim
