@@ -5,6 +5,14 @@ Go and download these first.
 For
 With vim 8.2 (what I currently have at this time):<br />
 
+add plugins with `git clone <repo-name>` to:
+
+```sh
+mkdir .vim/pack/start/plugins/start
+```
+
+For coc, I just followed their docs:
+
 ```sh
 mkdir .vim/pack/coc/start \
 cd .vim/pack/coc/start \
@@ -29,6 +37,7 @@ let g:coc_global_extensions = ['coc-tsserver']
 
 (Look into coc, b/c things like `coc-prettier` can be used instead)
 
+- [vim-jsonc](https://github.com/kevinoid/vim-jsonc) `git@github.com:kevinoid/vim-jsonc.git`
 - ~~ale (not currently using)~~
 - auto-pairs
 - emmet-vim
