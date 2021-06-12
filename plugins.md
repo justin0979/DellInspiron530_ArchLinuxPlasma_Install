@@ -40,7 +40,7 @@ The `git clone` here uses for `ssh` setup.
 
 - [vim-jsonc](https://github.com/kevinoid/vim-jsonc) `git clone git@github.com:kevinoid/vim-jsonc.git` allows comments in .json
 - ~~ale (not currently using)~~
-- auto-pairs
+- [auto-pairs](https://github.com/jiangmiao/auto-pairs) `git clone git@github.com:jiangmiao/auto-pairs.git`
 - [emmet-vim](https://github.com/mattn/emmet-vim) `git clone git@github.com:mattn/emmet-vim.git`
 - [nerdtree](https://github.com/preservim/nerdtree) `git clone git@github.com:preservim/nerdtree.git`
 - [vim-airline](https://github.com/vim-airline/vim-airline) `git clone git@github.com:vim-airline/vim-airline.git`
