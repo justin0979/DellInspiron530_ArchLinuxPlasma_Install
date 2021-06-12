@@ -47,6 +47,10 @@ nnoremap s{ ciw{<esc>pa}<esc>
 nnoremap s} ciw{<esc>pa}<esc>
 inoremap <c-s>c <esc>ciw{<esc>pa}
 
+" surround current line with {}
+nnoremap sl{ I{<esc>A}<esc>
+nnoremap sl} I{<esc>A}<esc>
+ 
 " surround current string with []
 nnoremap s[ ciw[<esc>pa]<esc>
 inoremap <c-s>b <esc>ciw[<esc>pa]
