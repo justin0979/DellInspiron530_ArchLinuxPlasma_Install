@@ -1,5 +1,5 @@
 <details>
-  <summary><strong>Error while updating</strong><hr /></summary>
+  <summary><h2>Error while updating</h2><hr /></summary>
   <h3>(something like "error: liburing: signature from ...")</h3>
   
 ```sh
