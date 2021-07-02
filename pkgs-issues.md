@@ -8,7 +8,9 @@ sudo pacman -Syyu
 ```
 
 ## Error upgrading due to conflicting files, or any other upgrade issue
+
 [Click for `pacman` arch wiki](https://wiki.archlinux.org/index.php/pacman)
+
 </details>
 <details>
   <summary>npm errors with upgrade<hr/></summary>
@@ -101,11 +103,21 @@ run `vim .config/chrome-flags.conf` and add `--password-store=basic`
 <details>
   <summary>external usb<hr/></summary>
   
+Install `ntfs-3g`:<br />
 `sudo pacman -S ntfs-3g`<br />
 restart <br />
-(prior to restarting, I had tried several things like: <br />
-`sudo pacman -S udisks2` and <br />
-immediately after `sudo pacman -S ntfs-3g` then `mount /dev/sdb1 /mnt/usb` ... be sure to `sudo mkdir /mnt/usb` first... then restart)
+make usb directory:<br />
+`sudo mkdir /mnt/usb`<br />
+locate usb device with `lsblk`, `df -h`, or some other method.  
+For me, I see 
+```sh
+sdb
+|
+--sdb1
+```<br />
+mount device from location given by `lsblk` (or whichever method you use):<br />
+`sudo mount /dev/sdb1 /mnt/usb`<br />
+Access the usb in `/mnt/usb`
 
 </details>
 <details>
