@@ -1,5 +1,5 @@
 <details>
-  <summary><h3>Error while updating</h3><hr /></summary>
+  <summary><strong>Error while updating</strong><hr /></summary>
   <h3>(something like "error: liburing: signature from ...")</h3>
   
 ```sh
@@ -13,7 +13,7 @@ sudo pacman -Syyu
 
 </details>
 <details>
-  <summary>npm errors with upgrade<hr/></summary>
+  <summary><strong>npm errors with upgrade</strong><hr/></summary>
   
 ```sh
 npm uninstall -g npm
@@ -23,7 +23,7 @@ then re-ran `sudo pacman -Syyu`
 
 </details>
 <details>
-  <summary>Reminder for ethernet access on Dell Inspiron laptop<hr /></summary>
+  <summary><strong>Reminder for ethernet access on Dell Inspiron laptop</strong><hr /></summary>
   
 Get interface with `ip addr`<br />
 Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
@@ -31,7 +31,7 @@ Then ping a site.
 
  </details>
  <details>
-   <summary>AutoLogin<hr/></summary>
+   <summary><strong>AutoLogin</strong><hr/></summary>
   
 Autologin after screen sleep/off: <br />
 1.) Go to System Settings <br />
@@ -41,7 +41,7 @@ Autologin after screen sleep/off: <br />
 
 </details>
 <details>
-  <summary>Bluetooth<hr/></summary>
+  <summary><strong>Bluetooth</strong><hr/></summary>
   
 Bluetooth: <br />
 -- pulseaudio-bluetooth pkg contains bluez && pulseaudio
@@ -83,7 +83,7 @@ in /etc/pulse/default.pa <br />
 
 </details>
 <details>
-  <summary>Open window on monitor mouse is on<hr/></summary>
+  <summary><strong>Open window on monitor mouse is on</strong><hr/></summary>
   
 Open window on same monitor as mouse:<br />
 1.) System Settings<br />
@@ -93,7 +93,7 @@ Open window on same monitor as mouse:<br />
 
 </details>
 <details>
-  <summary>kdewallet popup's<hr/></summary>
+  <summary><strong>kdewallet popup's</strong><hr/></summary>
   
 If kdewallet keeps showing up:<br />
 (from arch linux docs, if using google-chrome aur)<br />
@@ -101,7 +101,7 @@ run `vim .config/chrome-flags.conf` and add `--password-store=basic`
 
 </details>
 <details>
-  <summary>external usb<hr/></summary>
+  <summary><strong>external usb</strong><hr/></summary>
   
 Install `ntfs-3g`:<br />
 `sudo pacman -S ntfs-3g`<br />
@@ -121,7 +121,7 @@ Access the usb in `/mnt/usb`
 
 </details>
 <details>
-  <summary>Docker without sudo<hr/></summary>
+  <summary><strong>Docker without sudo</strong><hr/></summary>
   
 Instead of `sudo docker ps`, add user to docker group by running `sudo gpasswd -a <user> <group>`<br />
 (e.g. `sudo gpasswd -a justin docker`)<br />
@@ -129,20 +129,20 @@ then, reboot and now run `docker ps`.
 
   </details>
 <details>
-  <summary>Virtualbox<hr/></summary>
+  <summary><strong>Virtualbox</strong><hr/></summary>
   
 `sudo pacman -S virtualbox-host-dkms` not `virtual-host-modules-arch`. `virtual-host-modules-arch` did not have vboxdrv.
 
   </details>
 <details>
-  <summary>gimp screenshot<hr/></summary>
+  <summary><strong>gimp screenshot</strong><hr/></summary>
   
 Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
 then go to File >> Create >> Screenshot
 
   </details>
 <details>
-  <summary>minikube<hr/></summary>
+  <summary><strong>minikube</strong><hr/></summary>
   
 ```sh
 minikube start
