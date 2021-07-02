@@ -114,7 +114,7 @@ For me, I see
 sdb
 |
 --sdb1
-```<br />
+```
 mount device from location given by `lsblk` (or whichever method you use):<br />
 `sudo mount /dev/sdb1 /mnt/usb`<br />
 Access the usb in `/mnt/usb`
