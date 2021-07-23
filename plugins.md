@@ -38,18 +38,29 @@ let g:coc_global_extensions = ['coc-tsserver']
 (Look into coc, b/c things like `coc-prettier` can be used instead) <br />
 The `git clone` here uses for `ssh` setup.
 
-- [vim-jsonc](https://github.com/kevinoid/vim-jsonc) `git clone git@github.com:kevinoid/vim-jsonc.git` allows comments in .json
+- [vim-jsonc](https://github.com/kevinoid/vim-jsonc)
+  - `git clone git@github.com:kevinoid/vim-jsonc.git`
+  - allows comments in .json files
 - ~~ale (not currently using)~~
-- [auto-pairs](https://github.com/jiangmiao/auto-pairs) `git clone git@github.com:jiangmiao/auto-pairs.git`
-- [emmet-vim](https://github.com/mattn/emmet-vim) `git clone git@github.com:mattn/emmet-vim.git`
-- [nerdtree](https://github.com/preservim/nerdtree) `git clone git@github.com:preservim/nerdtree.git`
-- [vim-airline](https://github.com/vim-airline/vim-airline) `git clone git@github.com:vim-airline/vim-airline.git`
+- [auto-pairs](https://github.com/jiangmiao/auto-pairs)
+  - `git clone git@github.com:jiangmiao/auto-pairs.git`
+- [emmet-vim](https://github.com/mattn/emmet-vim)
+  - `git clone git@github.com:mattn/emmet-vim.git`
+- [nerdtree](https://github.com/preservim/nerdtree)
+  - `git clone git@github.com:preservim/nerdtree.git`
+- [vim-airline](https://github.com/vim-airline/vim-airline)
+  - `git clone git@github.com:vim-airline/vim-airline.git`
 - ~~vim-css-color (not currently using)~~
 - ~~vim-es6 (not currently using)~~
-- [vim-prettier](https://github.com/prettier/vim-prettier) `git clone git@github.com:prettier/vim-prettier.git` (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
-- [vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) `git clone git@github.com:nathanaelkane/vim-indent-guides.git`
-- [vim-rest-console](https://github.com/diepm/vim-rest-console) `git clone git@github.com:diepm/vim-rest-console.git` Similar to Postman
-</details>
+- [vim-prettier](https://github.com/prettier/vim-prettier)
+  - `git clone git@github.com:prettier/vim-prettier.git`
+  - (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
+- [vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides)
+  - `git clone git@github.com:nathanaelkane/vim-indent-guides.git`
+- [vim-rest-console](https://github.com/diepm/vim-rest-console)
+  - `git clone git@github.com:diepm/vim-rest-console.git`
+  - Similar to Postman
+  </details>
 
 ### Colors
 
