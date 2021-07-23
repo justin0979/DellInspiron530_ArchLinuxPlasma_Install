@@ -54,7 +54,8 @@ The `git clone` here uses for `ssh` setup.
 - ~~vim-es6 (not currently using)~~
 - [vim-prettier](https://github.com/prettier/vim-prettier)
   - `git clone git@github.com:prettier/vim-prettier.git`
-  - (run either 'sudo pacman -S prettier' or 'npm i -g prettier' along with installing vim-prettier)
+  - run either `sudo pacman -S prettier` or
+    `npm i -g prettier` along with installing vim-prettier
 - [vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides)
   - `git clone git@github.com:nathanaelkane/vim-indent-guides.git`
 - [vim-rest-console](https://github.com/diepm/vim-rest-console)
