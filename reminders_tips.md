@@ -1,14 +1,21 @@
 # See installed pkgs from pacman and npm
 
  <details>
-   <summary><h2>npm</h2></summary>
-   <h3>check globally installed</h3>
-   ```sh
-   npm list -g --depth 0
-   ```
+   <summary>
+## npm
+   </summary>
+### check globally installed
+
+```sh
+npm list -g --depth 0
+```
+
  </details>
 
+<details>
+<summary>
 ## minicom
+</summary>
 
 To run:
 
@@ -17,6 +24,8 @@ sudo minicom -D /dev/ttyACM0
 ```
 
 To stop, hit `CTRL-A` and then type `q`.
+
+</details>
 
 ## arduino uno problem connecting
 
