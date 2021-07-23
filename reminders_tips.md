@@ -35,6 +35,8 @@ sudo chmod 666 /dev/ttyACM0
 
 ## pacman tips
 
+<details>
+
 To [Remove unused packages (orphans)](<https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Removing_unused_packages_(orphans)>) run:
 
 ```sh
@@ -54,3 +56,5 @@ or run following to retain only one past version:
 ```sh
 paccache -rk1
 ```
+
+</details>
