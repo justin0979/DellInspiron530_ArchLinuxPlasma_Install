@@ -1,14 +1,12 @@
 # See installed pkgs from pacman and npm
 
-## pacman
-
-## npm
-
-### check globally installed
-
-```sh
-npm list -g --depth 0
-```
+ <details>
+   <summary><h2>npm</h2></summary>
+   <h3>check globally installed</h3>
+   ```sh
+   npm list -g --depth 0
+   ```
+ </details>
 
 ## minicom
 
