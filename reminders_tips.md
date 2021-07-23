@@ -37,7 +37,7 @@ sudo chmod 666 /dev/ttyACM0
   </summary>
   <ul>
    <li>
-   installed packages are in `/var/lib/pacman/local`
+     installed packages are in <code>/var/lib/pacman/local</code>
    </li>
    <li>
 
