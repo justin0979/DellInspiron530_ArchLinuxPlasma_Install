@@ -33,9 +33,8 @@ sudo chmod 666 /dev/ttyACM0
 
 (`ttyACM0` is just an example port)
 
-## pacman tips
-
 <details>
+  <summary><strong>pacman tips</strong></summary>
 
 To [Remove unused packages (orphans)](<https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Removing_unused_packages_(orphans)>) run:
 
@@ -45,16 +44,17 @@ sudo pacman -Qtdq | sudo pacman -Rns -
 
 For [Cleaning the package cache](https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache) run:
 
+I usually run the following to retain only one past version
+and free more space:
+
+```sh
+paccache -rk1
+```
+
 this will retain the most recent 3 versions:
 
 ```sh
 paccache -r
-```
-
-or run following to retain only one past version:
-
-```sh
-paccache -rk1
 ```
 
 </details>
