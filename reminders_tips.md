@@ -37,10 +37,10 @@ sudo chmod 666 /dev/ttyACM0
   </summary>
   <ul>
    <li>
-   installed packages are in <code>`/var/lib/pacman/local`</code>
+   installed packages are in `/var/lib/pacman/local`
    </li>
    <li>
-   To [Remove unused packages (orphans)](<https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Removing_unused_packages_(orphans)>) run:
+To [Remove unused packages (orphans)](<https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Removing_unused_packages_(orphans)>) run:
       
    ```sh
    sudo pacman -Qtdq | sudo pacman -Rns -
