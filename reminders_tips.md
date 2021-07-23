@@ -2,8 +2,9 @@
 
  <details>
    <summary>
-
-## npm
+   <strong>
+      npm
+   </strong>
 
    </summary>
 
@@ -17,8 +18,9 @@ npm list -g --depth 0
 
 <details>
 <summary>
-
-## minicom
+<strong>
+minicom
+</strong>
 
 </summary>
 
@@ -34,8 +36,9 @@ To stop, hit `CTRL-A` and then type `q`.
 
 <details>
   <summary>
-
-## arduino uno problem connecting
+  <strong>
+    arduino uno problem connecting
+  </strong>
 
   </summary>
 
@@ -52,7 +55,7 @@ sudo chmod 666 /dev/ttyACM0
 
 <details>
   <summary>
-    <strong>pacman tips</strong>
+   <strong>pacman tips</strong>
   </summary>
   <ul>
    <li>
