@@ -2,8 +2,11 @@
 
  <details>
    <summary>
+
 ## npm
+
    </summary>
+
 ### check globally installed
 
 ```sh
@@ -14,7 +17,9 @@ npm list -g --depth 0
 
 <details>
 <summary>
+
 ## minicom
+
 </summary>
 
 To run:
@@ -27,7 +32,12 @@ To stop, hit `CTRL-A` and then type `q`.
 
 </details>
 
+<details>
+  <summary>
+
 ## arduino uno problem connecting
+
+  </summary>
 
 check which port arduino uno is connected to and change
 permissions with:
@@ -37,6 +47,8 @@ sudo chmod 666 /dev/ttyACM0
 ```
 
 (`ttyACM0` is just an example port)
+
+</details>
 
 <details>
   <summary>
