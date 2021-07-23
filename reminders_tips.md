@@ -32,3 +32,11 @@ sudo chmod 666 /dev/ttyACM0
 ```
 
 (`ttyACM0` is just an example port)
+
+## pacman tips
+
+[Removing unused packages (orphans)](<"https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Removing_unused_packages_(orphans)">)
+
+```sh
+sudo pacman -Qtdq | sudo pacman -Rns -
+```
