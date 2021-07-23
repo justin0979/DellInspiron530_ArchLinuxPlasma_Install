@@ -10,6 +10,15 @@ packloadall
 let mapleader = "," 
 let maplocalleader = "\~"
 
+"open .vimrc horizontal split screen
+nnoremap <leader>eh :execute "rightbelow split " . $MYVIMRC<cr>
+" open .vimrc vertical split screen
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" source .vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+
 nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
 " setup folding
@@ -41,6 +50,12 @@ nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"nam
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " }}}
+" delete content between html tags
+nnoremap <leader>< F>vf<<delete>i><<left>
+nnoremap <leader>> F>vf<<delete>i><<left>
+"surround current string with ()
+nnoremap s( ciw(<esc>pa)<esc>
+nnoremap s) ciw(<esc>pa)<esc>
 
 " surround current string with {}
 nnoremap s{ ciw{<esc>pa}<esc>
@@ -62,6 +77,9 @@ nnoremap <c-s>q <esc>ciw"<esc>pa"
 " surround current string with ''
 nnoremap s' ciw'<esc>pa'<esc>
 
+" surround current string with ``
+nnoremap s` ciw`<esc>pa`<esc>
+ 
 " surround current string with <>
 nnoremap s< ciw<<esc>pa><esc>
 nnoremap s> ciw<<esc>pa><esc>
@@ -79,14 +97,6 @@ nnoremap <leader>u viwU
 " set wrap and nowrap in normal mode
 nnoremap <leader>w :set wrap<cr>
 nnoremap <leader>nw :set nowrap<cr>
-
-"open .vimrc horizontal split screen
-nnoremap <leader>eh :execute "rightbelow split " . $MYVIMRC<cr>
-" open .vimrc vertical split screen
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-
-" source .vimrc
-nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " set no highlighting
 nnoremap <leader>nh :nohlsearch<cr>
@@ -290,7 +300,14 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-highlight', 'coc-json', 'coc-html', 'coc-css']
+let g:coc_global_extensions = [ 
+      \'coc-tsserver', 
+      \'coc-tslint-plugin', 
+      \'coc-highlight', 
+      \'coc-json', 
+      \'coc-html', 
+      \'coc-css'
+      \]
 " =================== END coc config =====================
 " }}}
 
@@ -325,7 +342,7 @@ let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
 " filetypes like xml, html, xhtml, ...
 " These are the file types where this plugin is enabled.
  
-let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_filetypes = 'html,xhtml,phtml,ts,tsx,js,jsx'
 
 " filetypes like xml, xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
@@ -389,6 +406,8 @@ augroup end
 
 " emmet-vim configuration --------------------- {{{
 " =================== emmet-vim =====================
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets_custom.json')), "\n"))
+ 
 let g:user_emmet_settings = {
 \  'javascript' : {
 \      'extends' : 'jsx',
@@ -397,6 +416,7 @@ let g:user_emmet_settings = {
 \      'extends' : 'tsx',
 \  },
 \}
+
 " =================== END emmet-vim =====================
 " }}}
 " }}}
@@ -463,6 +483,9 @@ hi typescriptObjectLiteral ctermfg=51 guifg=#00ffff
 "hi typescriptObjectAsyncKeyword ctermfg=yellow guifg=yellow
 
 hi typescriptParens ctermfg=159 guifg=#afffff
+
+hi typescriptRegexpString ctermfg=178 guifg=#d7af00
+
 hi typescriptType ctermfg=green guifg=green
 hi typescriptTypeReference ctermfg=10 guifg=#00ff00
 
@@ -521,6 +544,6 @@ augroup filetype_html
   autocmd!
   " Create a fold in html
   " To unfold: zd
-  autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+  autocmd FileType html,typescriptreact,typescript,javascript,javascriptreact nnoremap <buffer> <localleader>f Vatzf
 augroup end
 " }}}
