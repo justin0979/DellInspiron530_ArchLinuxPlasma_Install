@@ -1,14 +1,12 @@
-# See installed pkgs from pacman and npm
-
  <details>
    <summary>
    <strong>
-      npm
+      See installed npm pkgs
    </strong>
 
    </summary>
 
-### check globally installed
+check globally installed npm packages:
 
 ```sh
 npm list -g --depth 0
@@ -59,7 +57,8 @@ sudo chmod 666 /dev/ttyACM0
   </summary>
   <ul>
    <li>
-     installed packages are in <code>/var/lib/pacman/local</code>
+     installed packages using pacman are in 
+     <code>/var/lib/pacman/local</code>
    </li>
    <li>
 
