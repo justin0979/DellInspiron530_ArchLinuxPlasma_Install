@@ -12,6 +12,24 @@ check globally installed npm packages:
 npm list -g --depth 0
 ```
 
+[Determing which global packages need updating](https://docs.npmjs.com/updating-packages-downloaded-from-the-registry#determining-which-global-packages-need-updating)
+
+```sh
+npm outdated -g --depth=0
+```
+
+Update single package:
+
+```sh
+sudo npm update -g <package_name>
+```
+
+Updating all globally-installed packages:
+
+```sh
+sudo npm update -g
+```
+
  </details>
 
 <details>
