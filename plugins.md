@@ -19,9 +19,9 @@ directory as follows:
 
 ```sh
 mkdir .vim \
-mkdir ./vim/pack \
-mkdir ./vim/pack/plugins \
-mkdir ./vim/pack/plugins/start
+mkdir .vim/pack \
+mkdir .vim/pack/plugins \
+mkdir .vim/pack/plugins/start
 ```
 
 For coc with vim 8.2 and SSH setup:
