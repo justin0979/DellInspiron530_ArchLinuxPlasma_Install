@@ -8,15 +8,27 @@ With vim 8.2 (what I currently have at this time):<br />
 add plugins with `git clone <repo-name>` to:
 
 ```sh
-mkdir .vim/pack/start/plugins/start
+mkdir -p .vim/pack/plugins/start
 ```
 
-For coc, I just followed their docs:
+`-p` allows for creation of non-existing parent directories.
+Otherwise you will have to type `mkdir` for each non-existing
+directory as follows:
 
 ```sh
-mkdir .vim/pack/coc/start \
-cd .vim/pack/coc/start \
-curl --fail -L https:github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzfv -
+mkdir .vim && cd .vim \
+mkdir pack && cd pack \
+mkdir plugins && cd plugins \
+mkdir start && cd start
+```
+
+For coc with vim 8.2,:
+
+```sh
+cd .vim/pack/plugins/start \
+git clone --depth 1 git@github.com:neoclide/coc.nvim.git \
+cd coc.nvim \
+npm i
 ```
 
 AFTER the service has started (just wait a few minutes or just open a file in vim and it will tell you it is still installing) run `:CocInfo` to get some info.<br />
