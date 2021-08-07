@@ -2,7 +2,6 @@ Go and download these first.
 
 ### Vim8 package manager
 
-For
 With vim 8.2 (what I currently have at this time):<br />
 
 add plugins with `git clone <repo-name>` to:
