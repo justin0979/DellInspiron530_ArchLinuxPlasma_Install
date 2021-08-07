@@ -48,7 +48,9 @@ installing) run `:CocInfo` to get some info.<br />
 Go to [Install coc.nvim: Using vim8's native package manager](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim#using-vim8s-native-package-manager)
 for more information.
 
-Add to `.vimrc`:
+See official [coc.nvim](https://github.com/neoclide/coc.nvim).
+
+Example of how to add extensions to coc.nvim in `.vimrc`:
 
 ```sh
 let g:coc_global_extensions = ['coc-tsserver']
