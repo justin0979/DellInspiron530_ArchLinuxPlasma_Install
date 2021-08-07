@@ -4,7 +4,7 @@ Go and download these first.
 
 With vim 8.2 (what I currently have at this time):<br />
 
-add plugins with `git clone <repo-name>` to:
+add plugins with `git clone <repo-name>` as follows:
 
 ```sh
 mkdir -p .vim/pack/plugins/start \
@@ -18,13 +18,13 @@ Otherwise you will have to type `mkdir` for each non-existing
 directory as follows:
 
 ```sh
-mkdir .vim && cd .vim \
-mkdir pack && cd pack \
-mkdir plugins && cd plugins \
-mkdir start && cd start
+mkdir .vim \
+mkdir ./vim/pack \
+mkdir ./vim/pack/plugins \
+mkdir ./vim/pack/plugins/start
 ```
 
-For coc with vim 8.2,:
+For coc with vim 8.2 and SSH setup:
 
 ```sh
 cd .vim/pack/plugins/start \
@@ -33,10 +33,20 @@ cd coc.nvim \
 npm i
 ```
 
+Without SSH setup:
+
+```sh
+cd .vim/pack/plugins/start \
+git clone --depth 1 https://github.com/neoclide/coc.nvim.git \
+cd coc.nvim \
+npm i
+```
+
 AFTER the service has started (just wait a few minutes or just
 open a file in vim and it will tell you it is still
 installing) run `:CocInfo` to get some info.<br />
-Go to [Install coc.nvim: Using vim8's native package manager](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim#using-vim8s-native-package-manager) for more information.
+Go to [Install coc.nvim: Using vim8's native package manager](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim#using-vim8s-native-package-manager)
+for more information.
 
 Add to `.vimrc`:
 
