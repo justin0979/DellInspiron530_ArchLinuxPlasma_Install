@@ -8,10 +8,13 @@ With vim 8.2 (what I currently have at this time):<br />
 add plugins with `git clone <repo-name>` to:
 
 ```sh
-mkdir -p .vim/pack/plugins/start
+mkdir -p .vim/pack/plugins/start \
+cd .vim/pack/plugins/start \
+git clone <repo-name>
+
 ```
 
-`-p` allows for creation of non-existing parent directories.
+`-p` allows for creation of non-existing parent directories.<br />
 Otherwise you will have to type `mkdir` for each non-existing
 directory as follows:
 
@@ -31,7 +34,9 @@ cd coc.nvim \
 npm i
 ```
 
-AFTER the service has started (just wait a few minutes or just open a file in vim and it will tell you it is still installing) run `:CocInfo` to get some info.<br />
+AFTER the service has started (just wait a few minutes or just
+open a file in vim and it will tell you it is still
+installing) run `:CocInfo` to get some info.<br />
 Go to [Install coc.nvim: Using vim8's native package manager](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim#using-vim8s-native-package-manager) for more information.
 
 Add to `.vimrc`:
