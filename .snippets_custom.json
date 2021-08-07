@@ -1,0 +1,17 @@
+{
+  "javascript": {
+    "extends": "jsx"
+  },
+  "typescript": {
+    "extends": "tsx"
+  },
+  "typescriptreact": {
+    "extends": "tsx",
+    "default_attributes": {
+      "textarea": [{ "cols": "{30}" }, { "rows": "{10}" }]
+    },
+    "snippets": {
+      "ta": "<textarea row={15} col={35}></textarea>"
+    }
+  }
+}

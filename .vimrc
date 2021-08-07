@@ -53,6 +53,10 @@ nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"nam
 " delete content between html tags
 nnoremap <leader>< F>vf<<delete>i><<left>
 nnoremap <leader>> F>vf<<delete>i><<left>
+
+" comment out jsx line
+nnoremap <leader>co I{/*<esc>A*/}<esc>
+
 "surround current string with ()
 nnoremap s( ciw(<esc>pa)<esc>
 nnoremap s) ciw(<esc>pa)<esc>
@@ -74,11 +78,20 @@ inoremap <c-s>b <esc>ciw[<esc>pa]
 nnoremap s" ciw"<esc>pa"<esc>
 nnoremap <c-s>q <esc>ciw"<esc>pa"
 
+" surround current line with ""
+nnoremap sl" I"<esc>A"<esc>
+
 " surround current string with ''
 nnoremap s' ciw'<esc>pa'<esc>
 
+" surround currint line with ''
+nnoremap sl' I'<esc>A'<esc>
+
 " surround current string with ``
 nnoremap s` ciw`<esc>pa`<esc>
+
+" surround current line with ``
+nnoremap sl` I`<esc>A`<esc>
  
 " surround current string with <>
 nnoremap s< ciw<<esc>pa><esc>
@@ -107,10 +120,6 @@ nnoremap / /\v
 " Find excess white spaces after line
 nnoremap <leader>ws :match Error /\v[^ ]\s+$/<cr>
 "}}}
-
-
-iabbrev Compenent Component
-iabbrev componetns components
 
 " Basic settings ---------------- {{{
 set showcmd " shows incomplete typed commands in bottom left
@@ -406,16 +415,10 @@ augroup end
 
 " emmet-vim configuration --------------------- {{{
 " =================== emmet-vim =====================
-let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets_custom.json')), "\n"))
  
-let g:user_emmet_settings = {
-\  'javascript' : {
-\      'extends' : 'jsx',
-\  },
-\  'typescript' : {
-\      'extends' : 'tsx',
-\  },
-\}
+" Set all g:user_emmet_settings configurationns in ~/.snippets_custom.json
+" requires `git clone git@github.com:mattn/webapi-vim.git`
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets_custom.json')), "\n"))
 
 " =================== END emmet-vim =====================
 " }}}
@@ -437,8 +440,14 @@ hi CocErrorSign ctermfg=9 guifg=#ff0000
 hi htmlTag ctermfg=117 guifg=#87d7ff
 hi htmlTagName cterm=bold ctermfg=83 guifg=#5fff5f
 
+hi javascriptComment ctermfg=8 guifg=#808080
+
 hi jsFuncCall ctermfg=191 guifg=DarkOliveGreen1
 hi jsParens ctermfg=105 guifg=LightSlateBlue
+
+hi javascriptParens ctermfg=159 guifg=#afffff
+
+hi javaScriptVariableDeclaration ctermfg=10 guifg=#00ff00
 
 " typescript highlighting ------------- {{{
 hi tsxAttrib ctermfg=75 guifg=#5fafff
@@ -456,12 +465,14 @@ hi typescriptCall ctermfg=51 guifg=#00ffff
 hi typescriptCase ctermfg=147 guifg=#afafff
 hi typescriptClassKeyword cterm=bold ctermfg=155 guifg=#afff5f
 hi typescriptClassName ctermfg=112 guifg=#87d700
+hi typescriptComment ctermfg=8 guifg=#808080
 
 hi typescriptConditional ctermfg=147 guifg=#afafff
 hi typescriptConditionalParen ctermfg=51 guifg=#00ffff
 hi typescriptConstructor ctermfg=86 guifg=#5fffd7
 
 hi typescriptDestructureVariable ctermfg=39 guifg=#00afff
+hi typescriptDocComment ctermfg=8 guifg=#808080
 hi typescriptDotNotation ctermfg=227 guifg=#ffff87
 
 hi typescriptEnumKeyword ctermfg=14 guifg=#40ffff
