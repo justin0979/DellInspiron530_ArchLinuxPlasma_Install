@@ -144,14 +144,20 @@ wake up the keyboard and run a few of the above and no status.
 I restart, with the keyboard awake, and the battery level
 showed.
 
-So, not exactly sure which of the above (if any) worked. For
-now, I'll just try to remember to wake the keyboard before
-turning on computer.
+So, not exactly sure which of the above (if any) worked.
+
+````For now, I'll just try to remember to wake the keyboard before turning on computer.~~~
+
+I woke keyboard before turning on computer, no battery level. <br />
+I initially turn on computer & wake keyboard, no battery. <br />
+With computer on and keyboard awake, reboot, and battery
+level showed.
+
 
 </details>
 <details>
   <summary><strong>Open window on monitor mouse is on</strong><hr/></summary>
-  
+
 Open window on same monitor as mouse:<br />
 1.) System Settings<br />
 2.) Window Management<br />
@@ -161,7 +167,7 @@ Open window on same monitor as mouse:<br />
 </details>
 <details>
   <summary><strong>kdewallet popup's</strong><hr/></summary>
-  
+
 If kdewallet keeps showing up:<br />
 (from arch linux docs, if using google-chrome aur)<br />
 run `vim .config/chrome-flags.conf` and add `--password-store=basic`
@@ -169,14 +175,14 @@ run `vim .config/chrome-flags.conf` and add `--password-store=basic`
 </details>
 <details>
   <summary><strong>external usb</strong><hr/></summary>
-  
+
 Install `ntfs-3g`:<br />
 `sudo pacman -S ntfs-3g`<br />
 restart <br />
 make usb directory:<br />
 `sudo mkdir /mnt/usb`<br />
-locate usb device with `lsblk`, `df -h`, or some other method.  
-For me, I see 
+locate usb device with `lsblk`, `df -h`, or some other method.
+For me, I see
 ```sh
 sdb
 |
@@ -189,7 +195,7 @@ Access the usb in `/mnt/usb`
 </details>
 <details>
   <summary><strong>Docker without sudo</strong><hr/></summary>
-  
+
 Instead of `sudo docker ps`, add user to docker group by running `sudo gpasswd -a <user> <group>`<br />
 (e.g. `sudo gpasswd -a justin docker`)<br />
 then, reboot and now run `docker ps`.
@@ -197,20 +203,20 @@ then, reboot and now run `docker ps`.
   </details>
 <details>
   <summary><strong>Virtualbox</strong><hr/></summary>
-  
+
 `sudo pacman -S virtualbox-host-dkms` not `virtual-host-modules-arch`. `virtual-host-modules-arch` did not have vboxdrv.
 
   </details>
 <details>
   <summary><strong>gimp screenshot</strong><hr/></summary>
-  
+
 Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
 then go to File >> Create >> Screenshot
 
   </details>
 <details>
   <summary><strong>minikube</strong><hr/></summary>
-  
+
 ```sh
 minikube start
 ```
@@ -221,10 +227,11 @@ if get `machine does not exist` or `Error: No such container: minikube` then run
 ```sh
 minikube delete
 ```
-and then 
+and then
 ```sh
 minikube start
 ```
 again.
 
   </details>
+````
