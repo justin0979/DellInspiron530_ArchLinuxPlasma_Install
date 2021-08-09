@@ -243,4 +243,3 @@ minikube start
 again.
 
   </details>
-````
