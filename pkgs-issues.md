@@ -43,7 +43,8 @@ Autologin after screen sleep/off: <br />
 <details>
   <summary><strong>Bluetooth</strong><hr/></summary>
   
-Bluetooth: <br />
+#### Bluetooth setup:
+
 -- pulseaudio-bluetooth pkg contains bluez && pulseaudio
 
 `sudo pacman -S bluez-utils` <br />
@@ -67,8 +68,8 @@ if connection for bluetooth fails: <br />
 4.) `connect 3B:06:EF:35:58:A8` <br />
 
 power Bluetooth adapter on after reboot: <br />
-in /etc/bluetooth/main.conf, there are a lot of commented out commands. <br />
-uncomment the varables in each respective section [General] and [Policy] <br />
+in `/etc/bluetooth/main.conf`, there are a lot of commented out commands. <br />
+uncomment the varables in each respective section `[General]` and `[Policy]` <br />
 
 ```sh
 [General]
@@ -78,8 +79,69 @@ Discoverable=true
 AutoEnable=true
 ```
 
-in /etc/pulse/default.pa <br />
+in `/etc/pulse/default.pa` <br />
 `load-module module-switch-on-connect` <br />
+
+#### Bluetooth Display battery (sort of resolved):
+
+Things I've done, not sure which one made it work:
+
+see [Bluetooth_Headset_Battery_Level](https://github.com/TheWeirdDev/Bluetooth_Headset_Battery_Level).
+(I don't remember how (or IF) I installed the equivalent of `python-pybluez`,
+`python3-pybluez` or `python3-bluez` b/c I after running
+`pacman -Ss python3-pybluez` (ant the same for the other two)
+none showed they were installed.)
+
+```sh
+git clone git@github.com:TheWeirdDev/Bluetooth_Headset_Battery_Level.git
+cd Bluetooth_Headset_Battery_Level
+chmod +x bluetooth_battery.pyb
+./bluetooth_battery.py <MAC_ADDRESS>
+```
+
+get desired MAC_ADDRESS with `bluetoothctl devices`. <br />
+I got `Device C3:50:5B:21:9C:E9 dactylm45_left`
+
+e.g.:
+
+```sh
+git clone git@github.com:TheWeirdDev/Bluetooth_Headset_Battery_Level.git
+cd Bluetooth_Headset_Battery_Level
+chmod +x bluetooth_battery.pyb
+./bluetooth_battery.py C3:50:5B:21:9C:E9
+```
+
+This output:
+
+```sh
+Couldn't find the RFCOMM port number
+C3:50:5B:21:9C:E9 is offline [Errno 112] Host is down
+```
+
+So I followed the docs but kept getting the same output. <br />
+I ran the Docker option first b/c I didn't remember successfully
+installing the python-pybluez packages. The result was the same.
+
+I also tried `upower -d` (`upower --dump`). <br />
+If the battery level isn't showing, then that device will not
+be listed. After the battery level showed, that device was on
+the list.
+
+I ran `upower -i $(upower -e | grep 'BAT') | grep -E "state|to\ full|percentage"`,
+not sure what that does, but I found that in a blog or in
+stackoverflow.
+
+After running each of those, the battery level still did not
+show up. I installed `acpi` and ran both `acpi` and `acpi -V`,
+but I don't know much about `acpi`.
+
+I went ahead and ran `sudo pacman -Syyu`, b/c it was about time
+to run it and after restarting, the battery showed up.
+
+The next day, I turn on the computer and no battery level. I
+wake up the keyboard and run a few of the above and no status.
+I restart, with the keyboard awake, and the battery level
+showed.
 
 </details>
 <details>
