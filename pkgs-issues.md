@@ -146,13 +146,12 @@ showed.
 
 So, not exactly sure which of the above (if any) worked.
 
-````For now, I'll just try to remember to wake the keyboard before turning on computer.~~~
+~~For now, I'll just try to remember to wake the keyboard before turning on computer.~~
 
 I woke keyboard before turning on computer, no battery level. <br />
 I initially turn on computer & wake keyboard, no battery. <br />
 With computer on and keyboard awake, reboot, and battery
 level showed.
-
 
 </details>
 <details>
@@ -183,11 +182,13 @@ make usb directory:<br />
 `sudo mkdir /mnt/usb`<br />
 locate usb device with `lsblk`, `df -h`, or some other method.
 For me, I see
+
 ```sh
 sdb
 |
 --sdb1
 ```
+
 mount device from location given by `lsblk` (or whichever method you use):<br />
 `sudo mount /dev/sdb1 /mnt/usb`<br />
 Access the usb in `/mnt/usb`
@@ -220,17 +221,23 @@ then go to File >> Create >> Screenshot
 ```sh
 minikube start
 ```
+
 ```sh
 minikube status
 ```
+
 if get `machine does not exist` or `Error: No such container: minikube` then run:
+
 ```sh
 minikube delete
 ```
+
 and then
+
 ```sh
 minikube start
 ```
+
 again.
 
   </details>
