@@ -148,8 +148,10 @@ So, not exactly sure which of the above (if any) worked.
 
 ~~For now, I'll just try to remember to wake the keyboard before turning on computer.~~
 
-I woke keyboard before turning on computer, no battery level. <br />
-I initially turn on computer & wake keyboard, no battery. <br />
+I woke keyboard before turning on computer, no battery level.
+I plugged in keyboard, no battery, while computer shutting down,
+I unplugged usb. <br />
+I initially wake keyboard and turn on computer, no battery. <br />
 With computer on and keyboard awake, reboot, and battery
 level showed.
 
