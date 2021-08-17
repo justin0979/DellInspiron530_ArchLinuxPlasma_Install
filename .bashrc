@@ -36,6 +36,17 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+HORBAR="—"
+RFINGER="☞"
+DFINGER="☟"
+RARROW="→"
+DRARR="↳"
+URARR="↱"
+INTEGRAL="∫"
+THEREFORE="∴"
+LCEIL="⌈"
+LFLOOR="⌊"
+
 #PS1='[\u@\h \W]\$ '
 #PS1='\w\n [\u@\h \W]\$ '
 #PS1='\[\033[01;30m\]\w\n\[\033[01;32m\] [\u@\h \W]\$ '
@@ -45,12 +56,15 @@ parse_git_branch() {
 #\[${LPURPLE}\]\w
 #\[${LGRAY}\]→ \[${LGREEN}\]\u \[${LGRAY}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
 PS1="
-\[${LPURPLE}\]\w
-\[${LGRAY}\]→ \[${LGREEN}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
+\[${LGRAY}\]${URARR} \[${LPURPLE}\]\w
+\[${LGRAY}\]${DRARR} \[${LGREEN}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
+
+# add date and time to each history
+export HISTTIMEFORMAT="%m.%d.%y %T "
 
 export "PATH=$PATH:$HOME/.deno/bin"
 export DENO_DIR=./deno_dir
 
 export PATH=~/.local/bin:"$PATH"
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-export ZEPHYR_SDK_INSTALL_DIR=/home/justin/.local/zephyr-sdk-0.11.4
+export ZEPHYR_SDK_INSTALL_DIR=/home/justin/.local/zephyr-sdk-0.12.4
