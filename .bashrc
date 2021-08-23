@@ -57,8 +57,8 @@ BOXDR="┌"
 #\[${LPURPLE}\]\w
 #\[${LGRAY}\]→ \[${LGREEN}\]\u \[${LGRAY}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
 PS1="
-\[${LGRAY}\]${URARR}\[${LPURPLE}\]\w
-\[${LGRAY}\]${DRARR}\[${LGREEN}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
+\[${LGRAY}\]${URARR} \[${LBLUE}${INTEGRAL}\u = \[${LPURPLE}\]\w \[${LBLUE}+ c
+\[${LGRAY}\]${DRARR} \[${LGREEN}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
 
 # add date and time to each history
 export HISTTIMEFORMAT="%m.%d.%y %T "

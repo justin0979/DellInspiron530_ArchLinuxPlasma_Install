@@ -50,12 +50,13 @@ nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"nam
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " }}}
+ 
 " delete content between html tags
 nnoremap <leader>< F>vf<<delete>i><<left>
 nnoremap <leader>> F>vf<<delete>i><<left>
 
 " comment out jsx line
-nnoremap <leader>co I{/*<esc>A*/}<esc>
+nnoremap <leader>cl I{/*<esc>A*/}<esc>
 
 "surround current string with ()
 nnoremap s( ciw(<esc>pa)<esc>
@@ -239,6 +240,8 @@ augroup mygroup
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " From coc-css docs
+  autocmd FileType scss setl iskeyword+=@-@
 augroup end
 
 " Applying codeAction to the selected region.
@@ -286,6 +289,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" From coc-prettier docs
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
@@ -310,12 +316,11 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 let g:coc_global_extensions = [ 
-      \'coc-tsserver', 
-      \'coc-tslint-plugin', 
+      \'coc-css',
       \'coc-highlight', 
-      \'coc-json', 
       \'coc-html', 
-      \'coc-css'
+      \'coc-json', 
+      \'coc-tsserver', 
       \]
 " =================== END coc config =====================
 " }}}
@@ -323,10 +328,17 @@ let g:coc_global_extensions = [
 " vim-prettier configuraton -------------------------- {{{
 " =================== vim-prettier =====================
 
+" Enable auto formatting for files that have '@format' or '@prettier' tag
 let g:prettier#autoformat = 0
+
+" To run vim-prettier not only before saving, but also after changing text or
+" leaving insert mode:
+" let g:prettier#quickfix_enabled = 1
 augroup vimprettier
   autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+ " autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+  " Old way of formatting only on saves
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 augroup end
 
 let g:prettier#config#print_width = 63
@@ -393,7 +405,7 @@ augroup nerdtreegroup
 augroup end
 
 let g:NERDTreeWinPos = "left"
-let g:NERDTreeWinSize=25
+let g:NERDTreeWinSize=23
 let g:NERDTreeShowHidden=1
 "
 " =================== END vim-NERDTree =====================
@@ -422,6 +434,11 @@ let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets
 
 " =================== END emmet-vim =====================
 " }}}
+
+" vim-rest-console -------------------- {{{
+" =================== vim-rest-console =====================
+let g:vrc_horizontal_split = 1
+" ================= END vim-rest-console ===================
 " }}}
 
 " highligting configurations --------------- {{{
