@@ -117,7 +117,7 @@ set filetype to be rest with:
 
 Comments can be made with `#`. Below is example:
 
-```sh
+```rest
 // Example for requests.rest
 
 # List all messages
@@ -129,6 +129,7 @@ http://localhost:3000
 POST /messages
 
 # Get a specific message by id
+http://localhost:3000
 GET /messages/123
 ```
 
