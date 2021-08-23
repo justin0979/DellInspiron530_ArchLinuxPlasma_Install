@@ -108,14 +108,9 @@ paccache -r
 <details>
   <summary><strong>vim-rest-console</strong></summary>
 
-Name file with `.rest`, e.g., `request.rest`, and open and
-set filetype to be rest with:
+Name file with `.rest`, e.g., `request.rest`.
 
-```sh
-:set ft=rest
-```
-
-Comments can be made with `#`. Below is example:
+Comments can be made with `#` or `//`. Below is example:
 
 ```sh
 // Example for requests.rest
@@ -138,5 +133,7 @@ To run, put cursor on line with `http://...` or `GET` or `POST`,
 etc and hit `<cntl>j`, the default trigger key.
 
 Look at terminal with running server to see output (if any)
+
+For more info, like configurations, see [vim-rest-console docs](https://github.com/diepm/vim-rest-console/blob/master/doc/vim-rest-console.txt).
 
 </details>
