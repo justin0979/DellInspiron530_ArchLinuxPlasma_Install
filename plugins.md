@@ -89,6 +89,7 @@ The `git clone` here uses for `ssh` setup.
 - [vim-rest-console](https://github.com/diepm/vim-rest-console)
   - `git clone git@github.com:diepm/vim-rest-console.git`
   - Similar to Postman
+  - See [reminders_tips.md](https://github.com/justin0979/DellInspiron530_ArchLinuxPlasma_Install/blob/main/reminders_tips.md) for example
   </details>
 
 ### Colors
