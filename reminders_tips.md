@@ -126,6 +126,7 @@ GET /messages
 
 # Create a new message
 http://localhost:3000
+Content-Type: application/json
 POST /messages
 
 # Get a specific message by id
