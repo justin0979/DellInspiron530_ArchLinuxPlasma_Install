@@ -117,7 +117,7 @@ set filetype to be rest with:
 
 Comments can be made with `#`. Below is example:
 
-```rest
+```sh
 // Example for requests.rest
 
 # List all messages
