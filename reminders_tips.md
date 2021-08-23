@@ -133,8 +133,8 @@ http://localhost:3000
 GET /messages/123
 ```
 
-To run, put cursor on `http://...` or `GET` or `POST`, etc and
-hit `<cntl>j`, the default trigger key.
+To run, put cursor on line with `http://...` or `GET` or `POST`,
+etc and hit `<cntl>j`, the default trigger key.
 
 Look at terminal with running server to see output (if any)
 
