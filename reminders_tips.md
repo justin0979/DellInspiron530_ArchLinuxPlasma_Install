@@ -86,6 +86,9 @@ To [Remove unused packages (orphans)](<https://wiki.archlinux.org/title/Pacman/T
 sudo pacman -Qtdq | sudo pacman -Rns -
 ```
 
+   </li>
+   <li>
+
 For [Cleaning the package cache](https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache) run:
 
 I usually run the following to retain only one past version
