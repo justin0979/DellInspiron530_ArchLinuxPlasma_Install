@@ -12,6 +12,19 @@ check globally installed npm packages:
 npm list -g --depth 0
 ```
 
+if see:
+
+```sh
+/usr/lib
+∟-- (empty)
+```
+
+then just run:
+
+```sh
+npm list -g
+```
+
 [Determing which global packages need updating](https://docs.npmjs.com/updating-packages-downloaded-from-the-registry#determining-which-global-packages-need-updating)
 
 ```sh
