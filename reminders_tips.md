@@ -99,6 +99,12 @@ To [Remove unused packages (orphans)](<https://wiki.archlinux.org/title/Pacman/T
 sudo pacman -Qtdq | sudo pacman -Rns -
 ```
 
+When there are no more orphans, the following will show:
+
+```sh
+error: argument '-' specified with empty stdin
+```
+
    </li>
    <li>
 
