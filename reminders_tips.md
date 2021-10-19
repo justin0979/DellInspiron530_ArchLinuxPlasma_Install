@@ -159,3 +159,14 @@ Look at terminal with running server to see output (if any)
 For more info, like configurations, see [vim-rest-console docs](https://github.com/diepm/vim-rest-console/blob/master/doc/vim-rest-console.txt).
 
 </details>
+
+<details>
+  <summary><strong>Visual Studio Code</strong></summary>
+
+To edit `settings.json`:
+
+```sh
+cd ~/.config/Code/User
+```
+
+</details>
