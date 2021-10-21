@@ -7,14 +7,13 @@ set termguicolors
 
 packloadall
 
-let mapleader = "," 
-let maplocalleader = "\~"
+let mapleader = "\<SPACE>" 
+let maplocalleader = ","
 
+" swap window
+nnoremap <leader>m <c-w><c-w>
 "open .vimrc horizontal split screen
-nnoremap <leader>eh :execute "rightbelow split " . $MYVIMRC<cr>
-" open .vimrc vertical split screen
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-
+nnoremap <leader>ev :execute "rightbelow split " . $MYVIMRC<cr>
 " source .vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
@@ -61,6 +60,10 @@ nnoremap <leader>cl I{/*<esc>A*/}<esc>
 "surround current string with ()
 nnoremap s( ciw(<esc>pa)<esc>
 nnoremap s) ciw(<esc>pa)<esc>
+
+" surround current line with ()
+nnoremap sl( I(<esc>A)<esc>
+nnoremap sl) I(<esc>A)<esc>
 
 " surround current string with {}
 nnoremap s{ ciw{<esc>pa}<esc>
@@ -316,11 +319,13 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 let g:coc_global_extensions = [ 
+      \'coc-clangd',
       \'coc-css',
       \'coc-highlight', 
       \'coc-html', 
       \'coc-json', 
-      \'coc-tsserver', 
+      \'coc-tsserver',
+      \'coc-vetur'
       \]
 " =================== END coc config =====================
 " }}}
@@ -396,6 +401,14 @@ let g:closetag_close_shortcut = '<leader>>'
 
 " NERDTree configuraton ------------------------- {{{
 " =================== vim-NERDTree =====================
+"
+" NERDTree commands:
+" Press i to open the file in new horizontal split
+" Press s to open the file in new vertical split
+" Press r to refresh thes current directory
+" Press m to launch NERDTree menu inside vim
+" Press p to go to parent dir
+" 
 " Open NERDTree automatically
 " Open in already open file with ':NERDTree'
 augroup nerdtreegroup
@@ -410,7 +423,7 @@ let g:NERDTreeShowHidden=1
 "
 " =================== END vim-NERDTree =====================
 " }}}
-"
+
 " vim-indent-guides configuration ---------------- {{{
 " =================== vim-indent-guides =====================
 let g:indent_guides_enable_on_vim_startup = 1
@@ -439,6 +452,7 @@ let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets
 " =================== vim-rest-console =====================
 let g:vrc_horizontal_split = 1
 " ================= END vim-rest-console ===================
+" }}}
 " }}}
 
 " highligting configurations --------------- {{{
@@ -520,6 +534,10 @@ hi typescriptTypeReference ctermfg=10 guifg=#00ff00
 hi typescriptVars ctermfg=green guifg=green
 hi typescriptVariable ctermfg=105 guifg=#8787ff
 hi typescriptVariableDeclaration ctermfg=10 guifg=#00ff00
+" }}}
+
+" sass highlighting ----------- {{{
+hi sassMediaQuery ctermfg=208 guifg=#ff8700
 " }}}
 
 hi Function ctermfg=50 guifg=#00FFD7
