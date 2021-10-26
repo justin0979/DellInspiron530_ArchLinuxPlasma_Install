@@ -7,16 +7,11 @@ set termguicolors
 
 packloadall
 
-let mapleader = "\<SPACE>" 
+let mapleader = "\<space>" 
 let maplocalleader = ","
 
 " swap window
 nnoremap <leader>m <c-w><c-w>
-"open .vimrc horizontal split screen
-nnoremap <leader>ev :execute "rightbelow split " . $MYVIMRC<cr>
-" source .vimrc
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
 
 nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
@@ -77,6 +72,10 @@ nnoremap sl} I{<esc>A}<esc>
 " surround current string with []
 nnoremap s[ ciw[<esc>pa]<esc>
 inoremap <c-s>b <esc>ciw[<esc>pa]
+
+" surround current line with []
+nnoremap sl[ I[<esc>A]<esc>
+nnoremap sl] I[<esc>A]<esc>
 
 " surround current string with ""
 nnoremap s" ciw"<esc>pa"<esc>
@@ -547,26 +546,28 @@ hi cssBraces ctermfg=yellow guifg=yellow
 hi cssProp ctermfg=45 guifg=#00d7ff
 " }}}
 
-" Groupings ----------------- {{{
 " Javascript based autocmd group ------------- {{{
 augroup jsbasedgroup
   autocmd!
-  "setup function ())
-  autocmd FileType javascript,typescript :iabbrev <buffer> f()) () {}<left><cr><left><up><end><left><left><left>
-  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> f()) () {}<left><cr><left><up><end><left><left><left>
+  "setup function by typing name of function then ~f, i.e.:
+  " hello ~f
+  " result: function hello ( ) {
+  "         }
+  autocmd FileType javascript,typescript :iabbrev <buffer> ~f <esc>Ifunction<space><esc>A()<space>{<cr>}<esc>bba
+  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> ~f <esc>Ifunction<space><esc>A()<space>{<cr>}<esc>bba
   " setup arrow function for export ()=
-  autocmd FileType typescript,javascript :iabbrev <buffer> ()= () => {}<left><cr><left><up><end><left><left><left><left><left><left>
-  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> ()= () => {}<left><cr><left><up><end><left><left><left><left><left><left>
+  autocmd FileType typescript,javascript :iabbrev <buffer> ~a () => {<cr>}<esc>bbba
+  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> ~a () => {<cr>}<esc>bbba
   " setup useEffect Hook
-  autocmd FileType typescriptreact,javascriptreact :iabbrev <buffer> useEffect() useEffect(() => {}, [])<left><left><left><left><left><left><cr>
+  autocmd FileType typescriptreact,javascriptreact :iabbrev <buffer> ~u useEffect(() => {<cr>}, [])<esc>O
   " setup if statement
-  autocmd FileType javascript,typescript :iabbrev <buffer> iff if ()<left>
-  autocmd FileType javascriptreact :iabbrev <buffer> iff if ()<left>
-  autocmd FileType typescriptreact :iabbrev <buffer> iff if ()<left>
+  autocmd FileType javascript,typescript :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
+  autocmd FileType javascriptreact :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
+  autocmd FileType typescriptreact :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
   " setup for loop
-  autocmd FileType javascript,typescript :iabbrev <buffer> forr for ()<left>
-  autocmd FileType javascriptreact :iabbrev <buffer> forr for ()<left>
-  autocmd FileType typescriptreact :iabbrev <buffer> forr for ()<left>
+  autocmd FileType javascript,typescript :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
+  autocmd FileType javascriptreact :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
+  autocmd FileType typescriptreact :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
   " comment out current line cursor is on
   autocmd FileType javascript,typescript nnoremap <buffer> <leader>c I//<esc>
   autocmd FileType javascriptreact,typescriptreact nnoremap <buffer> <leader>c I//<esc>
@@ -575,6 +576,7 @@ augroup jsbasedgroup
 augroup end
 " }}}
 
+" Groupings ----------------- {{{
 augroup parenspairgroup
   autocmd!
   autocmd BufRead,BufNewFile * syn match parens /[(){}]/ | hi parens ctermfg=117 guifg=#87d6ff
@@ -593,3 +595,10 @@ augroup filetype_html
   autocmd FileType html,typescriptreact,typescript,javascript,javascriptreact nnoremap <buffer> <localleader>f Vatzf
 augroup end
 " }}}
+
+"open .vimrc horizontal split screen
+nnoremap <leader>ev :execute "rightbelow split " . $MYVIMRC<cr>
+
+" source .vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
