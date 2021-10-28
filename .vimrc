@@ -10,6 +10,7 @@ packloadall
 let mapleader = "\<space>" 
 let maplocalleader = ","
 
+
 " swap window
 nnoremap <leader>m <c-w><c-w>
 
@@ -100,6 +101,9 @@ nnoremap sl` I`<esc>A`<esc>
 nnoremap s< ciw<<esc>pa><esc>
 nnoremap s> ciw<<esc>pa><esc>
 
+" surround with /* */
+nnoremap sl* I/*<space><esc>A<space>*/<esc>
+
 "echo '(>^.^<)'
 
 " execute deleting line while in insert mode
@@ -145,7 +149,6 @@ set expandtab
 set softtabstop=2
 " set list lcs=tab:\|\
 set termwinsize=10x0 " sets window height to 10 with ':bel term'
-
 let &t_SI = "\e[5 q"
 let &t_EI = "\e[2 q"
 " }}}
@@ -546,6 +549,38 @@ hi cssBraces ctermfg=yellow guifg=yellow
 hi cssProp ctermfg=45 guifg=#00d7ff
 " }}}
 
+" autocmd ------------ {{{
+
+" autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+
+" commentgroup ------------ {{{
+augroup commentgroup
+  autocmd!
+  " multi-line comments on one line with <localleader>c
+  autocmd FileType scss iabbrev <buffer> <localleader>c */<esc>I/*<space><left>
+  " multi-line comments on 3 lines with <localleade>m
+  autocmd FileType scss iabbrev <buffer> <localleader>m <esc>I/*<cr><cr>*/<up>
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>c <esc>I/**<space>/<esc>b<left>i
+  " multiline comment with <localleader>m
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>m <esc>I/**<cr><cr>/<up>
+  " have .json files open with nowrap set
+augroup end
+"}}}
+
+" ifgroup ------------ {{{
+augroup ifgroup
+  autocmd!
+  " javascript based if statement with iff
+  autocmd FileType javascript,typescript :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
+  autocmd FileType javascriptreact :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
+  autocmd FileType typescriptreact :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
+  " cpp iff
+  autocmd FileType cpp iabbrev <buffer> iff if<space>()<cr>{}<esc>bba
+  " python iff
+  autocmd FileType python iabbrev <buffer> iff if:<left>
+augroup end
+" }}}
+
 " Javascript based autocmd group ------------- {{{
 augroup jsbasedgroup
   autocmd!
@@ -553,27 +588,24 @@ augroup jsbasedgroup
   " hello ~f
   " result: function hello ( ) {
   "         }
-  autocmd FileType javascript,typescript :iabbrev <buffer> ~f <esc>Ifunction<space><esc>A()<space>{<cr>}<esc>bba
-  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> ~f <esc>Ifunction<space><esc>A()<space>{<cr>}<esc>bba
+  autocmd FileType javascript,typescript :iabbrev <buffer> <localleader>f <esc>bifunction<space><esc>A()<space>{<cr>}<esc>bba
+  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> <localleader>f <esc>bifunction<space><esc>A()<space>{<cr>}<esc>bba
   " setup arrow function for export ()=
-  autocmd FileType typescript,javascript :iabbrev <buffer> ~a () => {<cr>}<esc>bbba
-  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> ~a () => {<cr>}<esc>bbba
-  " setup useEffect Hook
-  autocmd FileType typescriptreact,javascriptreact :iabbrev <buffer> ~u useEffect(() => {<cr>}, [])<esc>O
-  " setup if statement
-  autocmd FileType javascript,typescript :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
-  autocmd FileType javascriptreact :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
-  autocmd FileType typescriptreact :iabbrev <buffer> iff {<cr>}<esc>bIif<space><space><left>()<left>
-  " setup for loop
+  autocmd FileType typescript,javascript :iabbrev <buffer> <localleader>a () => {<cr>}<esc>bbba
+  autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> <localleader>a () => {<cr>}<esc>bbba
+  " setup useEffect Hook with <localleader>u
+  autocmd FileType typescriptreact,javascriptreact :iabbrev <buffer> <localleader>u useEffect(() => {<cr>}, [])<esc>O
+  " setup for loop with forr
   autocmd FileType javascript,typescript :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
   autocmd FileType javascriptreact :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
   autocmd FileType typescriptreact :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
-  " comment out current line cursor is on
+  " comment out current line cursor is on <leader>c
   autocmd FileType javascript,typescript nnoremap <buffer> <leader>c I//<esc>
   autocmd FileType javascriptreact,typescriptreact nnoremap <buffer> <leader>c I//<esc>
-  " have .json files open with nowrap set
+  " multiline comment with <localleader>c
   autocmd BufNewFile,BufRead *.json setlocal nowrap
 augroup end
+" }}}
 " }}}
 
 " Groupings ----------------- {{{
