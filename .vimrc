@@ -13,6 +13,7 @@ let maplocalleader = ","
 
 " swap window
 nnoremap <leader>m <c-w><c-w>
+nnoremap <localleader>n <esc><c-w><c-w>
 
 nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
@@ -560,9 +561,10 @@ augroup commentgroup
   autocmd FileType scss iabbrev <buffer> <localleader>c */<esc>I/*<space><left>
   " multi-line comments on 3 lines with <localleade>m
   autocmd FileType scss iabbrev <buffer> <localleader>m <esc>I/*<cr><cr>*/<up>
-  autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>c <esc>I/**<space>/<esc>b<left>i
-  " multiline comment with <localleader>m
-  autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>m <esc>I/**<cr><cr>/<up>
+  " surround line with multiline comment with <localleader>c
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>c <esc>0v$<left>dI/**<cr><cr>/<esc>I<space><left><up><space><esc>A<esc>p
+  " blank multiline comment with <localleader>m
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>m <esc>I/**<cr><cr>/<esc>I<space><left><up><space><esc>A
   " have .json files open with nowrap set
 augroup end
 "}}}
@@ -581,18 +583,24 @@ augroup ifgroup
 augroup end
 " }}}
 
-" Javascript based autocmd group ------------- {{{
-augroup jsbasedgroup
+" function ------------ {{{
+augroup functiongroup
   autocmd!
-  "setup function by typing name of function then ~f, i.e.:
-  " hello ~f
+  "setup function by typing name of function then <localleader>f, i.e.:
+  " hello <localleader>f
   " result: function hello ( ) {
   "         }
   autocmd FileType javascript,typescript :iabbrev <buffer> <localleader>f <esc>bifunction<space><esc>A()<space>{<cr>}<esc>bba
   autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> <localleader>f <esc>bifunction<space><esc>A()<space>{<cr>}<esc>bba
-  " setup arrow function for export ()=
+  " setup arrow function for export <localleader>a 
   autocmd FileType typescript,javascript :iabbrev <buffer> <localleader>a () => {<cr>}<esc>bbba
   autocmd FileType javascriptreact,typescriptreact :iabbrev <buffer> <localleader>a () => {<cr>}<esc>bbba
+augroup end
+" }}}
+
+" Javascript based autocmd group ------------- {{{
+augroup jsbasedgroup
+  autocmd!
   " setup useEffect Hook with <localleader>u
   autocmd FileType typescriptreact,javascriptreact :iabbrev <buffer> <localleader>u useEffect(() => {<cr>}, [])<esc>O
   " setup for loop with forr
@@ -634,3 +642,4 @@ nnoremap <leader>ev :execute "rightbelow split " . $MYVIMRC<cr>
 " source .vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+au BufNewFile,BufRead *.ejs set filetype=html
