@@ -14,6 +14,8 @@ let maplocalleader = ","
 " swap window
 nnoremap <leader>m <c-w><c-w>
 nnoremap <localleader>n <esc><c-w><c-w>
+nnoremap <N <c-w><c-w>
+nnoremap ,<down> <c-w><c-w>
 
 nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
@@ -46,7 +48,6 @@ nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"nam
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " }}}
- 
 " delete content between html tags
 nnoremap <leader>< F>vf<<delete>i><<left>
 nnoremap <leader>> F>vf<<delete>i><<left>
