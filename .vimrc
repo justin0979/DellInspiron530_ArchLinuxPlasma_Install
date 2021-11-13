@@ -566,7 +566,9 @@ augroup commentgroup
   autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>c <esc>0v$<left>dI/**<cr><cr>/<esc>I<space><left><up><space><esc>A<esc>p
   " blank multiline comment with <localleader>m
   autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>m <esc>I/**<cr><cr>/<esc>I<space><left><up><space><esc>A
-  " have .json files open with nowrap set
+  " py - comment current line
+  autocmd FileType python iabbrev <buffer> <localleader>c <esc>I#
+  autocmd FileType python nnoremap <buffer> <localleader>c I#<space><esc>
 augroup end
 "}}}
 
@@ -581,6 +583,15 @@ augroup ifgroup
   autocmd FileType cpp iabbrev <buffer> iff if<space>()<cr>{}<esc>bba
   " python iff
   autocmd FileType python iabbrev <buffer> iff if:<left>
+augroup end
+" }}}
+
+" printfuncs ------- {{{
+augroup printfuncs
+  autocmd!
+  " py - surround current line with print(...) with <localleade>p
+  autocmd FileType python iabbrev <buffer> <localleader>p <esc>Iprint(<delete><esc>A)
+  autocmd FileType python nnoremap <buffer> <localleader>p Iprint(<esc>A)
 augroup end
 " }}}
 
