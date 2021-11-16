@@ -37,6 +37,7 @@ onoremap ( :normal! f)vi(<cr>
 onoremap ) :normal! F(vi(<cr>
 onoremap p :normal! f)vi(<cr>
 onoremap P :normal! F(vi(<cr>
+
 " }}}
 
 " key remappings ----------------- {{{
@@ -48,10 +49,6 @@ nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"nam
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " }}}
-" delete content between html tags
-nnoremap <leader>< F>vf<<delete>i><<left>
-nnoremap <leader>> F>vf<<delete>i><<left>
-
 " comment out jsx line
 nnoremap <leader>cl I{/*<esc>A*/}<esc>
 
@@ -559,15 +556,14 @@ hi cssProp ctermfg=45 guifg=#00d7ff
 augroup commentgroup
   autocmd!
   " multi-line comments on one line with <localleader>c
-  autocmd FileType scss iabbrev <buffer> <localleader>c */<esc>I/*<space><left>
+  autocmd FileType scss nnoremap <buffer> <localleader>c A<space>*/<esc>I/*<space><left><esc>
   " multi-line comments on 3 lines with <localleade>m
-  autocmd FileType scss iabbrev <buffer> <localleader>m <esc>I/*<cr><cr>*/<up>
+  autocmd FileType scss nnoremap <buffer> <localleader>m I/*<cr><cr>*/<up>
   " surround line with multiline comment with <localleader>c
-  autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>c <esc>0v$<left>dI/**<cr><cr>/<esc>I<space><left><up><space><esc>A<esc>p
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact nnoremap <buffer> <localleader>c I<space><esc>0v$<left>dI/**<cr><cr>/<left><up><esc>A<esc>p
   " blank multiline comment with <localleader>m
-  autocmd FileType javascript,typescript,javascriptreact,typescriptreact iabbrev <buffer> <localleader>m <esc>I/**<cr><cr>/<esc>I<space><left><up><space><esc>A
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact nnoremap <buffer> <localleader>m I/**<cr><cr>/<left><up><space><esc>A
   " py - comment current line
-  autocmd FileType python iabbrev <buffer> <localleader>c <esc>I#
   autocmd FileType python nnoremap <buffer> <localleader>c I#<space><esc>
 augroup end
 "}}}
@@ -625,6 +621,15 @@ augroup jsbasedgroup
   " multiline comment with <localleader>c
   autocmd BufNewFile,BufRead *.json setlocal nowrap
 augroup end
+" }}}
+ 
+" html type ---------- {{{
+augroup htmltype
+  autocmd!
+" delete content between html tags
+  autocmd FileType html,typescriptreact,javascriptreact onoremap < :<c-u>normal! F>lvf<h<cr>
+  autocmd FileType html,typescriptreact,javascriptreact onoremap > :<c-u>normal! F>lvf<h<cr>
+augroup end 
 " }}}
 " }}}
 
