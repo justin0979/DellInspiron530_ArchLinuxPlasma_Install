@@ -565,6 +565,7 @@ augroup commentgroup
   autocmd FileType javascript,typescript,javascriptreact,typescriptreact nnoremap <buffer> <localleader>m I/**<cr><cr>/<left><up><space><esc>A
   " py - comment current line
   autocmd FileType python nnoremap <buffer> <localleader>c I#<space><esc>
+  autocmd FileType html nnoremap <buffer> <localleader>c I<!--<space><esc>A<space>--><esc>hhh
 augroup end
 "}}}
 
