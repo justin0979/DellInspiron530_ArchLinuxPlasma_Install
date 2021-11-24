@@ -53,7 +53,8 @@ After booting from usb
 
  fdisk /dev/sda
 
- command (m for help): o # this clears everything out, so if you want to dual boot, research another way.
+# this clears everything out, so if you want to dual boot, research another way.
+ command (m for help): o 
 
  command (m for help): n
 
@@ -63,9 +64,11 @@ After booting from usb
 
  First sector: <Enter>
 
- Last sector: +32G
+# Used to always use +32G, but on last install, kept running low, 64 is overkill probably
+ Last sector: +64G
 
- command (m for help): a # make partition 1 bootable
+# make partition 1 bootable
+ command (m for help): a 
 
  command (m for help): n
 
@@ -75,13 +78,15 @@ After booting from usb
 
  First sector: <Enter>
 
- Last sector: +2G # used +12G on latest install just to do it
+ # used +12G on one install just to do it
+ Last sector: +2G 
 
  command (m for help): type
 
  partition number: 2
 
- Hex value: 82 # swap
+# swap
+ Hex value: 82 
 
  command (m for help): n
 
@@ -109,7 +114,8 @@ After booting from usb
 
  mount /dev/sda3 /mnt/home
 
- mount # just checks to verify that /dev/sda1 and /dev/sda3 are mounted
+ # just checks to verify that /dev/sda1 and /dev/sda3 are mounted
+ mount
  
  # move mirrors closest to your physical location by either
  # commenting out mirrors at top of list, or cut (dd) and
@@ -117,8 +123,8 @@ After booting from usb
  # save with :wq
  vim /etc/pacman.d/mirrorlist
 
- pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
 # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. `networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl (hope I termed that correctly).
+ pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
 
  genfstab -U -p /mnt >> /mnt/etc/fstab
 
