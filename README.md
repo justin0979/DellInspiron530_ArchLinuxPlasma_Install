@@ -110,6 +110,12 @@ After booting from usb
  mount /dev/sda3 /mnt/home
 
  mount # just checks to verify that /dev/sda1 and /dev/sda3 are mounted
+ 
+ # move mirrors closest to your physical location by either
+ # commenting out mirrors at top of list, or cut (dd) and
+ # paste (p) to top of list
+ # save with :wq
+ vim /etc/pacman.d/mirrorlist
 
  pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
 # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. `networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl (hope I termed that correctly).
