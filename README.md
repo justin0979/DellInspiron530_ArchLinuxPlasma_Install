@@ -1,6 +1,6 @@
 # Arch Linux Installation onto Dell Inspiron 530
 
-A reference for me later. I randomly update some of the text here, so some specs will be mismatched in places.<br />
+A reference for me later (I'm not even a novice here). I randomly update some of the text here, so some specs will be mismatched in places.<br />
 Use this as my main computer. No serious issues so far.
 
 <details>
@@ -244,7 +244,11 @@ pacman -S sddm # sddm-kcm is dependency of plasma and is installed with plasma
 
 systemctl enable sddm.service
 
-pacman -S plasma konsole dolphin # if you want chrome, it's in AUR, which is easy to get with git.
+pacman -S plasma konsole dolphin 
+# if you want chrome, it's in AUR, which is easy to get with git.
+# if get trust errors, even from the documented trusted users list,
+# run:
+#  pacman -S keyring
 ```
 
 You can install `kde-applications` and remove `konsole dolphin` (since those two are included with `kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications' and either check the kde website or arch to see all of the packages included.
