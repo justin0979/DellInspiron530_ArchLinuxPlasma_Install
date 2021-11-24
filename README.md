@@ -10,7 +10,7 @@ Use this as my main computer. No serious issues so far.
 Motherboard: G33M03 <br />
 ~~RAM: 3GB (2 x 1GB DDR2 800 MHz, 2 x 512MB DDR2 800 MHz)~~ (Upgraded)<br />
 CPU: Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz <br />
-~~GPU: AMD (don't remember specs)~~ (Upgraded)
+~~GPU: AMD (don't remember specs)~~ (Upgraded)<br />
 Architecture: x86_64 <br />
 Power Supply: 350W <br />
 
