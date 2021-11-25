@@ -1,7 +1,9 @@
 # Arch Linux Installation onto Dell Inspiron 530
 
-A reference for me later (I'm not even a novice here). I randomly update some of the text here, so some specs will be mismatched in places.<br />
-Use this as my main computer. No serious issues so far.
+A reference for me later (on a 2007-2008 desktop). I randomly update some of the text here, so 
+some specs will be mismatched in places.<br />
+I use this as my main computer. Occasionally get stuck during booting after an update and if
+I can't find a solution, I'll just re-install b/c it does not take long at all.
 
 <details>
  
@@ -27,23 +29,25 @@ RAM: 8GB (cheap 2GB sticks from Amazon)
 
 </details>
 
-### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.4.72-1-lts, at time of install and as of June 5, 2021, 5.10.42-1-lts) kernel, which Intel states is required for wifi ax cards.
+### I chose Arch Linux b/c it was one of the distros to use a 5.1+ (5.10.81-1-lts, at time of install and as of November 24, 2021) kernel, which Intel states is required for wifi ax cards.
 
-### After a lot of pain and closely, but not comprehensively, reading the ArchWiki docs, I was able to finally boot to a lighter weight plasma-desktop. I re-did the install 2 more times to ensure I started to understand some of what I was doing. I then went ahead and just installed full Plasma, which I'm very glad I did. The Dell handles this desktop environment very well. I have a dual monitor setup, and plasma came with everything. Plasma-desktop didn't come with "out-of-the-box" dual monitor work (or at least one of the packages didn't).
+### After a lot of pain and closely, but not comprehensively, reading the ArchWiki docs, I was able to finally boot to a lighter weight plasma-desktop. I re-did the install 2 more times to ensure I started to understand some of what I was doing. I then went ahead and just installed full Plasma. The Dell handles this desktop environment very well. I have a dual monitor setup, and plasma came with everything to get me up and running. At the time of my initial install, Plasma-desktop didn't come with "out-of-the-box" dual monitor working (or at least one of the packages didn't).
 
-Now, my Dell has DL speeds of up to 230 Mbps (thanks to my non-provider modem and router) on a 200 Mbps plan.
+Not sure if it's the Dell hardware or other network hardware, but DL speeds are up to 230 Mbps (thanks to my non-provider modem and router) on a 200 Mbps plan.
 
 ## There could be several typos here.
 
-I followed the docs about 95-99% and some youtube videos (about 1%) that coincided with the docs (hence some of the commands being in a slightly different order than the docs). Editors like vim and nano are not included in `base`.
+Like I said, the following steps are reference for what I did to get this Dell working.
 
-The docs link to other pages for more detail and it was very easy to miss a link (I missed the boot loader part) or to just not understand what an entire section was talking about. If it wasn't for some youtube videos, I would have missed some of the commands I needed to use. But, after spending more time reading the doc's for setting things up like `iptables`, the doc's ARE the only source you need to use for anything Arch related.
+I followed the docs about 95-99% and some youtube videos (about 1%) that expalained the docs (hence some of the commands being in a slightly different order than the docs).
+
+The docs link to other pages for more detail and it was very easy to miss a link (I missed the boot loader part) or to just not understand what an entire section was talking about. If it wasn't for some youtube videos, I would have missed some of the commands I needed to use. But, after spending more time reading the doc's for setting things up like `iptables`, the doc's ARE the only source you need to use for anything.
 
 UEFI has only a slightly different method than what follows, I believe I used UEFI in the [thinkpadarch.md](https://github.com/justin0979/DellInspiron530_ArchLinuxPlasma_Install/blob/main/thinkpadarch.md) for my laptop.
 
-I used `dd` to get a usb iso and booted that way.
+I used `dd` to get a usb iso and booted that way. Here's the link to [Arch Linux Downloads](https://archlinux.org/download/)
 
-After booting from usb
+After booting from usb:
 
 ```sh
  # select your router, I used default name given and then typed in my networks pw
@@ -322,7 +326,15 @@ The doc's go on to help set up iptables, which is a really easy step-by-step exp
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
 Also, some videos show to update with `pacman -Sy`, but the doc's clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
-If you forgot to install a console, you can either tty console or use boot disk and mount everything and install.
+If you forgot to install a console, you can either tty console (see below) or use boot disk and mount everything and install.
+
+-- Note: For booting from usb
+```sh
+mount /dev/sda1 /mnt
+mount /dev/sda3 /mnt/home
+
+pacstrap /mnt konsole
+```
 
 -- Note: For tty, type `Ctrl+Alt+F3` or whichever F# key (I'm not sure which are all console). <br />
 To get back to GUI, I read `Ctrl+Alt+F2` will work, but it didn't for me.
