@@ -68,8 +68,8 @@ After booting from usb:
 
  First sector: <Enter>
 
- # Used to always use +32G, but on last install, kept running low and I needed to clear cache more 
- # and more, 64 is overkill probably
+ # Used to use +32G, but on last install, kept running low and I needed to clear cache more 
+ # and more; 64 is overkill probably, but I rarely reach 50% on /home
  Last sector: +64G
 
  # make partition 1 bootable
