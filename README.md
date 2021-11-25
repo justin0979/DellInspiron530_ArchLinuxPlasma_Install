@@ -65,7 +65,7 @@ After booting from usb
  First sector: <Enter>
 
  # Used to always use +32G, but on last install, kept running low and I needed to clear cache more 
- and more, 64 is overkill probably
+ # and more, 64 is overkill probably
  Last sector: +64G
 
  # make partition 1 bootable
@@ -80,7 +80,7 @@ After booting from usb
  First sector: <Enter>
 
  # used +12G on one install just to do it, but usually around 2G, doc's say something more than 
- 512 MB
+ # 512 MB
  Last sector: +2G 
 
  command (m for help): type
@@ -126,7 +126,8 @@ After booting from usb
  # save with :wq
  vim /etc/pacman.d/mirrorlist
 
- # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. `networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl (hope I termed that correctly).
+ # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. 
+ #`networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl.
  pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
 
  genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -142,17 +143,18 @@ After booting from usb
  locale-gen
 
  vim /etc/locale.gen
-
- # type: "176 gg" and press "Enter". This will put cursor on line 176 where "#en_US.UTF-U UTF-8" is located at this time.
- # then press: Delete to delete "#" symbol, then type `:wq` to save and exit file.
- # the above uses Vim to uncomment en_US.UTF-8 UTF-8
- # without doing this, you will see something like "cannot set LC_MESSAGES...no such file or directory", but you'll still be able to "sudo wifi-menu" and select your network and browse internet
+   # type: `177 gg` and press "Enter". This will put cursor on line 177 where 
+   # "#en_US.UTF-8 UTF-8" is located at this time.
+   # then press: `x` to delete "#" symbol, then type `:wq` to save and exit file.
+   # without uncommenting above, you will see something like:
+   #   "cannot set LC_MESSAGES...no such file or directory" 
+   #     you'll still be able to "sudo wifi-menu" and select your network and browse internet
 
  vim /etc/locale.conf
    # press "i" then type: LANG=en_US.UTF-8
    # press cntl-c and type: `:wq`
 
- # type in your password twice, as with most linux pw's, you won't see what you are typing.
+ # type in your password twice; as with most linux pw's, you won't see what you are typing.
  passwd
 
 
@@ -167,6 +169,7 @@ After booting from usb
    #   Found initrd image: /boot/initramfs-linux.img
    #   Found fallback initrd image(s) in /boot: initramfs-linux-fallback.img
    #   done"
+   #      Last install output more stuff either here or one line above, install still worked
    #   if nothing was output after grub-mkconfig, something wasn't input correctly.
 
  # leave arch-chroot mode
@@ -212,10 +215,13 @@ systemctl start NetworkManager
 ## Setting up GUI stuff starts here
 
 ```sh
+# Last install showed a lot of defaults to enter. I may have either just hit `1` or all defaults
 pacman -S xorg-server xorg
 
+# Did NOT need this on last install
 lspci | grep -e VGA -e 3D # shows your video card
 
+# Dit NOT need this on last install
 # I think this shows possible list to use (it's in the Arch Linux doc's if I'm wrong).
 pacman -Ss xf86-video 
 ```
@@ -239,7 +245,7 @@ pacman -S nvidia # nvidia-390xx is only AUR now.
 ```
 
 ```sh
-# Create user and add this user to wheel group
+# Create user and add user to wheel group
 useradd -m -G users,wheel justin
 ```
 
@@ -247,7 +253,11 @@ Later in a console, type:
 
 ```sh
 EDITOR=vim visudo 
-  # Then uncomment`%wheel ALL=(ALL) ALL` to give wheel group members root privileges
+  # Go to near the bottom of file and
+  # uncomment `%wheel ALL=(ALL) ALL`
+  #       OR
+  # uncomment `%wheel ALL=(ALL) ALL NOPASSWD: ALL` to give wheel group members root privileges
+  #   with NOPASSWD: ALL, you will not have to type in pw on commands like `sudo pacman -S nodejs`
 ```
 
 Setup user's password:
@@ -269,20 +279,23 @@ systemctl enable sddm.service
 # if you want chrome, it's in AUR, which is easy to get with git.
 # after running below, if get trust errors, even from the documented trusted users list,
 # run:
-#  pacman -S keyring
+#   pacman -S keyring
 # then run below again
 pacman -S plasma konsole dolphin 
 ```
 
-You can install `kde-applications` and remove `konsole dolphin` (since those two are included with `kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications' and either check the kde website or arch to see all of the packages included.
+You can install `kde-applications` and remove `konsole dolphin` (since those two are included with 
+`kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications' 
+and either check the kde website or arch to see all of the packages included.
 
 -- For instance, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
 
 -- So, the command would be: `pacman -S plasma kde-applications`
 
-## The following is for auto-login, which is nice
+## The following is for auto-login 
 
-If you don't use this, then on reboot it just asks you to enter in the user's pw before going to desktop; otherwise, just goes straight to your desktop.
+If you don't use this, then on reboot it just asks you to enter in the user's pw before going to 
+desktop; otherwise, just goes straight to your desktop.
 
 ```sh
 mkdir /etc/sddm.conf.d/
@@ -298,7 +311,7 @@ User=justin
 Session=plasma.desktop
 ```
 
--- then press `Cntl-c` then type `:wq` (be sure to type `:` before `wq`) <br />
+-- then press `cntl-c` or `esc` then type `:wq` (be sure to type `:` before `wq`) <br />
 -- note: Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
 
 ```sh
