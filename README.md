@@ -46,14 +46,14 @@ I used `dd` to get a usb iso and booted that way.
 After booting from usb
 
 ```sh
+ # select your router, I used default name given and then typed in my networks pw
  wifi-menu
-# select your router, I used default name given and then typed in my networks pw
 
  timedatectl set-ntp true
 
  fdisk /dev/sda
 
-# this clears everything out, so if you want to dual boot, research another way.
+ # this clears everything out, so if you want to dual boot, research another way.
  command (m for help): o 
 
  command (m for help): n
@@ -64,10 +64,10 @@ After booting from usb
 
  First sector: <Enter>
 
-# Used to always use +32G, but on last install, kept running low, 64 is overkill probably
+ # Used to always use +32G, but on last install, kept running low, 64 is overkill probably
  Last sector: +64G
 
-# make partition 1 bootable
+ # make partition 1 bootable
  command (m for help): a 
 
  command (m for help): n
@@ -85,7 +85,7 @@ After booting from usb
 
  partition number: 2
 
-# swap
+ # swap
  Hex value: 82 
 
  command (m for help): n
@@ -96,7 +96,8 @@ After booting from usb
 
  First sector: <Enter>
 
- Last sector: <Enter> # take up the rest of the hard drive
+ # take up the rest of the hard drive
+ Last sector: <Enter> 
 
  command (m for help): w
 
@@ -123,7 +124,7 @@ After booting from usb
  # save with :wq
  vim /etc/pacman.d/mirrorlist
 
-# netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. `networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl (hope I termed that correctly).
+ # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. `networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl (hope I termed that correctly).
  pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
 
  genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -140,49 +141,54 @@ After booting from usb
 
  vim /etc/locale.gen
 
-# type: "176 gg" and press "Enter". This will put cursor on line 176 where "#en_US.UTF-U UTF-8" is located at this time.
-# then press: Delete to delete "#" symbol, then type `:wq` to save and exit file.
-# the above uses Vim to uncomment en_US.UTF-8 UTF-8
-# without doing this, you will see something like "cannot set LC_MESSAGES...no such file or directory", but you'll still be able to "sudo wifi-menu" and select your network and browse internet
+ # type: "176 gg" and press "Enter". This will put cursor on line 176 where "#en_US.UTF-U UTF-8" is located at this time.
+ # then press: Delete to delete "#" symbol, then type `:wq` to save and exit file.
+ # the above uses Vim to uncomment en_US.UTF-8 UTF-8
+ # without doing this, you will see something like "cannot set LC_MESSAGES...no such file or directory", but you'll still be able to "sudo wifi-menu" and select your network and browse internet
 
  vim /etc/locale.conf
+   # press "i" then type: LANG=en_US.UTF-8
+   # press cntl-c and type: `:wq`
 
-# press "i" then type: LANG=en_US.UTF-8
-# press cntl-c and type: `:wq`
-
+ # type in your password twice, as with most linux pw's, you won't see what you are typing.
  passwd
 
-# type in your password twice, as with most linux pw's, you won't see what you are typing.
 
  grub-install --target=i386-pc /dev/sda # UEFI has other instructions
-# outputs: "Installing for i386-pc platform'
-#          "Installation finished. No error reported."
+   # outputs: "Installing for i386-pc platform'
+   #          "Installation finished. No error reported."
 
  grub-mkconfig -o /boot/grub/grub.cfg
-# outputs:
-#   "Generating grub configuration file ...
-#   Found linux image: /boot/vmlinuz-linux
-#   Found initrd image: /boot/initramfs-linux.img
-#   Found fallback initrd image(s) in /boot: initramfs-linux-fallback.img
-#   done"
-#   if nothing was output after grub-mkconfig, something wasn't input correctly.
+   # outputs:
+   #   "Generating grub configuration file ...
+   #   Found linux image: /boot/vmlinuz-linux
+   #   Found initrd image: /boot/initramfs-linux.img
+   #   Found fallback initrd image(s) in /boot: initramfs-linux-fallback.img
+   #   done"
+   #   if nothing was output after grub-mkconfig, something wasn't input correctly.
 
- exit # leave arch-chroot mode
+ # leave arch-chroot mode
+ exit 
 
  umount -R /mnt
 
  reboot
 ```
 
+## Boot into archlinux without GUI setup yet
+
 If all went well, then you'll reboot to Arch Linux<br />
 For username, type: `root` <br />
 then enter your password from earlier and type in the following:
 
 ```sh
- wifi-menu # select router, I used default name, type in router password
+ # select router, I used default name, type in router password
+ # take note of the name, if I think it is here that states the interface (wlp3s0 for me)
+ wifi-menu 
 ```
 
-In order to auto-login with wifi-menu, either now or after having finished all of these instructions, type:
+In order to auto-login with wifi-menu, either now or after having finished all of these
+instructions, type:
 
 ```sh
 systemctl enable netctl-auto@wlp3s0.service
@@ -191,9 +197,11 @@ systemctl enable netctl-auto@wlp3s0.service
 The above command has `wlp3s0` as the `interface`<br/>
 substitute your `interface` for `wlp3s0` if it is different.
 
-the `enable` will occur everytime the system boots, to start in the current session, you can use `start` instead of `enable`
+the `enable` will occur everytime the system boots; to start in the current session, you can use 
+`start` instead of `enable`
 
-\*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard already) you can use:
+\*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard 
+already) you can use:
 
 ```sh
 systemctl start NetworkManager
@@ -206,11 +214,12 @@ pacman -S xorg-server xorg
 
 lspci | grep -e VGA -e 3D # shows your video card
 
-pacman -Ss xf86-video # I think this shows possible list to use (it's in the Arch Linux doc's if I'm wrong).
+# I think this shows possible list to use (it's in the Arch Linux doc's if I'm wrong).
+pacman -Ss xf86-video 
 ```
 
 ```diff
-- I may have left below (pacman -S nvidia) out on my most recent install. BE SURE TO REFERENCE THE DOC's
+- I did NOT run below on last install (pacman -S nvidia). I'm keeping it here as reference to my initial install
 ```
 
 I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
@@ -218,27 +227,31 @@ I have an old nvidia card, NVIDIA Corporation GF119 [GeForce GT 610]
 -- I had installed just `nvidia` instead of `nvidia-390xx` on a prior install attempt and nothing showed on monitor; so, be sure to check the docs for what you need for your card.
 
 ```sh
+# NO NEED TO RUN, ONLY LEFT HERE FOR MY REFERENCE TO INITIAL INSTALL
+# CHECK DOC'S IF UNCERTAIN
 pacman -S nvidia # nvidia-390xx is only AUR now.
 ```
 
 ```diff
-- I may have left above (pacman -S nvidia) out on last install BE SURE TO REFERENCE THE DOC'S
+- I did NOT run above on last install (pacman -S nvidia). BE SURE TO REFERENCE THE DOC'S
 ```
 
 ```sh
+# Create user and add this user to wheel group
 useradd -m -G users,wheel justin
 ```
 
 Later in a console, type:
 
 ```sh
-EDITOR=vim visudo # Then uncomment`%wheel ALL=(ALL) ALL` to give wheel group members root privileges
+EDITOR=vim visudo 
+  # Then uncomment`%wheel ALL=(ALL) ALL` to give wheel group members root privileges
 ```
 
 Setup user's password:
 
 ```sh
-passwd justin # just type in this users pw, same as root pw process
+passwd justin 
 ```
 
 ## The following is for selecting a Desktop Environment
@@ -246,15 +259,17 @@ passwd justin # just type in this users pw, same as root pw process
 I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
 
 ```sh
-pacman -S sddm # sddm-kcm is dependency of plasma and is installed with plasma
+pacman -S sddm 
+  # sddm-kcm is dependency of plasma and is installed with plasma
 
 systemctl enable sddm.service
 
-pacman -S plasma konsole dolphin 
 # if you want chrome, it's in AUR, which is easy to get with git.
-# if get trust errors, even from the documented trusted users list,
+# after running below, if get trust errors, even from the documented trusted users list,
 # run:
 #  pacman -S keyring
+# then run below again
+pacman -S plasma konsole dolphin 
 ```
 
 You can install `kde-applications` and remove `konsole dolphin` (since those two are included with `kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications' and either check the kde website or arch to see all of the packages included.
