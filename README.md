@@ -64,7 +64,8 @@ After booting from usb
 
  First sector: <Enter>
 
- # Used to always use +32G, but on last install, kept running low, 64 is overkill probably
+ # Used to always use +32G, but on last install, kept running low and I needed to clear cache more 
+ and more, 64 is overkill probably
  Last sector: +64G
 
  # make partition 1 bootable
@@ -78,7 +79,8 @@ After booting from usb
 
  First sector: <Enter>
 
- # used +12G on one install just to do it
+ # used +12G on one install just to do it, but usually around 2G, doc's say something more than 
+ 512 MB
  Last sector: +2G 
 
  command (m for help): type
