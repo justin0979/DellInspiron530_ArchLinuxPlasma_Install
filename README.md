@@ -325,7 +325,7 @@ reboot
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
-Also, some videos show to update with `pacman -Sy`, but the doc's clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
+Also, some videos show to update with `pacman -Sy`, but the [doc's](https://wiki.archlinux.org/title/Pacman?redirect=no#Usage) clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
 If you forgot to install a console, you can either tty console (see below) or use boot disk and mount everything and install.
 
 -- Note: For booting from usb
