@@ -1,6 +1,6 @@
 # Arch Linux Installation onto Dell Inspiron 530
 
-A reference for me later (on a 2007-2008 desktop). I randomly update some of the text here, so 
+A reference for me later (on a 2007-2008 desktop). I randomly update some of the text here, so
 some specs will be mismatched in places.<br />
 I use this as my main computer. Occasionally get stuck during booting after an update and if
 I can't find a solution, I'll just re-install b/c it does not take long at all.
@@ -58,7 +58,7 @@ After booting from usb:
  fdisk /dev/sda
 
  # this clears everything out, so if you want to dual boot, research another way.
- command (m for help): o 
+ command (m for help): o
 
  command (m for help): n
 
@@ -68,12 +68,12 @@ After booting from usb:
 
  First sector: <Enter>
 
- # Used to use +32G, but on last install, kept running low and I needed to clear cache more 
+ # Used to use +32G, but on last install, kept running low and I needed to clear cache more
  # and more; 64 is overkill probably, but I rarely reach 50% on /home
  Last sector: +64G
 
  # make partition 1 bootable
- command (m for help): a 
+ command (m for help): a
 
  command (m for help): n
 
@@ -83,16 +83,16 @@ After booting from usb:
 
  First sector: <Enter>
 
- # used +12G on one install just to do it, but usually around 2G, doc's say something more than 
+ # used +12G on one install just to do it, but usually around 2G, doc's say something more than
  # 512 MB
- Last sector: +2G 
+ Last sector: +2G
 
  command (m for help): type
 
  partition number: 2
 
  # swap
- Hex value: 82 
+ Hex value: 82
 
  command (m for help): n
 
@@ -103,7 +103,7 @@ After booting from usb:
  First sector: <Enter>
 
  # take up the rest of the hard drive
- Last sector: <Enter> 
+ Last sector: <Enter>
 
  command (m for help): w
 
@@ -123,14 +123,14 @@ After booting from usb:
 
  # just checks to verify that /dev/sda1 and /dev/sda3 are mounted
  mount
- 
+
  # move mirrors closest to your physical location by either
  # commenting out mirrors at top of list, or cut (dd) and
  # paste (p) to top of list
  # save with :wq
  vim /etc/pacman.d/mirrorlist
 
- # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu. 
+ # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu.
  #`networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl.
  pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
 
@@ -147,11 +147,11 @@ After booting from usb:
  locale-gen
 
  vim /etc/locale.gen
-   # type: `177 gg` and press "Enter". This will put cursor on line 177 where 
+   # type: `177 gg` and press "Enter". This will put cursor on line 177 where
    # "#en_US.UTF-8 UTF-8" is located at this time.
    # then press: `x` to delete "#" symbol, then type `:wq` to save and exit file.
    # without uncommenting above, you will see something like:
-   #   "cannot set LC_MESSAGES...no such file or directory" 
+   #   "cannot set LC_MESSAGES...no such file or directory"
    #     you'll still be able to "sudo wifi-menu" and select your network and browse internet
 
  vim /etc/locale.conf
@@ -177,7 +177,7 @@ After booting from usb:
    #   if nothing was output after grub-mkconfig, something wasn't input correctly.
 
  # leave arch-chroot mode
- exit 
+ exit
 
  umount -R /mnt
 
@@ -193,7 +193,7 @@ then enter your password from earlier and type in the following:
 ```sh
  # select router, I used default name, type in router password
  # take note of the name, if I think it is here that states the interface (wlp3s0 for me)
- wifi-menu 
+ wifi-menu
 ```
 
 In order to auto-login with wifi-menu, either now or after having finished all of these
@@ -206,10 +206,10 @@ systemctl enable netctl-auto@wlp3s0.service
 The above command has `wlp3s0` as the `interface`<br/>
 substitute your `interface` for `wlp3s0` if it is different.
 
-the `enable` will occur everytime the system boots; to start in the current session, you can use 
+the `enable` will occur everytime the system boots; to start in the current session, you can use
 `start` instead of `enable`
 
-\*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard 
+\*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard
 already) you can use:
 
 ```sh
@@ -227,7 +227,7 @@ lspci | grep -e VGA -e 3D # shows your video card
 
 # Dit NOT need this on last install
 # I think this shows possible list to use (it's in the Arch Linux doc's if I'm wrong).
-pacman -Ss xf86-video 
+pacman -Ss xf86-video
 ```
 
 ```diff
@@ -256,7 +256,7 @@ useradd -m -G users,wheel justin
 Later in a console, type:
 
 ```sh
-EDITOR=vim visudo 
+EDITOR=vim visudo
   # Go to near the bottom of file and
   # uncomment `%wheel ALL=(ALL) ALL`
   #       OR
@@ -267,7 +267,7 @@ EDITOR=vim visudo
 Setup user's password:
 
 ```sh
-passwd justin 
+passwd justin
 ```
 
 ## The following is for selecting a Desktop Environment
@@ -275,7 +275,7 @@ passwd justin
 I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
 
 ```sh
-pacman -S sddm 
+pacman -S sddm
   # sddm-kcm is dependency of plasma and is installed with plasma
 
 systemctl enable sddm.service
@@ -285,20 +285,20 @@ systemctl enable sddm.service
 # run:
 #   pacman -S keyring
 # then run below again
-pacman -S plasma konsole dolphin 
+pacman -S plasma konsole dolphin
 ```
 
-You can install `kde-applications` and remove `konsole dolphin` (since those two are included with 
-`kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications' 
+You can install `kde-applications` and remove `konsole dolphin` (since those two are included with
+`kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications'
 and either check the kde website or arch to see all of the packages included.
 
 -- For instance, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
 
 -- So, the command would be: `pacman -S plasma kde-applications`
 
-## The following is for auto-login 
+## The following is for auto-login
 
-If you don't use this, then on reboot it just asks you to enter in the user's pw before going to 
+If you don't use this, then on reboot it just asks you to enter in the user's pw before going to
 desktop; otherwise, just goes straight to your desktop.
 
 ```sh
@@ -325,10 +325,11 @@ reboot
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
-Also, some videos show to update with `pacman -Sy`, but the [doc's](https://wiki.archlinux.org/title/Pacman?redirect=no#Usage) clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
+Also, some videos show to update with `pacman -Sy`, but the [doc's](https://wiki.archlinux.org/title/Pacman?redirect=no#Usage) (in the `Warning` at bottom of `Usage` section) clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
 If you forgot to install a console, you can either tty console (see below) or use boot disk and mount everything and install.
 
 -- Note: For booting from usb
+
 ```sh
 mount /dev/sda1 /mnt
 mount /dev/sda3 /mnt/home
