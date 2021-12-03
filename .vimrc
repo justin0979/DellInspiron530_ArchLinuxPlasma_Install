@@ -1,5 +1,6 @@
 "To unfold an area, type 'za' when cursor is on line
 "To fold, place cursor anywhere in marked area and type 'za'
+" <leader>h shows highlighting group
 "colorscheme codedark
 syntax enable
 filetype plugin indent on
@@ -627,9 +628,14 @@ augroup end
 " html type ---------- {{{
 augroup htmltype
   autocmd!
-" delete content between html tags
-  autocmd FileType html,typescriptreact,javascriptreact onoremap < :<c-u>normal! F>lvf<h<cr>
-  autocmd FileType html,typescriptreact,javascriptreact onoremap > :<c-u>normal! F>lvf<h<cr>
+" delete content between html tags <leader>/<localleader>< or >
+  autocmd FileType html,typescriptreact,javascriptreact nnoremap <buffer> <leader>< F>lvf<hdi
+  autocmd FileType html,typescriptreact,javascriptreact nnoremap <buffer> <localleader>< F>lvf<hdi
+  autocmd FileType html,typescriptreact,javascriptreact nnoremap <buffer> <leader>> F>lvf<hdi
+  autocmd FileType html,typescriptreact,javascriptreact nnoremap <buffer> <localleader>> F>lvf<hdi
+
+  " Following did not work as planned
+  " autocmd FileType html onoremap < :<c-u.normal! F>lvf<h<cr>
 augroup end 
 " }}}
 " }}}
