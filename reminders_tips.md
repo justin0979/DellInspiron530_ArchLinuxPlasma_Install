@@ -170,3 +170,35 @@ cd ~/.config/Code/User
 ```
 
 </details>
+
+<details>
+  <summary><strong>QMK</strong></summary>
+
+Refer to [QMK Setup](https://docs.qmk.fm/#/newbs_getting_started) page.
+
+Do the following from home directory. I kept getting errors/warnings about
+no `bin/qmk` when I tried cloning my github repo. With `qmk setup` run
+from home directory, it asks to clone `qmk_firmware` repo to home
+directory (which I eventually did and the following worked.
+The docs do show how to clone it to another location, didn't look into it
+though).
+
+Follow `Linux/WSL` > `Arch / Manjaro`:
+
+```sh
+sudo pacman --needed --noconfirm -S git python-pip libffi
+sudo pacman -S qmk
+qmk setup
+qmk compile -kb crkbd -km default
+```
+
+Configure build environment to be able to just run `qmk compile` and
+`qmk flash` without adding `-kb` and `-km`:
+
+```sh
+qmk config user.keyboard=crkbd
+qmk config user.keymap=justin0979
+qmk compile
+```
+
+</details>
