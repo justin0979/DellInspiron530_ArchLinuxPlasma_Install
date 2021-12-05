@@ -177,13 +177,13 @@ cd ~/.config/Code/User
 Refer to [QMK Setup](https://docs.qmk.fm/#/newbs_getting_started) page.
 
 Do the following from home directory. I kept getting errors/warnings about
-no `bin/qmk` when I tried cloning my github repo. With `qmk setup` run
+no `bin/qmk` when I tried cloning my qmk github repo. With `qmk setup` run
 from home directory, it asks to clone `qmk_firmware` repo to home
 directory (which I eventually did and the following worked.
 The docs do show how to clone it to another location, didn't look into it
 though).
 
-Follow `Linux/WSL` > `Arch / Manjaro`:
+Follow `Linux/WSL` > `Arch / Manjaro` for setup and testing setup:
 
 ```sh
 sudo pacman --needed --noconfirm -S git python-pip libffi
