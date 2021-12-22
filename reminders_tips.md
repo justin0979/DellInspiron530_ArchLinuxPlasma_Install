@@ -212,16 +212,16 @@ If connect usb with
 sudo mount /dev/sda1 /mnt/usbstick
 ```
 
-- or -
+or
 
 ```sh
 sudo mount -t ntfs3 /dev/sda1 /mnt/usbstick
 ```
 
-and get something like:
+or just plug in and get something like:
 
 ```sh
-mount: /mnt: unknown filesystem tye 'ntfs,ntfs3'
+mount: /mnt: unknown filesystem tye 'ntfs'
 ```
 
 Install ntfs-3g:
