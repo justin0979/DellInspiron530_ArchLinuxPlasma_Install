@@ -202,3 +202,36 @@ qmk compile
 ```
 
 </details>
+
+<details>
+  <summary><strong>NTFS</strong></summary>
+
+If connect usb with
+
+```sh
+sudo mount /dev/sda1 /mnt/usbstick
+```
+
+- or -
+
+```sh
+sudo mount -t ntfs3 /dev/sda1 /mnt/usbstick
+```
+
+and get something like:
+
+```sh
+mount: /mnt: unknown filesystem tye 'ntfs,ntfs3'
+```
+
+Install ntfs-3g:
+
+```sh
+sudo pacman -S ntfs-3g
+```
+
+My current kernel is `5.10.87-1-lts`, and according to
+[NTFC](https://wiki.archlinux.org/title/NTFS)
+you need to have kernal >= `5.15`
+
+</details>
