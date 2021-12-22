@@ -221,17 +221,17 @@ sudo mount -t ntfs3 /dev/sda1 /mnt/usbstick
 or just plug in and get something like:
 
 ```sh
-mount: /mnt: unknown filesystem tye 'ntfs'
+mount: /mnt: unknown filesystem type 'ntfs'
 ```
 
-Install ntfs-3g:
+Install `ntfs-3g`:
 
 ```sh
 sudo pacman -S ntfs-3g
 ```
 
 My current kernel is `5.10.87-1-lts`, and according to
-[NTFC](https://wiki.archlinux.org/title/NTFS)
+[NTFS](https://wiki.archlinux.org/title/NTFS)
 you need to have kernal >= `5.15`
 
 </details>
