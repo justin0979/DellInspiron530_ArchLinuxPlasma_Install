@@ -16,4 +16,4 @@ go to `System settings` and search for `Accessibility`. Go to `Mouse Navigation`
 
 ## Apps
 
-Xournalpp
+[Xournalpp](https://github.com/xournalpp/xournalpp)
