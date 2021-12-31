@@ -11,4 +11,9 @@ Surfing keys <--- let's you use vim commands for scrolling (`h`,`j`,`k`,`l`) etc
 ## KDE
 
 go to `System settings` and search for `Accessibility`. Go to `Mouse Navigation` and click `Move pointer with keyboard(using num pad)`
-  - will need either a keypad or a programmable keyboard 
+
+- will need either a keypad or a programmable keyboard
+
+## Apps
+
+Xournalpp
