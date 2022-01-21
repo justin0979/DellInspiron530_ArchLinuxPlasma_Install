@@ -33,8 +33,6 @@ RAM: 8GB (cheap 2GB sticks from Amazon)
 
 ### After a lot of pain and closely, but not comprehensively, reading the ArchWiki docs, I was able to finally boot to a lighter weight plasma-desktop. I re-did the install 2 more times to ensure I started to understand some of what I was doing. I then went ahead and just installed full Plasma. The Dell handles this desktop environment very well. I have a dual monitor setup, and plasma came with everything to get me up and running. At the time of my initial install, Plasma-desktop didn't come with "out-of-the-box" dual monitor working (or at least one of the packages didn't).
 
-Not sure if it's the Dell hardware or other network hardware, but DL speeds are up to 230 Mbps (thanks to my non-provider modem and router) on a 200 Mbps plan.
-
 ## There could be several typos here.
 
 Like I said, the following steps are reference for what I did to get this Dell working.
@@ -68,8 +66,10 @@ After booting from usb:
 
  First sector: <Enter>
 
- # Used to use +32G, but on last install, kept running low and I needed to clear cache more
- # and more; 64 is overkill probably, but I rarely reach 50% on /home
+ # Used to use +32G, but on last install, kept running low and I needed to clear
+ # cache more and more; 64 is overkill probably, but I rarely reach 50% on /home
+ # Arch Partitioning docs say "15-20 GiB should be sufficient for most users with
+ # modern hard disks."
  Last sector: +64G
 
  # make partition 1 bootable
@@ -83,8 +83,8 @@ After booting from usb:
 
  First sector: <Enter>
 
- # used +12G on one install just to do it, but usually around 2G, doc's say something more than
- # 512 MB
+ # used +12G on one install just to do it, but usually around 2G, doc's say something
+ # more than 512 MB
  Last sector: +2G
 
  command (m for help): type
@@ -130,7 +130,8 @@ After booting from usb:
  # save with :wq
  vim /etc/pacman.d/mirrorlist
 
- # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use wifi-menu.
+ # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use
+ # wifi-menu.
  #`networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl.
  pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
 
@@ -152,13 +153,15 @@ After booting from usb:
    # then press: `x` to delete "#" symbol, then type `:wq` to save and exit file.
    # without uncommenting above, you will see something like:
    #   "cannot set LC_MESSAGES...no such file or directory"
-   #     you'll still be able to "sudo wifi-menu" and select your network and browse internet
+   #     you'll still be able to "sudo wifi-menu" and select your network and browse
+   #     internet
 
  vim /etc/locale.conf
    # press "i" then type: LANG=en_US.UTF-8
    # press cntl-c and type: `:wq`
 
- # type in your password twice; as with most linux pw's, you won't see what you are typing.
+ # type in your password twice; as with most linux pw's, you won't see what you are
+ # typing.
  passwd
 
 
@@ -173,7 +176,8 @@ After booting from usb:
    #   Found initrd image: /boot/initramfs-linux.img
    #   Found fallback initrd image(s) in /boot: initramfs-linux-fallback.img
    #   done"
-   #      Last install output more stuff either here or one line above, install still worked
+   #      Last install output more stuff either here or one line above, install still
+   #      worked
    #   if nothing was output after grub-mkconfig, something wasn't input correctly.
 
  # leave arch-chroot mode
@@ -192,7 +196,8 @@ then enter your password from earlier and type in the following:
 
 ```sh
  # select router, I used default name, type in router password
- # take note of the name, if I think it is here that states the interface (wlp3s0 for me)
+ # take note of the name, if I think it is here that states the interface
+ # (wlp3s0 for me)
  wifi-menu
 ```
 
@@ -219,7 +224,8 @@ systemctl start NetworkManager
 ## Setting up GUI stuff starts here
 
 ```sh
-# Last install showed a lot of defaults to enter. I may have either just hit `1` or all defaults
+# Last install showed a lot of defaults to enter. I may have either just hit `1`
+# or all defaults
 pacman -S xorg-server xorg
 
 # Did NOT need this on last install
