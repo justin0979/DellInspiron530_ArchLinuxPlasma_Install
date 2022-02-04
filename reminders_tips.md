@@ -272,4 +272,6 @@ HTTP 422: Validation Failed (https://api.github.com/user/keys)
 key is already in use
 ```
 
+If credentials are still required, check that the repo was cloned from SSH.
+
 </details>
