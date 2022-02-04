@@ -254,4 +254,22 @@ To install `gh` on arch linux:
 sudo pacman -S github-cli
 ```
 
+Then run `gh auth login`<br />
+
+There will be a series of questions that follows, for example:
+
+```sh
+? What account do you want to log into? Github.com
+? What is your preferred protocol for Git operation? SSH
+? Upload your SSH public key to your Github accound? /path/to/key
+? How wouild you like to authenticate Github CLI? Paste an authentication token
+Tip: you can generate a Personal Access Token here https://github.com/settings/tokens
+Then minimum required scopes are 'repo', 'read:org', 'admin:public_key'.
+? Paste your authentication token: ***********
+- gh config set -h github.com git_protocol ssh
+✓ Configured git protocol
+HTTP 422: Validation Failed (https://api.github.com/user/keys)
+key is already in use
+```
+
 </details>
