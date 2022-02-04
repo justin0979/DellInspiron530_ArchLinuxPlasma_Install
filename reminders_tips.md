@@ -235,3 +235,15 @@ My current kernel is `5.10.87-1-lts`, and according to
 you need to have kernal >= `5.15`
 
 </details>
+
+<details>
+  <summary><strong>GitHub Token</strong></summary>
+
+When attempting to access a repo and get a message saying that a password has expired and to use a token,
+go to GitHub docs [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+and follow the instructions.
+
+Basically, go to `Settings > <> Developer settings > Personal access tokens`<br />
+From there, either click on an expired token to regenerate it, or generate a new one.
+
+</details>
