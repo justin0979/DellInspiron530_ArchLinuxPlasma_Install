@@ -237,7 +237,7 @@ you need to have kernal >= `5.15`
 </details>
 
 <details>
-  <summary><strong>GitHub Token</strong></summary>
+  <summary><strong>GitHub Token and Github CLI</strong></summary>
 
 When attempting to access a repo and get a message saying that a password has expired and to use a token,
 go to GitHub docs [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
@@ -245,5 +245,13 @@ and follow the instructions.
 
 Basically, go to `Settings > <> Developer settings > Personal access tokens`<br />
 From there, either click on an expired token to regenerate it, or generate a new one.
+
+To not have to enter credentials for each commit, follow [Github CLI](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git)
+
+To install `gh` on arch linux:
+
+```sh
+sudo pacman -S github-cli
+```
 
 </details>
