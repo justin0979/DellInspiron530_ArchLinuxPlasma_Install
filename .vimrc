@@ -50,9 +50,6 @@ nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"nam
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " }}}
-" comment out jsx line
-nnoremap <leader>cl I{/*<esc>A*/}<esc>
-
 "surround current string with ()
 nnoremap s( ciw(<esc>pa)<esc>
 nnoremap s) ciw(<esc>pa)<esc>
@@ -567,6 +564,9 @@ augroup commentgroup
   " py - comment current line
   autocmd FileType python nnoremap <buffer> <localleader>c I#<space><esc>
   autocmd FileType html nnoremap <buffer> <localleader>c I<!--<space><esc>A<space>--><esc>hhh
+  " comment out jsx line with <localleader>cl
+  autocmd FileType javascriptreact,typescriptreact nnoremap <buffer> <localleader>cl I{/*<esc>A*/}<esc>
+
 augroup end
 "}}}
 

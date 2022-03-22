@@ -29,6 +29,9 @@ alias l='ls -lah'
 alias cls='clear && ls'
 alias dr='deno run'
 alias k='kubectl'
+alias c='conda'
+alias ci='conda info'
+alias ca='conda activate'
 
 # add to PS1 to show which git branch you are on. 
 # if directory doesn't have git, then nothing will show.
@@ -69,3 +72,20 @@ export DENO_DIR=./deno_dir
 export PATH=~/.local/bin:"$PATH"
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 export ZEPHYR_SDK_INSTALL_DIR=/home/justin/.local/zephyr-sdk-0.12.4
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/justin/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/justin/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/justin/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/justin/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+PATH="$HOME/.local/bin:$PATH"
