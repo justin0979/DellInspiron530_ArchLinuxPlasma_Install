@@ -71,7 +71,8 @@ The `git clone` here uses for `ssh` setup.
   - allows comments in .json files
 - ~~ale (not currently using)~~
 - [auto-pairs](https://github.com/jiangmiao/auto-pairs)
-  - `git clone git@github.com:jiangmiao/auto-pairs.git`
+  - ssh <br />`git clone git@github.com:jiangmiao/auto-pairs.git`
+  - https<br/>`git clone https://github.com/jiangmiao/auto-pairs.git`
 - [emmet-vim](https://github.com/mattn/emmet-vim)
   - `git clone git@github.com:mattn/emmet-vim.git`
 - [nerdtree](https://github.com/preservim/nerdtree)
