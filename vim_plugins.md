@@ -66,7 +66,7 @@ let g:coc_global_extensions = ['coc-tsserver']
 (Look into coc, b/c things like `coc-prettier` can be used instead) <br />
 The `git clone` here uses for `ssh` setup.
 
-- [vim-jsonc](https://github.com/kevinoid/vim-jsonc)
+- [vim-jsonc](https://github.com/kevinoid/vim-jsonc) <br />
   allows comments in .json files
   - `git clone git@github.com:kevinoid/vim-jsonc.git`
 - ~~ale (not currently using)~~
