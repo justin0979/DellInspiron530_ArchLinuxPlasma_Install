@@ -1,17 +1,23 @@
 Install openssh `sudo pacman -S openssh`
 
-`ssh-keygen -t rsa -b 4096 -C "your@email.com"`
+From (Generating a new SSH key and adding it to the ssh-agent)[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent] documentation:
 
-`eval $(ssh-agent -s)`
+- `ssh-keygen -t ed25519 -C "your_email@google.com"`
+- `eval $(ssh-agent -s)`
+- `ssh-add ~/.ssh/id_ed25519`
 
-`ssh-add ~/.ssh/id_rsa`
+Add the SSH key to GitHub with (Adding a new SSH key to your GitHub account)[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account]
 
-make config file in `./.ssh/config`
+From the documentation for adding SSH:
 
-in config <br />
-`IdentityFile ~/.ssh/gitHubKey` <br />
-`IdentityFile ~/.ssh/id_rsa` <br />
+```sh
+cat ~/.ssh/id_ed25519.pub
+# Then select and copy the contents of the id_ed25519.pub file
+# displayed in the terminal to your clipboard
+```
 
-If you entered passphrase during keygen, enter it when using ssh.
-
-`chmod 600 config`
+- Go to `Settings` in GitHub account
+- Click `SSH and GPG keys` in side menu
+- Add a title
+- paste key
+- click `Add SSH key` button
