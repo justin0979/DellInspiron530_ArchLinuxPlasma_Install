@@ -1,12 +1,12 @@
 Install openssh `sudo pacman -S openssh`
 
-From (Generating a new SSH key and adding it to the ssh-agent)[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent] documentation:
+From [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent) documentation:
 
 - `ssh-keygen -t ed25519 -C "your_email@google.com"`
 - `eval $(ssh-agent -s)`
 - `ssh-add ~/.ssh/id_ed25519`
 
-Add the SSH key to GitHub with (Adding a new SSH key to your GitHub account)[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account]
+Add the SSH key to GitHub with [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
 From the documentation for adding SSH:
 
