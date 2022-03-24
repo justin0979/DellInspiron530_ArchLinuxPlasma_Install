@@ -1,3 +1,7 @@
+## With `pacman`
+
+`sudo pacman -S unzip`
+
 ## AURs
 
 flashprint<br />
