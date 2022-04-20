@@ -275,3 +275,11 @@ key is already in use
 If credentials are still required, check that the repo was cloned from SSH.
 
 </details>
+
+<details>
+  <summary><strong>Unsquash GIMP toolbar menu</strong></summary>
+
+Go to `Edit --> Preferences --> Interface ->> Toolbox`, then uncheck `Use tool groups`
+, then click `OK`
+
+</details>
