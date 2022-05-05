@@ -43,7 +43,10 @@ The docs link to other pages for more detail and it was very easy to miss a link
 
 UEFI has only a slightly different method than what follows, I believe I used UEFI in the [thinkpadarch.md](https://github.com/justin0979/DellInspiron530_ArchLinuxPlasma_Install/blob/main/thinkpadarch.md) for my laptop.
 
-I used `dd` to get a usb iso and booted that way. Here's the link to [Arch Linux Downloads](https://archlinux.org/download/)
+I used `dd` to get a usb iso and booted that way. Here is one guide,
+[How to Create Bootable USB Drive Using dd Command](https://linuxiac.com/how-to-create-bootable-usb-drive-using-dd-command/) I found online, not sure if I followed this one back then though.
+
+Here's the link to [Arch Linux Downloads](https://archlinux.org/download/)
 
 After booting from usb:
 
