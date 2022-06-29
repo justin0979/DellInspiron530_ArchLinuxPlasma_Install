@@ -283,3 +283,57 @@ Go to `Edit --> Preferences --> Interface ->> Toolbox`, then uncheck `Use tool g
 , then click `OK`
 
 </details>
+
+<details>
+  <summary><strong>Limit pen boundary to Wacom Cintiq 16</strong></summary>
+
+First, put Wacom pen nib and eraser close to the Wacom tablet so inputs will register.<br />
+Then, get inputs' ids:
+
+```sh
+xinput
+```
+
+Output will be something like:
+
+```sh
+Wacom Cintiq 16 Pen Pen (0x1781901d)     id=12
+Wacom Cintiq 16 Pen Eraser (0x1781901d)  id=13
+```
+
+Each id might change on each boot.
+
+Next, get the monitors:
+
+```sh
+xrandr
+```
+
+Output will be something like:
+
+```sh
+Screen 0: minimum 320 x 200, current 3841 x 2160, maximum 16384 x 16384
+DVI-I-1 disconnected (normal left inverted right x axis y axis)
+HDMI-1 connected primary 1920x1080+1+1080 (normal inverted ....)
+  1920x1080    60.00*+ 59.96  ...
+  ...
+VGA-1 connected ...
+  ...
+DVI-I-1-2 connected ...
+  ...
+```
+
+Finally, set pen and eraser to Wacom device with command format:
+
+```sh
+xinput map-to-output [ID] [monitor]
+```
+
+e.g.,
+
+```sh
+xinput map-to-output 12 DVI-I-1-2
+xinput map-to-output 13 DVI-I-1-2
+```
+
+</details>
