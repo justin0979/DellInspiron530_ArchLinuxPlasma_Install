@@ -285,6 +285,64 @@ Go to `Edit --> Preferences --> Interface ->> Toolbox`, then uncheck `Use tool g
 </details>
 
 <details>
+<summary><strong>Setup Wacom Cintiq 16 with Startech DisplayLink HDMI to USB</strong></summary>
+
+Reference [DisplayLink](https://wiki.archlinux.org/title/DisplayLink).
+
+I followed section 1.2 with `git clone` the following: <br />
+
+- [evdi](https://aur.archlinux.org/packages/evdi)
+- [displaylink](https://aur.archlinux.org/packages/displaylink)
+
+Then enabling `displaylink.service`:
+
+```sh
+sudo systemctl enable displaylink.service
+```
+
+Next, make `20-evda.conf`:
+
+```sh
+sudo vim /etc/X11/xorg.conf.d/20-evda.conf
+```
+
+Inside `20-evda.conf`:
+
+```sh
+Section "OutputClass"
+  Identifier "DisplayLink"
+  MatchDriver "evdi"
+  Driver "modesetting"
+  Option "AccelMethod" "none"
+EndSection
+```
+
+and then I went ahead and rebooted.
+
+** I think that I followed this next parts of the docs, can't remember, if it doesn't work, then try them **
+
+After reboot, run:
+
+```sh
+xrandr --listproviders
+```
+
+output:
+
+```sh
+Providers: number : 2
+Provider 0: id: 0x49 cap: 0xb, Source Output, ...
+```
+
+Then run:
+
+```sh
+xrandr --setprovideroutputsource 1 0
+```
+
+</details>
+
+<details>
   <summary><strong>Limit pen boundary to Wacom Cintiq 16</strong></summary>
 
 First, put Wacom pen nib and eraser close to the Wacom tablet so inputs will register.<br />
