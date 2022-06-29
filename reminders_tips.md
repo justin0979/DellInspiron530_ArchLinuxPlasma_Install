@@ -287,9 +287,7 @@ Go to `Edit --> Preferences --> Interface ->> Toolbox`, then uncheck `Use tool g
 <details>
 <summary><strong>Setup Wacom Cintiq 16 with Startech DisplayLink HDMI to USB</strong></summary>
 
-Reference [DisplayLink](https://wiki.archlinux.org/title/DisplayLink).
-
-I followed section 1.2 with `git clone` the following: <br />
+Referenced [DisplayLink](https://wiki.archlinux.org/title/DisplayLink), specifically section 1.2.
 
 - [evdi](https://aur.archlinux.org/packages/evdi)
 - [displaylink](https://aur.archlinux.org/packages/displaylink)
