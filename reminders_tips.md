@@ -317,7 +317,7 @@ Next, make `20-evda.conf`:
 sudo vim /etc/X11/xorg.conf.d/20-evda.conf
 ```
 
-Inside `20-evda.conf`:
+Inside `20-evdi.conf`:
 
 ```sh
 Section "OutputClass"
@@ -328,9 +328,10 @@ Section "OutputClass"
 EndSection
 ```
 
-and then I went ahead and rebooted.
+and then I went ahead and rebooted and everything worked after setting it up monitors in 
+`System settings`.
 
-** I think that I followed this next parts of the docs, can't remember, if it doesn't work, then try them **
+*** I did not need to do the following on last install with linux-lts ***
 
 After reboot, run:
 
