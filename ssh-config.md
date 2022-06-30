@@ -21,3 +21,25 @@ cat ~/.ssh/id_ed25519.pub
 - Add a title
 - paste key
 - click `Add SSH key` button
+
+Testing SSH connection:
+```sh
+ssh -T git@github.com
+```
+
+This will output:
+
+```sh
+The authenticity of host 'github.com (140.82.113.3)' can't be established.
+ED25519 key fingerprint is SHA...
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+Type in `yes`.
+
+After typing `yes`, output will be something like:
+```sh
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Hi justin0979! You've successfully authenticated...
+```
