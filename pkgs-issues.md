@@ -50,7 +50,13 @@ Autologin after screen sleep/off: <br />
 `sudo pacman -S bluez-utils` <br />
 `systemctl enable bluetooth.service` <br />
 
+After this, try to reboot and go to `System Settings > Bluetooth`
+
+If `+Add New Device...` is not an option, try below command.
+
 `sudo pacman -S pulseaudio-bluetooth` <br />
+
+Try to reboot again and check `System Settings > Bluetooth`
 
 connect: <br />
 1.) `bluetoothctl` <br />
