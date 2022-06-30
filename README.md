@@ -136,6 +136,7 @@ After booting from usb:
  # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use
  # wifi-menu.
  #`networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl.
+ # if errors occur, run: pacman -Sy archlinux-keyring
  pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
 
  genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -229,6 +230,7 @@ systemctl start NetworkManager
 ```sh
 # Last install showed a lot of defaults to enter. I may have either just hit `1`
 # or all defaults
+# If get errors, run: pacman -Sy archlinux-keyring
 pacman -S xorg-server xorg
 
 # Did NOT need this on last install
@@ -262,17 +264,6 @@ pacman -S nvidia # nvidia-390xx is only AUR now.
 useradd -m -G users,wheel justin
 ```
 
-Later in a console, type:
-
-```sh
-EDITOR=vim visudo
-  # Go to near the bottom of file and
-  # uncomment `%wheel ALL=(ALL) ALL`
-  #       OR
-  # uncomment `%wheel ALL=(ALL) ALL NOPASSWD: ALL` to give wheel group members root privileges
-  #   with NOPASSWD: ALL, you will not have to type in pw on commands like `sudo pacman -S nodejs`
-```
-
 Setup user's password:
 
 ```sh
@@ -292,7 +283,7 @@ systemctl enable sddm.service
 # if you want chrome, it's in AUR, which is easy to get with git.
 # after running below, if get trust errors, even from the documented trusted users list,
 # run:
-#   pacman -S keyring
+#   pacman -Sy archlinux-keyring
 # then run below again
 pacman -S plasma konsole dolphin
 ```
@@ -330,6 +321,18 @@ Session=plasma.desktop
 ```sh
 reboot
 ```
+
+In a console, type:
+
+```sh
+sudo EDITOR=vim visudo
+  # Go to near the bottom of file and
+  # uncomment `%wheel ALL=(ALL) ALL`
+  #       OR
+  # uncomment `%wheel ALL=(ALL) ALL NOPASSWD: ALL` to give wheel group members root privileges
+  #   with NOPASSWD: ALL, you will not have to type in pw on commands like `sudo pacman -S nodejs`
+```
+
 
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
