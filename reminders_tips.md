@@ -1,3 +1,16 @@
+<details>
+  <summary>
+  <strong>
+    Konsole
+  </strong>
+  </summary>
+
+Go to following `System settings > Shortcuts`.
+If `Konsole` is not listed, then click on `+Add Application` and type in Konsole.<br />
+Then, Go to `Konsole > Open a New Window > Add custom shortcut > type in your custom shortcut`
+
+</details>
+
  <details>
    <summary>
    <strong>
