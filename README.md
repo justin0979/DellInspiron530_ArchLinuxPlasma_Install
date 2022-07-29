@@ -322,6 +322,8 @@ Session=plasma.desktop
 reboot
 ```
 
+## User Privileges
+
 In a console, type:
 
 ```sh
