@@ -28,7 +28,7 @@ go to `System settings` and search for `Accessibility`. Go to `Mouse Navigation`
 
 `xf86-input-wacom`<br />
 
-- refer to (Graphics tablet)[https://wiki.archlinux.org/title/Graphics_tablet#Remapping_buttons]
+- refer to [Graphics tablet](https://wiki.archlinux.org/title/Graphics_tablet#Remapping_buttons)
 
 ## Apps
 
