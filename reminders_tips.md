@@ -159,9 +159,27 @@ http://localhost:3000
 Content-Type: application/json
 POST /messages
 
+# Hitting ctrl-j with cursor on URL will post below object
+{
+    "title": "Post a new message"
+}
+
 # Get a specific message by id
 http://localhost:3000
 GET /messages/123
+
+# Update a specific message by id
+http://localhost:3000
+PUT /messages/123
+
+# Hitting ctrl-j with cursor on URL will update below object
+{
+    "title": "Update them"
+}
+
+# Delete a specific message by id
+http://localhost:3000
+DELETE /messages/123
 ```
 
 To run, put cursor on line with `http://...` or `GET` or `POST`,
@@ -302,8 +320,8 @@ Go to `Edit --> Preferences --> Interface ->> Toolbox`, then uncheck `Use tool g
 
 Referenced [DisplayLink](https://wiki.archlinux.org/title/DisplayLink), specifically section 1.2.
 
-- [evdi](https://aur.archlinux.org/packages/evdi)
-- [displaylink](https://aur.archlinux.org/packages/displaylink)
+-   [evdi](https://aur.archlinux.org/packages/evdi)
+-   [displaylink](https://aur.archlinux.org/packages/displaylink)
 
 Then enabling `displaylink.service`:
 
@@ -328,10 +346,10 @@ Section "OutputClass"
 EndSection
 ```
 
-and then I went ahead and rebooted and everything worked after setting it up monitors in 
+and then I went ahead and rebooted and everything worked after setting it up monitors in
 `System settings`.
 
-*** I did not need to do the following on last install with linux-lts ***
+**_ I did not need to do the following on last install with linux-lts _**
 
 After reboot, run:
 
