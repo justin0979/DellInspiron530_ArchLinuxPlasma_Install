@@ -207,7 +207,7 @@ Access the usb in `/mnt/usb`
 
 Instead of `sudo docker ps`, add user to docker group by running `sudo gpasswd -a <user> <group>`<br />
 (e.g. `sudo gpasswd -a justin docker`)<br />
-then, reboot and now run `docker ps`.
+then, <strong>reboot</strong> and now run `docker ps`.
 
   </details>
 <details>

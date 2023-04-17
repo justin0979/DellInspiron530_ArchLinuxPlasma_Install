@@ -1,5 +1,23 @@
 <details>
   <summary>
+    <strong>Docker</strong>
+  </summary>
+
+After installing [docker](https://wiki.archlinux.org/title/docker), remember:
+
+```sh
+sudo systemctl enable docker.service
+```
+
+to not need `sudo docker`, run `sudo gpasswd -a <username> docker`:
+
+```sh
+sudo gpasswd -a justin docker
+```
+
+</details>
+<details>
+  <summary>
   <strong>
     Konsole
   </strong>
