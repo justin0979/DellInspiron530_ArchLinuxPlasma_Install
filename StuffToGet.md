@@ -1,5 +1,6 @@
 ## With `pacman`
 
+unzip <br />
 `sudo pacman -S unzip`
 
 ## AURs
