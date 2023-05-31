@@ -33,4 +33,4 @@ go to `System settings` and search for `Accessibility`. Go to `Mouse Navigation`
 ## Apps
 
 [Xournalpp](https://github.com/xournalpp/xournalpp) <br />
-[Docker](https://wiki.archlinux.org/title/docker)
+<a href="https://wiki.archlinux.org/title/docker" target="_blank">Docker</a>
