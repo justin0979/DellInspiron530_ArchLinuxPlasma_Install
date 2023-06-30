@@ -30,9 +30,10 @@ echo "Wacom Cintiq 16 Pen stylus and eraser SET to ONLY ${MONITOR} monitor"
 #      <keyword> refers to what the button is being mapped to.
 
 # To re-map side button closest to nib:
-NUMBERS=$(xsetwacom list devices | grep stylus | tr -d -c 0-9)
-ID=${NUMBERS:2}
+NUMBERS=$(xsetwacom list devices | grep stylus | tr -d -c 0-9) # This gets only number. (e.g., outputs: 168)
+ID=${NUMBERS:2} # Removes first two digits. (if NUMBERS=168, then this outputs: 8)
 
-xsetwacom set ${ID} Button 2 pan
+xsetwacom set ${ID} Button 2 Button 3 # set button 2 to have button 3's function
+xsetwacom set ${ID} Button 3 pan
 
 echo "Stylus Button 2 set to pan" 
