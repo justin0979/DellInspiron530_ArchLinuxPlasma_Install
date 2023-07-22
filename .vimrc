@@ -2,6 +2,12 @@
 "To fold, place cursor anywhere in marked area and type 'za'
 " <leader>h shows highlighting group
 "colorscheme codedark
+"
+"select multiple same words:
+"  * (select current word)
+"  gn (change word example: cgnhowdy<esc>)
+"  . (repeat for each word by hitting .)
+"
 syntax enable
 filetype plugin indent on
 set termguicolors
