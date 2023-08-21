@@ -1,4 +1,17 @@
 <details>
+    <summary><strong>Mount USB</strong></summary>
+
+-   Insert USB
+-   Open terminal
+-   type `sudo fdisk -l`
+-   Check where USB is located, example output `/dev/sdb1`
+-   If not already done, create usb dir: `sudo mkdir /mnt/usb`
+-   Mount: `sudo mount /dev/sdb1 /mnt/usb`
+-   `cd /mnt/usb`
+
+</details>
+
+<details>
   <summary>
     <strong>Docker</strong>
   </summary>
