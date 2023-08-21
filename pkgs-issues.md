@@ -183,6 +183,8 @@ run `vim .config/chrome-flags.conf` and add `--password-store=basic`
 <details>
   <summary><strong>external usb</strong><hr/></summary>
 
+Check `reminders_tips.md` so there is no need for installing anything.
+
 Install `ntfs-3g`:<br />
 `sudo pacman -S ntfs-3g`<br />
 restart <br />
