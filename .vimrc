@@ -3,11 +3,18 @@
 " <leader>h shows highlighting group
 "colorscheme codedark
 "
-"select multiple same words:
+"To apply saved content here in an already opened file:
+"  :source ~/.vimrc
+"
+"select multiple same words: *cgn<type new word><esc> .
 "  * (select current word)
-"  gn (change word example: cgnhowdy<esc>)
+"  cgn (change word example: cgnhowdy<esc>)
 "  . (repeat for each word by hitting .)
 "
+"Find and edit file in NERDTree:
+"  :e **/foo<tab><enter>
+"
+
 syntax enable
 filetype plugin indent on
 set termguicolors
@@ -16,8 +23,7 @@ packloadall
 
 let mapleader = "\<space>" 
 let maplocalleader = ","
-
-
+ 
 " swap window
 nnoremap <leader>m <c-w><c-w>
 nnoremap <localleader>n <esc><c-w><c-w>
@@ -55,7 +61,16 @@ onoremap P :normal! F(vi(<cr>
 nnoremap <leader>h :echo "highest<" . synIDattr(synID(line("."),col("."),1),"name") . '> transparent<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lowest<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" Another variation of above, BUT with less data
+function! s:SynGroup()
+  let l:s = synID(line('.'),col('.'),1)
+  echo synIDattr(l:s,'name') . ' -> ' . synIDattr(synIDtrans(l:s),'name')
+endfun
 " }}}
+
+nnoremap <leader>n :call <SID>SynGroup()<CR>
+ 
 "surround current string with ()
 nnoremap s( ciw(<esc>pa)<esc>
 nnoremap s) ciw(<esc>pa)<esc>
@@ -106,6 +121,18 @@ nnoremap s> ciw<<esc>pa><esc>
 
 " surround with /* */
 nnoremap sl* I/*<space><esc>A<space>*/<esc>
+
+" surrond with <h1>...</h1>
+nnoremap slh1 I<h1><esc>A</h1><esc>
+
+" surrond with <h2>...</h2>
+nnoremap slh2 I<h2><esc>A</h2><esc>
+
+" surrond with <h3>...</h3>
+nnoremap slh3 I<h3><esc>A</h3><esc>
+
+" add <br /> to line
+nnoremap <leader>br A<br /><esc>
 
 "echo '(>^.^<)'
 
@@ -475,13 +502,14 @@ hi CocErrorSign ctermfg=9 guifg=#ff0000
 
 hi htmlTag ctermfg=117 guifg=#87d7ff
 hi htmlTagName cterm=bold ctermfg=83 guifg=#5fff5f
+hi divHtmlWord cterm=bold ctermfg=83 guifg=#5fff5f
 
-hi javascriptComment ctermfg=8 guifg=#808080
+hi javascriptLineComment ctermfg=8 guifg=#808080
 
 hi jsFuncCall ctermfg=191 guifg=DarkOliveGreen1
 hi jsParens ctermfg=105 guifg=LightSlateBlue
 
-hi javascriptParens ctermfg=159 guifg=#afffff
+"hi javascriptParens ctermfg=159 guifg=#afffff
 
 hi javaScriptVariableDeclaration ctermfg=10 guifg=#00ff00
 
@@ -501,7 +529,7 @@ hi typescriptCall ctermfg=51 guifg=#00ffff
 hi typescriptCase ctermfg=147 guifg=#afafff
 hi typescriptClassKeyword cterm=bold ctermfg=155 guifg=#afff5f
 hi typescriptClassName ctermfg=112 guifg=#87d700
-hi typescriptComment ctermfg=8 guifg=#808080
+hi typescriptLineComment ctermfg=8 guifg=#808080
 
 hi typescriptConditional ctermfg=147 guifg=#afafff
 hi typescriptConditionalParen ctermfg=51 guifg=#00ffff
@@ -673,3 +701,18 @@ nnoremap <leader>ev :execute "rightbelow split " . $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 au BufNewFile,BufRead *.ejs set filetype=html
+
+" Replace all instances of text with only 2 arguments, or from line # to line
+" # with 4 aguments: the first 2 being text and the last 2 the line #'s
+function Replace(old, new, ...)
+  if len(a:000) ==# 2
+    :exe ":" . a:000[0] . "," . a:000[1] . "s/" . a:old . "/" . a:new . "/ig"
+    return
+  endif
+  :exe ":%s/" . a:old ."/" . a:new . "/ig"
+endfun
+
+"syntax match divHtmlWord +[</]\_s*[a-zA-Z1-9-]\++hs=s+1
+ 
+"hi link divHtmlWord htmlTag
+
