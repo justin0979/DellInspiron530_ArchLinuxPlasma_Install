@@ -652,8 +652,8 @@ augroup jsbasedgroup
   autocmd FileType javascriptreact :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
   autocmd FileType typescriptreact :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
   " comment out current line cursor is on <leader>c
-  autocmd FileType javascript,typescript nnoremap <buffer> <leader>c I//<esc>
-  autocmd FileType javascriptreact,typescriptreact nnoremap <buffer> <leader>c I//<esc>
+  autocmd FileType javascript,typescript nnoremap <buffer> <leader>c :<c-u>call CommentOut(v:count1)<cr>
+  autocmd FileType javascriptreact,typescriptreact nnoremap <buffer> <leader>c :<c-u>call CommentOut(v:count1)<cr>
   " multiline comment with <localleader>c
   autocmd BufNewFile,BufRead *.json setlocal nowrap
 augroup end
@@ -702,6 +702,12 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 au BufNewFile,BufRead *.ejs set filetype=html
 
+function CommentOut(num)
+  for i in range(1,a:num)
+    :execute "normal! I//\<esc>j"
+  endfor
+endfun
+
 " Replace all instances of text with only 2 arguments, or from line # to line
 " # with 4 aguments: the first 2 being text and the last 2 the line #'s
 function Replace(old, new, ...)
@@ -716,3 +722,4 @@ endfun
  
 "hi link divHtmlWord htmlTag
 
+autocmd FileType javascript,javascriptreact colorscheme my-js
