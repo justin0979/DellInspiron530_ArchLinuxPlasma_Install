@@ -737,16 +737,16 @@ function s:CommentOut(num)
   let num = a:num
   while (num > 0)
     let num = num - 1
-    :execute "normal! I//\<esc>j"
+    :execute "normal! 0i//\<esc>j"
   endwhile
 endfun
   "for i in range(1,a:num)
-  "  :execute "normal! I//\<esc>j"
+  "  :execute "normal! 0i//\<esc>j"
   "endfor
 
 " Replace all instances of text with only 2 arguments, or from line # to line
 " # with 4 aguments: the first 2 being text and the last 2 the line #'s
-function s:Replace(old, new, ...)
+function Replace(old, new, ...)
   if len(a:000) ==# 2
     :exe ":" . a:000[0] . "," . a:000[1] . "s/" . a:old . "/" . a:new . "/ig"
     return
