@@ -27,8 +27,8 @@ let maplocalleader = ","
 " swap window
 nnoremap <leader>m <c-w><c-w>
 nnoremap <localleader>n <esc><c-w><c-w>
-nnoremap <N <c-w><c-w>
-nnoremap ,<down> <c-w><c-w>
+nnoremap <leader>N <c-w><c-w>
+nnoremap <localleader><down> <c-w><c-w>
 
 nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
@@ -591,10 +591,21 @@ augroup commentgroup
   autocmd FileType scss nnoremap <buffer> <localleader>c A<space>*/<esc>I/*<space><left><esc>
   " multi-line comments on 3 lines with <localleade>m
   autocmd FileType scss nnoremap <buffer> <localleader>m I/*<cr><cr>*/<up>
-  " surround line with multiline comment with <localleader>c
-  autocmd FileType javascript,typescript,javascriptreact,typescriptreact nnoremap <buffer> <localleader>c I<space><esc>0v$<left>dI/**<cr><cr>/<left><up><esc>A<esc>p
-  " blank multiline comment with <localleader>m
-  autocmd FileType javascript,typescript,javascriptreact,typescriptreact nnoremap <buffer> <localleader>m I/**<cr><cr>/<left><up><space><esc>A
+  " surround existing text with multiline comment with <localleader>c.
+  " Put cursor on first line to be in comment and type #<localleader>c.
+  " (i.e., 3<localleader>c)
+  "   -  /**
+  "       * function example() {
+  "       *   return null;
+  "       * }
+  "       */
+  " Just typing <localleader>c with no number in front will create empty
+  " multiline comment:
+  "   - <localleader>c
+  "      /**
+  "       *
+  "       */
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact nnoremap <buffer> <localleader>c :<c-u>call <SID>MultiLineComment(v:count)<cr>
   " py - comment current line
   autocmd FileType python nnoremap <buffer> <localleader>c I#<space><esc>
   autocmd FileType html nnoremap <buffer> <localleader>c I<!--<space><esc>A<space>--><esc>hhh
@@ -627,7 +638,7 @@ augroup printfuncs
 augroup end
 " }}}
 
-" function ------------ {{{
+" initialize JS function ------------ {{{
 augroup functiongroup
   autocmd!
   "setup function by typing name of function then <localleader>f, i.e.:
@@ -646,14 +657,16 @@ augroup end
 augroup jsbasedgroup
   autocmd!
   " setup useEffect Hook with <localleader>u
+  autocmd FileType typescript,javascript :iabbrev <buffer> <localleader>u useEffect(() => {<cr>}, [])<esc>O
   autocmd FileType typescriptreact,javascriptreact :iabbrev <buffer> <localleader>u useEffect(() => {<cr>}, [])<esc>O
   " setup for loop with forr
   autocmd FileType javascript,typescript :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
   autocmd FileType javascriptreact :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
   autocmd FileType typescriptreact :iabbrev <buffer> forr {<cr>}<esc>bIfor<space><space><left>()<left>
-  " comment out current line cursor is on <leader>c
-  autocmd FileType javascript,typescript nnoremap <buffer> <leader>c :<c-u>call CommentOut(v:count1)<cr>
-  autocmd FileType javascriptreact,typescriptreact nnoremap <buffer> <leader>c :<c-u>call CommentOut(v:count1)<cr>
+  " comment out current line that cursor is on <leader>c. For multiple lines, 
+  " #<leader>c (i.e., 3<leader>c will comment out 3 lines)
+  autocmd FileType javascript,typescript nnoremap <buffer> <leader>c :<c-u>call <SID>CommentOut(v:count1)<cr>
+  autocmd FileType javascriptreact,typescriptreact nnoremap <buffer> <leader>c :<c-u>call <SID>CommentOut(v:count1)<cr>
   " multiline comment with <localleader>c
   autocmd BufNewFile,BufRead *.json setlocal nowrap
 augroup end
@@ -702,15 +715,38 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 au BufNewFile,BufRead *.ejs set filetype=html
 
-function CommentOut(num)
-  for i in range(1,a:num)
-    :execute "normal! I//\<esc>j"
-  endfor
+" custom_functions ---------- {{{
+
+function s:MultiLineComment(num)
+  if (a:num ==# 0)
+    :execute 'normal! I/**' . "\<cr>\<cr>/\<up>\<space>\<space>"
+    startinsert
+    return line(".")
+  endif
+
+  :execute 'normal! 0v$' . "\<left>dI/**\<cr>\<space>\<esc>p\<esc>\<down>"
+  let line = a:num - 1
+  while(line > 0)
+    let line = line - 1
+    :execute 'normal! I' . "\<space>\<esc>0v\$\<left>dI\<space>*\<space>\<esc>p\<esc>\<down>"
+  endwhile  
+  :execute 'normal! a' . "\<space>*/"
 endfun
+
+function s:CommentOut(num)
+  let num = a:num
+  while (num > 0)
+    let num = num - 1
+    :execute "normal! I//\<esc>j"
+  endwhile
+endfun
+  "for i in range(1,a:num)
+  "  :execute "normal! I//\<esc>j"
+  "endfor
 
 " Replace all instances of text with only 2 arguments, or from line # to line
 " # with 4 aguments: the first 2 being text and the last 2 the line #'s
-function Replace(old, new, ...)
+function s:Replace(old, new, ...)
   if len(a:000) ==# 2
     :exe ":" . a:000[0] . "," . a:000[1] . "s/" . a:old . "/" . a:new . "/ig"
     return
@@ -718,8 +754,6 @@ function Replace(old, new, ...)
   :exe ":%s/" . a:old ."/" . a:new . "/ig"
 endfun
 
-"syntax match divHtmlWord +[</]\_s*[a-zA-Z1-9-]\++hs=s+1
- 
-"hi link divHtmlWord htmlTag
+" }}}
 
 autocmd FileType javascript,javascriptreact colorscheme my-js
