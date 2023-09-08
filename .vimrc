@@ -725,12 +725,16 @@ function s:MultiLineComment(num)
   endif
 
   :execute 'normal! 0v$' . "\<left>dI/**\<cr>\<space>\<esc>p\<esc>\<down>"
-  let line = a:num - 1
-  while(line > 0)
-    let line = line - 1
+  let num = a:num - 1
+  while(num > 0)
+    let num = num - 1
     :execute 'normal! I' . "\<space>\<esc>0v\$\<left>dI\<space>*\<space>\<esc>p\<esc>\<down>"
   endwhile  
-  :execute 'normal! a' . "\<space>*/"
+  if line(".") ==# line("w$")
+    :execute 'normal! o/'
+  else
+    :execute 'normal! ' . "\<up>o/"
+  endif
 endfun
 
 function s:CommentOut(num)
