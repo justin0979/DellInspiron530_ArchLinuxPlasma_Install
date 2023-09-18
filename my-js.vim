@@ -11,7 +11,7 @@ syntax match myHtmlAttribute /\_s*\zs[a-zA-Z-_]\+=/he=e-1
 syntax match myHtmlTag /\v[</]\zs[a-zA-Z0-9-_]+\ze.*/
 "syntax match backHtmlAngleBrackets +:</]\w\+\zs>+
 
-syn match myRegexLiteral +\/.\+\/\ze\w*+
+syn match myRegexLiteral +\/[^\/]\+\/\ze\w*+
 
 " =>
 syn match myArrowFuncSymbol /.*\zs=>\ze.*/
