@@ -9,10 +9,11 @@ MONITOR="VGA-1"       # ONLY choose one monitor
 
 for DEVICE in $DEVICES
 do
-  xsetwacom set "Wacom Cintiq 16 Pen ${DEVICE}" MapToOutput $MONITOR
+  xsetwacom set "Wacom Cintiq 16 Pen ${DEVICE}" MapToOutput $MONITOR &&
+    echo "Wacom Cintiq 16 Pen ${DEVICE} SET to ONLY ${MONITOR} monitor"
 done
 
-echo "Wacom Cintiq 16 Pen stylus and eraser SET to ONLY ${MONITOR} monitor"
+
 
 # Run: xsetwacom list devices
 # Output:
@@ -33,7 +34,5 @@ echo "Wacom Cintiq 16 Pen stylus and eraser SET to ONLY ${MONITOR} monitor"
 NUMBERS=$(xsetwacom list devices | grep stylus | tr -d -c 0-9) # This gets only number. (e.g., outputs: 168)
 ID=${NUMBERS:2} # Removes first two digits. (if NUMBERS=168, then this outputs: 8)
 
-xsetwacom set ${ID} Button 2 Button 3 # set button 2 to have button 3's function
-xsetwacom set ${ID} Button 3 pan
-
-echo "Stylus Button 2 set to pan" 
+# set button 2 to have button 3's function
+xsetwacom set ${ID} Button 2 Button 3 && xsetwacom set ${ID} Button 3 pan && echo "Stylus Button 2 set to pan"
