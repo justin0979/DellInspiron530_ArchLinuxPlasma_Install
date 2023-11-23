@@ -9,8 +9,8 @@ MONITOR="VGA-1"       # ONLY choose one monitor
 
 for DEVICE in $DEVICES
 do
-  xsetwacom set "Wacom Cintiq 16 Pen ${DEVICE}" MapToOutput $MONITOR &&
-    echo "Wacom Cintiq 16 Pen ${DEVICE} SET to ONLY ${MONITOR} monitor"
+  (xsetwacom set "Wacom Cintiq 16 Pen ${DEVICE}" MapToOutput $MONITOR &&
+    echo "Wacom Cintiq 16 Pen ${DEVICE} SET to ONLY ${MONITOR} monitor") || exit 1
 done
 
 
