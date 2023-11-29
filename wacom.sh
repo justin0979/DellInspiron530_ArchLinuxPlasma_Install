@@ -1,4 +1,14 @@
 #!/bin/bash
+ 
+# Run: xsetwacom list devices
+# Output:
+#   Wacom Cintiq 16 Pen stylus     id: 8   type: STYLUS
+#   Wacom Cintiq 16 Pen eraser     id: 11  type: ERASER
+#
+# Run: xev -event button
+# Output:
+#   Opens window to identify ButtonPress events so that you can find button number to map
+
 
 #xsetwacom set 'Wacom Cintiq 16 Pen stylus' MapToOutput DVI-I-1-2
 #xsetwacom set 'Wacom Cintiq 16 Pen eraser' MapToOutput DVI-I-1-2
@@ -14,15 +24,6 @@ do
 done
 
 
-
-# Run: xsetwacom list devices
-# Output:
-#   Wacom Cintiq 16 Pen stylus     id: 8   type: STYLUS
-#   Wacom Cintiq 16 Pen eraser     id: 11  type: ERASER
-#
-# Run: xev -event button
-# Output:
-#   Opens window to identify ButtonPress events so that you can find button number to map
 
 # To re-map buttons, run the following:
 #   xsetwacom set <pad-or-stylus> Button <number> <keyword> <arguments>
