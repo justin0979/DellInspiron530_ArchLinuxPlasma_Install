@@ -14,8 +14,8 @@
 #xsetwacom set 'Wacom Cintiq 16 Pen eraser' MapToOutput DVI-I-1-2
 
 DEVICES="stylus eraser"
-# MONITOR="DVI-I-1-2" # ONLY choose one monitor
-MONITOR="VGA-1"       # ONLY choose one monitor
+# MONITOR="DVI-I-1-2" # ONLY choose one monitor and comment out the other 
+MONITOR="VGA-1"       # ONLY choose one monitor and comment out the other
 
 for DEVICE in $DEVICES
 do
