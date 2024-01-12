@@ -272,8 +272,4 @@ cat PKGBUILD | grep pkgver
 makepkg -sic
 ```
 
-## Error upgrading due to conflicting files, or any other upgrade issue
-
-[Click for `pacman` arch wiki](https://wiki.archlinux.org/index.php/pacman)
-
 </details>
