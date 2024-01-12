@@ -251,3 +251,29 @@ minikube start
 again.
 
   </details>
+<details>
+  <summary><strong>DisplayLink Failed, 2nd monitor not working</strong><hr /></summary>
+
+Update displaylink and evdi-git in AURs, if package versions are out of date.<br/>
+Last time the 2nd monitor was a black screen, both packages' versions were out of date
+and I just ran the below and rebooted.
+
+```sh
+cd AURs/displaylink
+cat PKGBUILD | grep pkgver
+git pull
+cat PKGBUILD | grep pkgver
+makepkg -sic
+
+cd ~/AURs/evdi-git
+cat PKGBUILD | grep pkgver
+git pull
+cat PKGBUILD | grep pkgver
+makepkg -sic
+```
+
+## Error upgrading due to conflicting files, or any other upgrade issue
+
+[Click for `pacman` arch wiki](https://wiki.archlinux.org/index.php/pacman)
+
+</details>
