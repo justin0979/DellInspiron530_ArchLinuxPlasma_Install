@@ -2,10 +2,10 @@
 #
 # Script to set Wacom Cintiq 16 display to be replica of one of the listed monitors below. Only one monitor 
 # should be uncommented. 
-# Script also reconfigures the buttons on the Wacom stylus so one button will enable page scrolling while 
-# the other remains as right click.
+# Script also reconfigures the buttons on the Wacom stylus so upper button will enable page scrolling while 
+# the other (the one closer to nib tip) remains as right click.
 
-# This two commands are the the same as the for loop below.
+# These two commented out commands are the the same as the for loop below.
 #
 #xsetwacom set 'Wacom Cintiq 16 Pen stylus' MapToOutput DVI-I-1-2
 #xsetwacom set 'Wacom Cintiq 16 Pen eraser' MapToOutput DVI-I-1-2
