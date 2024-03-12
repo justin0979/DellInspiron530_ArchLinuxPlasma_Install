@@ -1,5 +1,16 @@
 #!/bin/bash
 #
+# **************************************************************************
+# ***************** THIS SCRIPT WILL NOT WORK WITH WAYLAND *****************
+#
+# For Wayland:
+#   - wacom configurations are set in: System Settings --> Drawing Tablet
+#   - default setting for Target Display is "Follow the active screen"
+#   - I have not looked into stylus button configurations yet.
+#
+#
+#
+#
 # Script to set Wacom Cintiq 16 display to be replica of one of the listed monitors below. Only one monitor 
 # should be uncommented. 
 # Script also reconfigures the buttons on the Wacom stylus so upper button will enable page scrolling while 
