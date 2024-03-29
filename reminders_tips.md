@@ -132,6 +132,9 @@ sudo chmod 666 /dev/ttyACM0
   </summary>
   <ul>
    <li>
+     Reminder to see used and available space: `df -h`
+   </li>
+   <li>
      installed packages using pacman are in 
      <code>/var/lib/pacman/local</code>
    </li>
