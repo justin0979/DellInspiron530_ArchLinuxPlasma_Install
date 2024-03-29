@@ -132,7 +132,7 @@ sudo chmod 666 /dev/ttyACM0
   </summary>
   <ul>
    <li>
-     Reminder to see used and available space: `df -h`
+     Reminder to see used and available space: <code>df -h</code>
    </li>
    <li>
      installed packages using pacman are in 
