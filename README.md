@@ -2,6 +2,8 @@
 
 A reference for me later (on a 2007-2008 desktop). I randomly update some of the text here, so
 some specs will be mismatched in places.<br />
+Also, files like `pkgs_issues.md` and `reminders_tips.md` contain similar topics b/c I have not
+gotten around to organizing those (and all the other) files.<br />
 I use this as my main computer. Occasionally get stuck during booting after an update and if
 I can't find a solution, I'll just re-install b/c it does not take long at all.
 
@@ -334,7 +336,6 @@ sudo EDITOR=vim visudo
   # uncomment `%wheel ALL=(ALL) ALL NOPASSWD: ALL` to give wheel group members root privileges
   #   with NOPASSWD: ALL, you will not have to type in pw on commands like `sudo pacman -S nodejs`
 ```
-
 
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
