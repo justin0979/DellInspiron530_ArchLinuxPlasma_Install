@@ -1,5 +1,5 @@
 <details>
-   <summary><strong>AutoLogin</strong><hr/></summary>
+   <summary><strong>AutoLogin</strong><hr /></summary>
   
 Autologin after screen sleep/off: <br />
 1.) Go to System Settings <br />
@@ -7,9 +7,10 @@ Autologin after screen sleep/off: <br />
 3.) Go to Screen Locking <br />
 4.) uncheck Lock screen: \_\_ Automatically After: 5 minutes <br />
 
+<hr />
 </details>
 <details>
-    <summary><strong>Mount USB</strong></summary>
+    <summary><strong>Mount USB</strong><hr /></summary>
 
 -   Insert USB
 -   Open terminal
@@ -19,6 +20,7 @@ Autologin after screen sleep/off: <br />
 -   Mount: `sudo mount /dev/sdb1 /mnt/usb`
 -   `cd /mnt/usb`
 
+<hr />
 </details>
 
 <details>
@@ -38,6 +40,7 @@ to not need `sudo docker`, run `sudo gpasswd -a <username> docker`:
 sudo gpasswd -a justin docker
 ```
 
+<hr />
 </details>
 <details>
   <summary>
@@ -50,6 +53,7 @@ Go to following `System settings > Shortcuts`.
 If `Konsole` is not listed, then click on `+Add Application` and type in Konsole.<br />
 Then, Go to `Konsole > Open a New Window > Add custom shortcut > type in your custom shortcut`
 
+<hr />
 </details>
 
  <details>
@@ -97,6 +101,7 @@ Updating all globally-installed packages:
 sudo npm update -g
 ```
 
+<hr />
  </details>
 
 <details>
@@ -115,6 +120,7 @@ sudo minicom -D /dev/ttyACM0
 
 To stop, hit `CTRL-A` and then type `q`.
 
+<hr />
 </details>
 
 <details>
@@ -134,6 +140,7 @@ sudo chmod 666 /dev/ttyACM0
 
 (`ttyACM0` is just an example port)
 
+<hr />
 </details>
 
 <details>
@@ -182,10 +189,12 @@ paccache -r
 
    </li>
   </ul>
+
+<hr />
 </details>
 
 <details>
-  <summary><strong>vim-rest-console</strong></summary>
+  <summary><strong>vim-rest-console</strong><hr /></summary>
 
 Name file with `.rest`, e.g., `request.rest`.
 
@@ -233,10 +242,11 @@ Look at terminal with running server to see output (if any)
 
 For more info, like configurations, see [vim-rest-console docs](https://github.com/diepm/vim-rest-console/blob/master/doc/vim-rest-console.txt).
 
+<hr />
 </details>
 
 <details>
-  <summary><strong>Visual Studio Code</strong></summary>
+  <summary><strong>Visual Studio Code</strong><hr /></summary>
 
 To edit `settings.json`:
 
@@ -244,10 +254,11 @@ To edit `settings.json`:
 cd ~/.config/Code/User
 ```
 
+<hr />
 </details>
 
 <details>
-  <summary><strong>QMK</strong></summary>
+  <summary><strong>QMK</strong><hr /></summary>
 
 Refer to [QMK Setup](https://docs.qmk.fm/#/newbs_getting_started) page.
 
@@ -276,10 +287,11 @@ qmk config user.keymap=justin0979
 qmk compile
 ```
 
+<hr />
 </details>
 
 <details>
-  <summary><strong>NTFS</strong></summary>
+  <summary><strong>NTFS</strong><hr /></summary>
 
 If connect usb with
 
@@ -309,10 +321,11 @@ My current kernel is `5.10.87-1-lts`, and according to
 [NTFS](https://wiki.archlinux.org/title/NTFS)
 you need to have kernal >= `5.15`
 
+<hr />
 </details>
 
 <details>
-  <summary><strong>GitHub Token and Github CLI</strong></summary>
+  <summary><strong>GitHub Token and Github CLI</strong><hr /></summary>
 
 When attempting to access a repo and get a message saying that a password has expired and to use a token,
 go to GitHub docs [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
@@ -349,18 +362,20 @@ key is already in use
 
 If credentials are still required, check that the repo was cloned from SSH.
 
+<hr />
 </details>
 
 <details>
-  <summary><strong>Unsquash GIMP toolbar menu</strong></summary>
+  <summary><strong>Unsquash GIMP toolbar menu</strong><hr /></summary>
 
 Go to `Edit --> Preferences --> Interface ->> Toolbox`, then uncheck `Use tool groups`
 , then click `OK`
 
+<hr />
 </details>
 
 <details>
-<summary><strong>Setup Wacom Cintiq 16 with Startech DisplayLink HDMI to USB</strong></summary>
+<summary><strong>Setup Wacom Cintiq 16 with Startech DisplayLink HDMI to USB</strong><hr /></summary>
 
 Referenced [DisplayLink](https://wiki.archlinux.org/title/DisplayLink), specifically section 1.2.
 
@@ -414,10 +429,11 @@ Then run:
 xrandr --setprovideroutputsource 1 0
 ```
 
+<hr />
 </details>
 
 <details>
-  <summary><strong>Limit pen boundary to Wacom Cintiq 16</strong></summary>
+  <summary><strong>Limit pen boundary to Wacom Cintiq 16</strong><hr /></summary>
 
 First, put Wacom pen nib and eraser close to the Wacom tablet so inputs will register.<br />
 Then, get inputs' ids:
@@ -476,16 +492,18 @@ Get interface with `ip addr`<br />
 Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
 Then ping a site.
 
+<hr />
  </details>
 <details>
-  <summary><strong>gimp screenshot</strong><hr/></summary>
+  <summary><strong>gimp screenshot</strong><hr /></summary>
 
 Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
 then go to File >> Create >> Screenshot
 
+<hr />
   </details>
 <details>
-  <summary><strong>minikube</strong><hr/></summary>
+  <summary><strong>minikube</strong><hr /></summary>
 
 ```sh
 minikube start
@@ -509,4 +527,5 @@ minikube start
 
 again.
 
+<hr />
   </details>
