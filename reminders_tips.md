@@ -44,7 +44,7 @@ sudo gpasswd -a justin docker
 </details>
 <details>
   <summary>
-  <strong>
+  <strong><hr />
     Konsole
   </strong>
   </summary>
@@ -58,7 +58,7 @@ Then, Go to `Konsole > Open a New Window > Add custom shortcut > type in your cu
 
  <details>
    <summary>
-   <strong>
+   <strong><hr />
       See installed npm pkgs
    </strong>
 
@@ -106,7 +106,7 @@ sudo npm update -g
 
 <details>
 <summary>
-<strong>
+<strong><hr />
 minicom
 </strong>
 
@@ -125,7 +125,7 @@ To stop, hit `CTRL-A` and then type `q`.
 
 <details>
   <summary>
-  <strong>
+  <strong><hr />
     arduino uno problem connecting
   </strong>
 
@@ -145,7 +145,7 @@ sudo chmod 666 /dev/ttyACM0
 
 <details>
   <summary>
-   <strong>pacman tips</strong>
+   <strong>pacman tips</strong><hr />
   </summary>
   <ul>
    <li>
