@@ -9,19 +9,6 @@ Autologin after screen sleep/off: <br />
 
 <hr />
 </details>
-<details>
-    <summary><strong>Mount USB</strong><hr /></summary>
-
--   Insert USB
--   Open terminal
--   type `sudo fdisk -l`
--   Check where USB is located, example output `/dev/sdb1`
--   If not already done, create usb dir: `sudo mkdir /mnt/usb`
--   Mount: `sudo mount /dev/sdb1 /mnt/usb`
--   `cd /mnt/usb`
-
-<hr />
-</details>
 
 <details>
   <summary><strong>Docker</strong><hr /></summary>
@@ -40,6 +27,66 @@ sudo gpasswd -a justin docker
 
 <hr />
 </details>
+
+<details>
+  <summary><strong>GIMP screenshot</strong><hr /></summary>
+
+Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
+then go to File >> Create >> Screenshot
+
+<hr />
+</details>
+
+<details>
+  <summary><strong>GIMP: Unsquash GIMP toolbar menu</strong><hr /></summary>
+
+Go to `Edit --> Preferences --> Interface ->> Toolbox`, then uncheck `Use tool groups`
+, then click `OK`
+
+<hr />
+</details>
+
+<details>
+  <summary><strong>GitHub Token and Github CLI</strong><hr /></summary>
+
+When attempting to access a repo and get a message saying that a password has expired and to use a token,
+go to GitHub docs [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+and follow the instructions.
+
+Basically, go to `Settings > <> Developer settings > Personal access tokens`<br />
+From there, either click on an expired token to regenerate it, or generate a new one.
+
+To not have to enter credentials for each commit, follow [Github CLI](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git)
+
+To install `gh` on arch linux:
+
+```sh
+sudo pacman -S github-cli
+```
+
+Then run `gh auth login`<br />
+
+There will be a series of questions that follows, for example:
+
+```sh
+? What account do you want to log into? Github.com
+? What is your preferred protocol for Git operation? SSH
+? Upload your SSH public key to your Github accound? /path/to/key
+? How wouild you like to authenticate Github CLI? Paste an authentication token
+Tip: you can generate a Personal Access Token here https://github.com/settings/tokens
+Then minimum required scopes are 'repo', 'read:org', 'admin:public_key'.
+? Paste your authentication token: ***********
+- gh config set -h github.com git_protocol ssh
+✓ Configured git protocol
+HTTP 422: Validation Failed (https://api.github.com/user/keys)
+key is already in use
+```
+
+If credentials are still required, check that the repo was cloned from SSH.
+
+<hr />
+</details>
+
 <details>
   <summary><strong>Konsole</strong><hr /></summary>
 
@@ -50,8 +97,65 @@ Then, Go to `Konsole > Open a New Window > Add custom shortcut > type in your cu
 <hr />
 </details>
 
- <details>
-   <summary><strong>See installed npm pkgs</strong><hr /></summary>
+<details>
+<summary><strong>minicom</strong><hr /></summary>
+
+To run:
+
+```sh
+sudo minicom -D /dev/ttyACM0
+```
+
+To stop, hit `CTRL-A` and then type `q`.
+
+<hr />
+</details>
+
+<details>
+
+  <summary><strong>minikube</strong><hr /></summary>
+
+```sh
+minikube start
+```
+
+```sh
+minikube status
+```
+
+if get `machine does not exist` or `Error: No such container: minikube` then run:
+
+```sh
+minikube delete
+```
+
+and then
+
+```sh
+minikube start
+```
+
+again.
+
+<hr />
+</details>
+
+<details>
+    <summary><strong>Mount USB</strong><hr /></summary>
+
+-   Insert USB
+-   Open terminal
+-   type `sudo fdisk -l`
+-   Check where USB is located, example output `/dev/sdb1`
+-   If not already done, create usb dir: `sudo mkdir /mnt/usb`
+-   Mount: `sudo mount /dev/sdb1 /mnt/usb`
+-   `cd /mnt/usb`
+
+<hr />
+</details>
+
+<details>
+   <summary><strong>NPM: See installed npm pkgs</strong><hr /></summary>
 
 check globally installed npm packages:
 
@@ -94,18 +198,39 @@ sudo npm update -g
  </details>
 
 <details>
-<summary><strong>minicom</strong><hr /></summary>
+  <summary><strong>NTFS</strong><hr /></summary>
 
-To run:
+If connect usb with
 
 ```sh
-sudo minicom -D /dev/ttyACM0
+sudo mount /dev/sda1 /mnt/usbstick
 ```
 
-To stop, hit `CTRL-A` and then type `q`.
+or
+
+```sh
+sudo mount -t ntfs3 /dev/sda1 /mnt/usbstick
+```
+
+or just plug in and get something like:
+
+```sh
+mount: /mnt: unknown filesystem type 'ntfs'
+```
+
+Install `ntfs-3g`:
+
+```sh
+sudo pacman -S ntfs-3g
+```
+
+My current kernel is `5.10.87-1-lts`, and according to
+[NTFS](https://wiki.archlinux.org/title/NTFS)
+you need to have kernal >= `5.15`
 
 <hr />
 </details>
+
 <details>
   <summary><strong>pacman tips</strong><hr /></summary>
   <ul>
@@ -153,6 +278,107 @@ paccache -r
 
 <hr />
 </details>
+
+<details>
+  <summary><strong>QMK</strong><hr /></summary>
+
+Refer to [QMK Setup](https://docs.qmk.fm/#/newbs_getting_started) page.
+
+Do the following from home directory. I kept getting errors/warnings about
+no `bin/qmk` when I tried cloning my qmk github repo. With `qmk setup` run
+from home directory, it asks to clone `qmk_firmware` repo to home
+directory (which I eventually did and the following worked.
+The docs do show how to clone it to another location, didn't look into it
+though).
+
+Follow `Linux/WSL` > `Arch / Manjaro` for setup and testing setup:
+
+```sh
+sudo pacman --needed --noconfirm -S git python-pip libffi
+sudo pacman -S qmk
+qmk setup
+qmk compile -kb crkbd -km default
+```
+
+Configure build environment to be able to just run `qmk compile` and
+`qmk flash` without adding `-kb` and `-km`:
+
+```sh
+qmk config user.keyboard=crkbd
+qmk config user.keymap=justin0979
+qmk compile
+```
+
+<hr />
+</details>
+
+</details>
+<details>
+  <summary><strong>Reminder for ethernet access on Dell Inspiron laptop</strong><hr /></summary>
+  
+Get interface with `ip addr`<br />
+Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
+Then ping a site.
+
+<hr />
+ </details>
+
+<details>
+<summary><strong>Setup Wacom Cintiq 16 with Startech DisplayLink HDMI to USB</strong><hr /></summary>
+
+Referenced [DisplayLink](https://wiki.archlinux.org/title/DisplayLink), specifically section 1.2.
+
+-   [evdi](https://aur.archlinux.org/packages/evdi)
+-   [displaylink](https://aur.archlinux.org/packages/displaylink)
+
+Then enabling `displaylink.service`:
+
+```sh
+sudo systemctl enable displaylink.service
+```
+
+Next, make `20-evda.conf`:
+
+```sh
+sudo vim /etc/X11/xorg.conf.d/20-evda.conf
+```
+
+Inside `20-evdi.conf`:
+
+```sh
+Section "OutputClass"
+  Identifier "DisplayLink"
+  MatchDriver "evdi"
+  Driver "modesetting"
+  Option "AccelMethod" "none"
+EndSection
+```
+
+and then I went ahead and rebooted and everything worked after setting it up monitors in
+`System settings`.
+
+**_ I did not need to do the following on last install with linux-lts _**
+
+After reboot, run:
+
+```sh
+xrandr --listproviders
+```
+
+output:
+
+```sh
+Providers: number : 2
+Provider 0: id: 0x49 cap: 0xb, Source Output, ...
+```
+
+Then run:
+
+```sh
+xrandr --setprovideroutputsource 1 0
+```
+
+<hr />
 
 <details>
   <summary><strong>vim-rest-console</strong><hr /></summary>
@@ -219,182 +445,7 @@ cd ~/.config/Code/User
 </details>
 
 <details>
-  <summary><strong>QMK</strong><hr /></summary>
-
-Refer to [QMK Setup](https://docs.qmk.fm/#/newbs_getting_started) page.
-
-Do the following from home directory. I kept getting errors/warnings about
-no `bin/qmk` when I tried cloning my qmk github repo. With `qmk setup` run
-from home directory, it asks to clone `qmk_firmware` repo to home
-directory (which I eventually did and the following worked.
-The docs do show how to clone it to another location, didn't look into it
-though).
-
-Follow `Linux/WSL` > `Arch / Manjaro` for setup and testing setup:
-
-```sh
-sudo pacman --needed --noconfirm -S git python-pip libffi
-sudo pacman -S qmk
-qmk setup
-qmk compile -kb crkbd -km default
-```
-
-Configure build environment to be able to just run `qmk compile` and
-`qmk flash` without adding `-kb` and `-km`:
-
-```sh
-qmk config user.keyboard=crkbd
-qmk config user.keymap=justin0979
-qmk compile
-```
-
-<hr />
-</details>
-
-<details>
-  <summary><strong>NTFS</strong><hr /></summary>
-
-If connect usb with
-
-```sh
-sudo mount /dev/sda1 /mnt/usbstick
-```
-
-or
-
-```sh
-sudo mount -t ntfs3 /dev/sda1 /mnt/usbstick
-```
-
-or just plug in and get something like:
-
-```sh
-mount: /mnt: unknown filesystem type 'ntfs'
-```
-
-Install `ntfs-3g`:
-
-```sh
-sudo pacman -S ntfs-3g
-```
-
-My current kernel is `5.10.87-1-lts`, and according to
-[NTFS](https://wiki.archlinux.org/title/NTFS)
-you need to have kernal >= `5.15`
-
-<hr />
-</details>
-
-<details>
-  <summary><strong>GitHub Token and Github CLI</strong><hr /></summary>
-
-When attempting to access a repo and get a message saying that a password has expired and to use a token,
-go to GitHub docs [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-and follow the instructions.
-
-Basically, go to `Settings > <> Developer settings > Personal access tokens`<br />
-From there, either click on an expired token to regenerate it, or generate a new one.
-
-To not have to enter credentials for each commit, follow [Github CLI](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git)
-
-To install `gh` on arch linux:
-
-```sh
-sudo pacman -S github-cli
-```
-
-Then run `gh auth login`<br />
-
-There will be a series of questions that follows, for example:
-
-```sh
-? What account do you want to log into? Github.com
-? What is your preferred protocol for Git operation? SSH
-? Upload your SSH public key to your Github accound? /path/to/key
-? How wouild you like to authenticate Github CLI? Paste an authentication token
-Tip: you can generate a Personal Access Token here https://github.com/settings/tokens
-Then minimum required scopes are 'repo', 'read:org', 'admin:public_key'.
-? Paste your authentication token: ***********
-- gh config set -h github.com git_protocol ssh
-✓ Configured git protocol
-HTTP 422: Validation Failed (https://api.github.com/user/keys)
-key is already in use
-```
-
-If credentials are still required, check that the repo was cloned from SSH.
-
-<hr />
-</details>
-
-<details>
-  <summary><strong>Unsquash GIMP toolbar menu</strong><hr /></summary>
-
-Go to `Edit --> Preferences --> Interface ->> Toolbox`, then uncheck `Use tool groups`
-, then click `OK`
-
-<hr />
-</details>
-
-<details>
-<summary><strong>Setup Wacom Cintiq 16 with Startech DisplayLink HDMI to USB</strong><hr /></summary>
-
-Referenced [DisplayLink](https://wiki.archlinux.org/title/DisplayLink), specifically section 1.2.
-
--   [evdi](https://aur.archlinux.org/packages/evdi)
--   [displaylink](https://aur.archlinux.org/packages/displaylink)
-
-Then enabling `displaylink.service`:
-
-```sh
-sudo systemctl enable displaylink.service
-```
-
-Next, make `20-evda.conf`:
-
-```sh
-sudo vim /etc/X11/xorg.conf.d/20-evda.conf
-```
-
-Inside `20-evdi.conf`:
-
-```sh
-Section "OutputClass"
-  Identifier "DisplayLink"
-  MatchDriver "evdi"
-  Driver "modesetting"
-  Option "AccelMethod" "none"
-EndSection
-```
-
-and then I went ahead and rebooted and everything worked after setting it up monitors in
-`System settings`.
-
-**_ I did not need to do the following on last install with linux-lts _**
-
-After reboot, run:
-
-```sh
-xrandr --listproviders
-```
-
-output:
-
-```sh
-Providers: number : 2
-Provider 0: id: 0x49 cap: 0xb, Source Output, ...
-```
-
-Then run:
-
-```sh
-xrandr --setprovideroutputsource 1 0
-```
-
-<hr />
-</details>
-
-<details>
-  <summary><strong>Limit pen boundary to Wacom Cintiq 16</strong><hr /></summary>
+  <summary><strong>Wacom: Limit pen boundary to Wacom Cintiq 16</strong><hr /></summary>
 
 First, put Wacom pen nib and eraser close to the Wacom tablet so inputs will register.<br />
 Then, get inputs' ids:
@@ -446,47 +497,3 @@ xinput map-to-output 13 DVI-I-1-2
 ```
 
 </details>
-<details>
-  <summary><strong>Reminder for ethernet access on Dell Inspiron laptop</strong><hr /></summary>
-  
-Get interface with `ip addr`<br />
-Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
-Then ping a site.
-
-<hr />
- </details>
-<details>
-  <summary><strong>gimp screenshot</strong><hr /></summary>
-
-Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
-then go to File >> Create >> Screenshot
-
-<hr />
-  </details>
-<details>
-  <summary><strong>minikube</strong><hr /></summary>
-
-```sh
-minikube start
-```
-
-```sh
-minikube status
-```
-
-if get `machine does not exist` or `Error: No such container: minikube` then run:
-
-```sh
-minikube delete
-```
-
-and then
-
-```sh
-minikube start
-```
-
-again.
-
-<hr />
-  </details>
