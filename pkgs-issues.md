@@ -12,33 +12,6 @@ sudo chmod 666 /dev/ttyACM0
 
 <hr />
 </details>
-
-<details>
-  <summary><strong>Error while updating</strong><hr /></summary>
-  <h3>(something like "error: liburing: signature from ...")</h3>
-  
-```sh
-sudo pacman -Sy archlinux-keyring
-sudo pacman -Syyu
-```
-
-## Error upgrading due to conflicting files, or any other upgrade issue, check link below:
-
-[Click for `pacman` arch wiki](https://wiki.archlinux.org/index.php/pacman)
-
-<hr />
-</details>
-<details>
-  <summary><strong>npm errors with upgrade</strong><hr/></summary>
-  
-```sh
-npm uninstall -g npm
-```
-
-then re-ran `sudo pacman -Syyu`
-
-<hr />
-</details>
 <details>
   <summary><strong>Bluetooth</strong><hr/></summary>
   
@@ -163,33 +136,6 @@ level showed.
 <hr />
 </details>
 <details>
-  <summary><strong>Open window on monitor mouse is on</strong><hr/></summary>
-
-Open window on same monitor as mouse:<br />
-1.) System Settings<br />
-2.) Window Management<br />
-3.) Window Behavior<br />
-4.) Click "Active screen follows mouse" in Multiscreen behavior section
-
-<hr />
-</details>
-<details>
-  <summary><strong>kdewallet popup's</strong><hr/></summary>
-
-If kdewallet keeps showing up:<br />
-(from arch linux docs, if using google-chrome aur)<br />
-run `vim .config/chrome-flags.conf` and add `--password-store=basic`
-
-<hr />
-</details>
-<details>
-  <summary><strong>Virtualbox</strong><hr/></summary>
-
-`sudo pacman -S virtualbox-host-dkms` not `virtual-host-modules-arch`. `virtual-host-modules-arch` did not have vboxdrv.
-
-<hr />
-  </details>
-<details>
   <summary><strong>DisplayLink Failed, 2nd monitor not working</strong><hr /></summary>
 
 Update displaylink and evdi-git in AURs, if package versions are out of date.<br/>
@@ -212,3 +158,57 @@ makepkg -sic
 
 <hr />
 </details>
+
+<details>
+  <summary><strong>Error while updating</strong><hr /></summary>
+  <h3>(something like "error: liburing: signature from ...")</h3>
+  
+```sh
+sudo pacman -Sy archlinux-keyring
+sudo pacman -Syyu
+```
+
+## Error upgrading due to conflicting files, or any other upgrade issue, check link below:
+
+[Click for `pacman` arch wiki](https://wiki.archlinux.org/index.php/pacman)
+
+<hr />
+</details>
+<details>
+  <summary><strong>kdewallet popup's</strong><hr/></summary>
+
+If kdewallet keeps showing up:<br />
+(from arch linux docs, if using google-chrome aur)<br />
+run `vim .config/chrome-flags.conf` and add `--password-store=basic`
+
+<hr />
+</details>
+<details>
+  <summary><strong>npm errors with upgrade</strong><hr/></summary>
+  
+```sh
+npm uninstall -g npm
+```
+
+then re-ran `sudo pacman -Syyu`
+
+<hr />
+</details>
+<details>
+  <summary><strong>Open window on monitor mouse is on</strong><hr/></summary>
+
+Open window on same monitor as mouse:<br />
+1.) System Settings<br />
+2.) Window Management<br />
+3.) Window Behavior<br />
+4.) Click "Active screen follows mouse" in Multiscreen behavior section
+
+<hr />
+</details>
+<details>
+  <summary><strong>Virtualbox</strong><hr/></summary>
+
+`sudo pacman -S virtualbox-host-dkms` not `virtual-host-modules-arch`. `virtual-host-modules-arch` did not have vboxdrv.
+
+<hr />
+  </details>
