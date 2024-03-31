@@ -24,9 +24,7 @@ Autologin after screen sleep/off: <br />
 </details>
 
 <details>
-  <summary>
-    <strong>Docker</strong>
-  </summary>
+  <summary><strong>Docker</strong><hr /></summary>
 
 After installing [docker](https://wiki.archlinux.org/title/docker), remember:
 
@@ -43,11 +41,7 @@ sudo gpasswd -a justin docker
 <hr />
 </details>
 <details>
-  <summary>
-  <strong><hr />
-    Konsole
-  </strong>
-  </summary>
+  <summary><strong>Konsole</strong><hr /></summary>
 
 Go to following `System settings > Shortcuts`.
 If `Konsole` is not listed, then click on `+Add Application` and type in Konsole.<br />
@@ -57,12 +51,7 @@ Then, Go to `Konsole > Open a New Window > Add custom shortcut > type in your cu
 </details>
 
  <details>
-   <summary>
-   <strong><hr />
-      See installed npm pkgs
-   </strong>
-
-   </summary>
+   <summary><strong>See installed npm pkgs</strong><hr /></summary>
 
 check globally installed npm packages:
 
@@ -105,12 +94,7 @@ sudo npm update -g
  </details>
 
 <details>
-<summary>
-<strong><hr />
-minicom
-</strong>
-
-</summary>
+<summary><strong>minicom</strong><hr /></summary>
 
 To run:
 
@@ -124,12 +108,7 @@ To stop, hit `CTRL-A` and then type `q`.
 </details>
 
 <details>
-  <summary>
-  <strong><hr />
-    arduino uno problem connecting
-  </strong>
-
-  </summary>
+  <summary><strong>arduino uno problem connecting</strong><hr /></summary>
 
 check which port arduino uno is connected to and change
 permissions with:
@@ -144,9 +123,7 @@ sudo chmod 666 /dev/ttyACM0
 </details>
 
 <details>
-  <summary>
-   <strong>pacman tips</strong><hr />
-  </summary>
+  <summary><strong>pacman tips</strong><hr /></summary>
   <ul>
    <li>
      Reminder to see used and available space: <code>df -h</code>
