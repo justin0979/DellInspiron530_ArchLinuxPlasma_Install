@@ -106,22 +106,6 @@ To stop, hit `CTRL-A` and then type `q`.
 
 <hr />
 </details>
-
-<details>
-  <summary><strong>arduino uno problem connecting</strong><hr /></summary>
-
-check which port arduino uno is connected to and change
-permissions with:
-
-```sh
-sudo chmod 666 /dev/ttyACM0
-```
-
-(`ttyACM0` is just an example port)
-
-<hr />
-</details>
-
 <details>
   <summary><strong>pacman tips</strong><hr /></summary>
   <ul>

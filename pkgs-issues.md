@@ -1,4 +1,19 @@
 <details>
+  <summary><strong>arduino uno problem connecting</strong><hr /></summary>
+
+check which port arduino uno is connected to and change
+permissions with:
+
+```sh
+sudo chmod 666 /dev/ttyACM0
+```
+
+(`ttyACM0` is just an example port)
+
+<hr />
+</details>
+
+<details>
   <summary><strong>Error while updating</strong><hr /></summary>
   <h3>(something like "error: liburing: signature from ...")</h3>
   
