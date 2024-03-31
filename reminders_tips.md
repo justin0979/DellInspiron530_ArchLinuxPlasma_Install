@@ -1,4 +1,14 @@
 <details>
+   <summary><strong>AutoLogin</strong><hr/></summary>
+  
+Autologin after screen sleep/off: <br />
+1.) Go to System Settings <br />
+2.) type `lock` in search <br />
+3.) Go to Screen Locking <br />
+4.) uncheck Lock screen: \_\_ Automatically After: 5 minutes <br />
+
+</details>
+<details>
     <summary><strong>Mount USB</strong></summary>
 
 -   Insert USB
@@ -459,3 +469,44 @@ xinput map-to-output 13 DVI-I-1-2
 ```
 
 </details>
+<details>
+  <summary><strong>Reminder for ethernet access on Dell Inspiron laptop</strong><hr /></summary>
+  
+Get interface with `ip addr`<br />
+Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
+Then ping a site.
+
+ </details>
+<details>
+  <summary><strong>gimp screenshot</strong><hr/></summary>
+
+Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
+then go to File >> Create >> Screenshot
+
+  </details>
+<details>
+  <summary><strong>minikube</strong><hr/></summary>
+
+```sh
+minikube start
+```
+
+```sh
+minikube status
+```
+
+if get `machine does not exist` or `Error: No such container: minikube` then run:
+
+```sh
+minikube delete
+```
+
+and then
+
+```sh
+minikube start
+```
+
+again.
+
+  </details>

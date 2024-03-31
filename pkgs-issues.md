@@ -23,24 +23,6 @@ then re-ran `sudo pacman -Syyu`
 
 </details>
 <details>
-  <summary><strong>Reminder for ethernet access on Dell Inspiron laptop</strong><hr /></summary>
-  
-Get interface with `ip addr`<br />
-Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
-Then ping a site.
-
- </details>
- <details>
-   <summary><strong>AutoLogin</strong><hr/></summary>
-  
-Autologin after screen sleep/off: <br />
-1.) Go to System Settings <br />
-2.) type `lock` in search <br />
-3.) Go to Screen Locking <br />
-4.) uncheck Lock screen: \_\_ Automatically After: 5 minutes <br />
-
-</details>
-<details>
   <summary><strong>Bluetooth</strong><hr/></summary>
   
 ### Bluetooth setup:
@@ -181,74 +163,9 @@ run `vim .config/chrome-flags.conf` and add `--password-store=basic`
 
 </details>
 <details>
-  <summary><strong>external usb</strong><hr/></summary>
-
-Check `reminders_tips.md` so there is no need for installing anything.
-
-Install `ntfs-3g`:<br />
-`sudo pacman -S ntfs-3g`<br />
-restart <br />
-make usb directory:<br />
-`sudo mkdir /mnt/usb`<br />
-locate usb device with `lsblk`, `df -h`, or some other method.
-For me, I see
-
-```sh
-sdb
-|
---sdb1
-```
-
-mount device from location given by `lsblk` (or whichever method you use):<br />
-`sudo mount /dev/sdb1 /mnt/usb`<br />
-Access the usb in `/mnt/usb`
-
-</details>
-<details>
-  <summary><strong>Docker without sudo</strong><hr/></summary>
-
-Instead of `sudo docker ps`, add user to docker group by running `sudo gpasswd -a <user> <group>`<br />
-(e.g. `sudo gpasswd -a justin docker`)<br />
-then, <strong>reboot</strong> and now run `docker ps`.
-
-  </details>
-<details>
   <summary><strong>Virtualbox</strong><hr/></summary>
 
 `sudo pacman -S virtualbox-host-dkms` not `virtual-host-modules-arch`. `virtual-host-modules-arch` did not have vboxdrv.
-
-  </details>
-<details>
-  <summary><strong>gimp screenshot</strong><hr/></summary>
-
-Instead of just running `gimp` from command line, run<br />`dbus-launch gimp`<br />
-then go to File >> Create >> Screenshot
-
-  </details>
-<details>
-  <summary><strong>minikube</strong><hr/></summary>
-
-```sh
-minikube start
-```
-
-```sh
-minikube status
-```
-
-if get `machine does not exist` or `Error: No such container: minikube` then run:
-
-```sh
-minikube delete
-```
-
-and then
-
-```sh
-minikube start
-```
-
-again.
 
   </details>
 <details>
