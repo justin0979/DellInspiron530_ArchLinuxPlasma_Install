@@ -11,7 +11,7 @@ Autologin after screen sleep/off: <br />
 </details>
 
 <details>
-  <summary><strong>Docker</strong><hr /></summary>
+  <summary><strong>Docker: enable after install and set Docker to gpasswd</strong><hr /></summary>
 
 After installing [docker](https://wiki.archlinux.org/title/docker), remember:
 
@@ -27,6 +27,17 @@ sudo gpasswd -a justin docker
 
 <hr />
 </details>
+
+</details>
+<details>
+  <summary><strong>Ethernet access on Dell Inspiron laptop</strong><hr /></summary>
+  
+Get interface with `ip addr`<br />
+Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
+Then ping a site.
+
+<hr />
+ </details>
 
 <details>
   <summary><strong>GIMP screenshot</strong><hr /></summary>
@@ -311,17 +322,6 @@ qmk compile
 
 <hr />
 </details>
-
-</details>
-<details>
-  <summary><strong>Reminder for ethernet access on Dell Inspiron laptop</strong><hr /></summary>
-  
-Get interface with `ip addr`<br />
-Then run `sudo ip link set <intertace> up` e.g. `sudo ip link set enp9s0 up`<br />
-Then ping a site.
-
-<hr />
- </details>
 
 <details>
 <summary><strong>Setup Wacom Cintiq 16 with Startech DisplayLink HDMI to USB</strong><hr /></summary>
