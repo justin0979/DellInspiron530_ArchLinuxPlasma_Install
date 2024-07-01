@@ -201,7 +201,7 @@ Open window on same monitor as mouse:<br />
 1.) System Settings<br />
 2.) Window Management<br />
 3.) Window Behavior<br />
-4.) Click "Active screen follows mouse" in Multiscreen behavior section
+4.) Go to Multiscreen behavior and click "Separate screens focus"
 
 <hr />
 </details>
