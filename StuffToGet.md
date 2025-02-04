@@ -8,6 +8,8 @@ unzip <br />
 flashprint<br />
 google-chrome<br />
 visual-studio-code<br />
+evdi-git<br />
+displaylink<br />
 
 ## Chrome Extensions
 
