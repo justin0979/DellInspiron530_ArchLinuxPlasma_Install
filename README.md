@@ -135,6 +135,12 @@ After booting from usb:
  # save with :wq
  vim /etc/pacman.d/mirrorlist
 
+ # open the following file and comment out [community]
+ vim /etc/pacman.conf
+ # comment out:
+ #  #[community]
+ #  #Include = /etc/pacman.d/mirrorlist
+
  # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use
  # wifi-menu.
  #`networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl.
