@@ -183,57 +183,81 @@ root@archiso ~ timedatectl set-ntp true
  Syncing disks.
 ```
 
+### Formatting the 3 partitions
+Arch Linux installation: [Format the partitions](https://wiki.archlinux.org/title/Installation_guide#Format_the_partitions)
+
 ```sh
- mkfs.ext4 /dev/sda1
+ root@archiso ~ mkfs.ext4 /dev/sda1
 
- mkfs.ext4 /dev/sda3
+ root@archiso ~ mkfs.ext4 /dev/sda3
 
- mkswap /dev/sda2
+ root@archiso ~ mkswap /dev/sda2
 
- swapon /dev/sda2
+ root@archiso ~ swapon /dev/sda2
  ```
+### Mounting the file system
 
 ```sh 
- mount /dev/sda1 /mnt
+ root@archiso ~ mount /dev/sda1 /mnt
 
- mkdir /mnt/home
+ root@archiso ~ mkdir /mnt/home
 
- mount /dev/sda3 /mnt/home
+ root@archiso ~ mount /dev/sda3 /mnt/home
 
- # just checks to verify that /dev/sda1 and /dev/sda3 are mounted
- mount
+ # verifies that /dev/sda1 and /dev/sda3 are mounted, they'll be the last two lines (at least in all of my past installs they have been).
+ root@archiso ~ mount
+```
 
+## Installation
+
+### Mirrors
+
+This section is updated since inside of `/etc/pacman.conf`, `[community]`, `[core-testing]`, and some others 
+will not be used anymore. So, besure to open `etc/pacman.conf` and comment these sections out like below:
+
+```sh
  # move mirrors closest to your physical location by either
  # commenting out mirrors at top of list, or cut (dd) and
  # paste (p) to top of list
  # save with :wq
- vim /etc/pacman.d/mirrorlist
+ root@archiso ~ vim /etc/pacman.d/mirrorlist
 
  # open the following file and comment out [community]
- vim /etc/pacman.conf
+ root@archiso ~ vim /etc/pacman.conf
  # comment out:
  #  #[community]
  #  #Include = /etc/pacman.d/mirrorlist
+ ```
 
- # netctl let me use wifi-menu on reboot, when I left this off, I couldn't use
- # wifi-menu.
+### Install packages
+
+As mentioned above, I used to use `wifi-menu` from `netctl` to access the internet; but, the intsallation 
+guide says to use `iwd`. So, that is what I did here. 
+
+For internet connections with ethernet or some other way than wifi, look at 
+[1.7 Connect to the internet](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) from 
+the installation guide.
+
+```sh
  #`networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl.
  # if errors occur, run: pacman -Sy archlinux-keyring
- pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers linux-headers wpa_supplicant dialog netctl
+ root@archiso ~ pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers wpa_supplicant dialog iwd
 
- genfstab -U -p /mnt >> /mnt/etc/fstab
+ root@archiso ~ genfstab -U -p /mnt >> /mnt/etc/fstab
 
- cat /mnt/etc/fstab # shows partititions
+ root@archiso ~ cat /mnt/etc/fstab # shows partititions
 
- arch-chroot /mnt
+ root@archiso ~ arch-chroot /mnt
 
- ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+ [root@archiso /] ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 
- hwclock --systohc
+ [root@archiso /] hwclock --systohc
 
- locale-gen
+ [root@archiso /] locale-gen
+ Generating localize...
+ Generation complete.
 
- vim /etc/locale.gen
+ [root@archiso /] vim /etc/locale.gen
    # type: `177 gg` and press "Enter". This will put cursor on line 177 where
    # "#en_US.UTF-8 UTF-8" is located at this time.
    # then press: `x` to delete "#" symbol, then type `:wq` to save and exit file.
@@ -242,20 +266,20 @@ root@archiso ~ timedatectl set-ntp true
    #     you'll still be able to "sudo wifi-menu" and select your network and browse
    #     internet
 
- vim /etc/locale.conf
+ [root@archiso /] vim /etc/locale.conf
    # press "i" then type: LANG=en_US.UTF-8
    # press cntl-c and type: `:wq`
 
  # type in your password twice; as with most linux pw's, you won't see what you are
  # typing.
- passwd
+ [root@archiso /] passwd
 
 
- grub-install --target=i386-pc /dev/sda # UEFI has other instructions
+ [root@archiso /] grub-install --target=i386-pc /dev/sda # UEFI has other instructions
    # outputs: "Installing for i386-pc platform'
    #          "Installation finished. No error reported."
 
- grub-mkconfig -o /boot/grub/grub.cfg
+ [root@archiso /] grub-mkconfig -o /boot/grub/grub.cfg
    # outputs:
    #   "Generating grub configuration file ...
    #   Found linux image: /boot/vmlinuz-linux
@@ -267,11 +291,11 @@ root@archiso ~ timedatectl set-ntp true
    #   if nothing was output after grub-mkconfig, something wasn't input correctly.
 
  # leave arch-chroot mode
- exit
+ [root@archiso /] exit
 
- umount -R /mnt
+ root@archiso ~ umount -R /mnt
 
- reboot
+ root@archiso ~ reboot
 ```
 
 ## Boot into archlinux without GUI setup yet
