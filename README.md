@@ -319,9 +319,11 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 
 <sub>If this section still is not filled in, just follow the same instructions at the beginning</sub>
 
+<hr />
+
 <details>
 
-<summary><strong>Obsolete Internet Access Method</strong><hr /></summary>
+<summary><strong>Obsolete Internet Access Method</strong></summary>
 
 I'm keeping this material in case I go back to `netctl` one day.<br />
 
@@ -353,6 +355,8 @@ systemctl start NetworkManager
 ```
 
 </details>
+
+<hr />
 
 ## Setting up GUI stuff starts here
 
