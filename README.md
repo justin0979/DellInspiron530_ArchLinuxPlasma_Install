@@ -306,7 +306,6 @@ the installation guide.
 
 If all went well, then you'll reboot to Arch Linux<br />
 For username, type: `root` <br />
-then enter your password from earlier and type in the following:
 
 Again, to connect to the internet, use `iwd` as opposed to `netctl`.
 
@@ -322,14 +321,14 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 ### Setup internet just like above with `iwd`
 
 ```sh
-[root@archlinux ~] systemctl enable --now systemd-networkd systemd-resolved iwd
-[root@archlinux ~] networkctl status -a
+[root@archlinux /] systemctl enable --now systemd-networkd systemd-resolved iwd
+[root@archlinux /] networkctl status -a
 ```
 
 The following uses vim to create and open a new file:
 
 ```sh
-[root@archlinux ~] vim /etc/systemd/network/20-wireless.network
+[root@archlinux /] vim /etc/systemd/network/20-wireless.network
 ```
 
 Inside `20-wireless.network`:
@@ -346,7 +345,7 @@ To exit `insert` mode, type `ctrl-c` (press and hold `ctrl` and then press `c`, 
 To save and close file, type `:` followed by `w` then `q` then `<enter>`.
 
 ```sh
-[root@archlinux ~] iwctl
+[root@archlinux /] iwctl
 [iwd] station wlan0 connect WifiNetworkName 
 [iwd] exit
 ```
@@ -440,13 +439,13 @@ pacman -S nvidia # nvidia-390xx is only AUR now.
 
 ```sh
 # Create user and add user to wheel group
-useradd -m -G users,wheel justin
+[root@archlinux /] useradd -m -G users,wheel justin
 ```
 
 Setup user's password:
 
 ```sh
-passwd justin
+[root@archlinux /] passwd justin
 ```
 
 ## The following is for selecting a Desktop Environment
@@ -481,9 +480,9 @@ If you don't use this, then on reboot it just asks you to enter in the user's pw
 desktop; otherwise, just goes straight to your desktop.
 
 ```sh
-mkdir /etc/sddm.conf.d/
+[root@archlinux /] mkdir /etc/sddm.conf.d/
 
-vim /etc/sddm.conf.d/autologin.conf
+[root@archlinux /] vim /etc/sddm.conf.d/autologin.conf
 ```
 
 After opening `autologin.conf` file from above command, press `i` then type: <br />
@@ -532,3 +531,22 @@ pacstrap /mnt konsole
 -- Note: For tty, type `Ctrl+Alt+F3` or whichever F# key (I'm not sure which are all console). <br />
 To get back to GUI, I read `Ctrl+Alt+F2` will work, but it didn't for me.
 I also read somewhere a long time ago to use `Ctrl+Alt+F7`, but I could be mistaken. Just look it up to be sure, otherwise just type `reboot` in whatever console envrionment that you are in and you will reboot to GUI.
+
+### For my dual monitor setup
+
+I'm using a startech.com adapter and I installed `evdi` and `displaylink` from the AUR. Without this, this 
+adapter was not working of the other monitor; however, I did not try using other "old" cables. I'll have 
+to remember to use other cables first, so these steps <i>might</i> be able to be skipped.
+
+```sh
+git clone https://aur.archlinux.org/evdi.git
+cd evdi
+makepkg -sic
+ 
+cd ..
+git clone https://aur.archlinux.org/displaylink.git
+cd displaylink
+makepkg -sic
+```
+
+See [DisplayLink](https://wiki.archlinux.org/title/DisplayLink) documentation. 
