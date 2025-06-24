@@ -73,7 +73,7 @@ Name=wlan0
 [Network]
 DHCP=yes
 ```
-Save and close the file by pressing `:` followed by `wq`.
+Save and close the file by typing `:` followed by `wq`.
 
 [Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl)</br>
 Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network 
@@ -88,21 +88,29 @@ root@archiso ~ iwctl
 Also, `wifi-menu` can still be used also, but the 
 [installation guide](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) uses `iwctl`.
 
-```sh
- timedatectl set-ntp true
+### System clock
 
+```sh
+root@archiso ~ timedatectl set-ntp true
+```
+
+### Partitions
+
+```sh
  fdisk /dev/sda
 
- # this clears everything out, so if you want to dual boot, research another way.
+ # this will clear everything out once the w command is hit, so if you want to dual boot, research another way.
  command (m for help): o
 
  command (m for help): n
+ Partition type
+    p   primary (0 primary, 0 extended, 4 free)
+    e   extended (container for logical partitions)
+ Select (default p): p
 
- Partition type: p
+ Partition number (1-4, default 1): 1 # can just hit <enter> unless you do not plan on using 1 here
 
- partition number: 1
-
- First sector: <Enter>
+ First sector (2048-976773167, default 2048): <Enter>
 
  # Used to use +32G, but on last install, kept running low and I needed to clear
  # cache more and more; 64 is overkill probably, but I rarely reach 50% on /home
@@ -110,41 +118,72 @@ Also, `wifi-menu` can still be used also, but the
  # modern hard disks."
  Last sector: +64G
 
- # make partition 1 bootable
+ Created a new partition 1 of type 'Linux' and of size 64 GiB.
+ Partition #1 contains a ext4 signature. # Says this when I'm reinstalling on the same HD.
+
+ Do you want to remove the signature? [Y]es/[N]o: Y # only shows up when I'm reinstalling
+
+ The signature will be removed by a write command. # Again, shows up on reinstalls.
+
+ # the command `a` in `fdisk` toggles the bootable flag
  command (m for help): a
+ Selected partition 1
+ The bootable flag on partition 1 is enabled now.
 
  command (m for help): n
+ Partition type
+    p   primary (0 primary, 0 extended, 4 free)
+    e   extended (container for logical partitions)
+ Select (default p): p
 
- Partition type: p
-
- partition number: 2
+ Partition number (2-4, default 2): 2 # can also just hit <enter>
 
  First sector: <Enter>
 
- # used +12G on one install just to do it, but usually around 2G, doc's say something
- # more than 512 MB
- Last sector: +2G
+ Last sector: +4G
+
+ Created a new partition 2 of type 'Linux' and of size 4 GiB.
+ Partition #2 contains a swap signature. # Says this when I'm reinstalling on the same HD.
+
+ Do you want to remove the signature? [Y]es/[N]o: Y # only shows up when I'm reinstalling
+
+ The signature will be removed by a write command. # Again, shows up on reinstalls.
 
  command (m for help): type
 
- partition number: 2
+ Partition number(1,2, default 2): 2
 
- # swap
+ # swap partition value
  Hex value: 82
+
+ Changed type of partition 'Linux' to 'Linux swap / Solaris'.
 
  command (m for help): n
 
  Partition type: p
 
- partition number: 3
+ Partition number: 3
 
  First sector: <Enter>
 
  # take up the rest of the hard drive
  Last sector: <Enter>
 
+ Created a new partition 3 of type 'Linux' and of size 3999.8 GiB.
+ Partition #3 contains a ext4 signature.
+
+ Do you want to remove the signature? [Y]es/[N]o: Y # only shows up when I'm reinstalling
+
+ The signature will be removed by a write command. # Again, shows up on reinstalls.
+
  command (m for help): w
 
+ The partition table has been altered.
+ Calling ioctl() to re-read partition table.
+ Syncing disks.
+```
+
+```sh
  mkfs.ext4 /dev/sda1
 
  mkfs.ext4 /dev/sda3
@@ -152,7 +191,9 @@ Also, `wifi-menu` can still be used also, but the
  mkswap /dev/sda2
 
  swapon /dev/sda2
+ ```
 
+```sh 
  mount /dev/sda1 /mnt
 
  mkdir /mnt/home
