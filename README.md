@@ -64,6 +64,8 @@ root@archiso ~ systemctl enable --now systemd-networkd systemd-resolved iwd
 root@archiso ~ networkctl status -a
 root@archiso ~ vim /etc/systemd/network/20-wireless.network # creates new file `20-wireless.network`
 ```
+
+See [systemd-networkd 1.3.3 Wireless adapter](https://wiki.archlinux.org/title/Systemd-networkd#Wireless_adapter)
 -- in `20-wireless.network`, enter `insert` mode by pressing `i`:
 
 ```sh
