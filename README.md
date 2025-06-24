@@ -67,7 +67,6 @@ root@archiso ~ vim /etc/systemd/network/20-wireless.network # creates new file `
 
 See [systemd-networkd 1.3.3 Wireless adapter](https://wiki.archlinux.org/title/Systemd-networkd#Wireless_adapter)
 
-To exit `insert` mode, press `ctrl-c` (press and hold `ctrl` and then press `c` while still holding `ctrl`).<br/>
 -- in `20-wireless.network`, enter `insert` mode by pressing `i`:
 
 ```sh
@@ -77,6 +76,7 @@ Name=wlan0
 [Network]
 DHCP=yes
 ```
+To exit `insert` mode, press `ctrl-c` (press and hold `ctrl` and then press `c` while still holding `ctrl`).<br/>
 Save and close the file by typing `:` followed by `w` then `q` followed by `enter`.
 
 [Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl)<br />
@@ -85,7 +85,7 @@ name can be set (whatever you wifi network's name is):
 
 ```sh
 root@archiso ~ iwctl
-[iwd] station wlan0 connect FakeWifiName-5G
+[iwd] station wlan0 connect YourWifiNameGoesHere
 [iwd] exit
 ```
 
@@ -329,7 +329,7 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 The following uses vim to create and open a new file:
 
 ```sh
-vim /etc/systemd/network/20-wireless.network
+[root@archlinux ~] vim /etc/systemd/network/20-wireless.network
 ```
 
 Inside `20-wireless.network`:
@@ -344,6 +344,12 @@ DHCP=yes
 
 To exit `insert` mode, type `ctrl-c` (press and hold `ctrl` and then press `c`, or press `esc`).<br />
 To save and close file, type `:` followed by `w` then `q` then `enter`.
+
+```sh
+[root@archlinux ~] iwctl
+[iwd] station wlan0 connect WifiNetworkName 
+[iwd] exit
+```
 
 <hr />
 
