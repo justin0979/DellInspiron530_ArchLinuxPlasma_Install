@@ -319,33 +319,33 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 
 ### Obsolete internet access method
 
-~~I'm keeping this material in case I go back to `netctl` one day.
-~~```sh
-~~ # select router, I used default name, type in router password
-~~ # take note of the name, if I think it is here that states the interface
-~~ # (wlp3s0 for me)
-~~ wifi-menu
-~~```
+I'm keeping this material in case I go back to `netctl` one day.</br>
 
-~~
-~~In order to auto-login with wifi-menu, either now or after having finished all of these
-~~instructions, type:
-~~
-~~```sh
-~~systemctl enable netctl-auto@wlp3s0.service
-~~```
-~~
-~~The above command has `wlp3s0` as the `interface`<br/>
+```sh
+ # select router, I used default name, type in router password
+ # take note of the name, if I think it is here that states the interface
+ # (wlp3s0 for me)
+ wifi-menu
+```
+
+~~In order to auto-login with wifi-menu, either now or after having finished all of these~~
+~~instructions, type:~~
+
+```sh
+systemctl enable netctl-auto@wlp3s0.service
+```
+
+~~The above command has `wlp3s0` as the `interface`~~<br/>
 ~~substitute your `interface` for `wlp3s0` if it is different.
-~~
-~~the `enable` will occur everytime the system boots; to start in the current session, you can use
-~~`start` instead of `enable`
-~~
-~~\*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard
-~~already) you can use:
-~~
-~~```sh
-~~systemctl start NetworkManager
+
+~~the `enable` will occur everytime the system boots; to start in the current session, you can use~~
+~~`start` instead of `enable`~~
+
+~~\*\*\* If you have ethernet and installed networkmanager && dhcpcd (not sure if comes standard~~
+~~already) you can use:~~
+
+```sh
+systemctl start NetworkManager
 ```
 ### End Obsolete internet access method
 
