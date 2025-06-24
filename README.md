@@ -50,14 +50,19 @@ I used `dd` to get a usb iso and booted that way. Here is one guide,
 
 Here's the link to [Arch Linux Downloads](https://archlinux.org/download/)
 
-After booting from usb:
+I've ommitted the command line prompts' `#` symbol (like `root@archiso ~ #`) since in the code blocks, the 
+octothorp is used for comments.
 
-Internet Connection:
+### Boot from usb:
+
+Just plug it in and hit `f12` or whichever key gets you into the bootloader.
+
+### Set up internet connection:
 
 ```sh
-root@archiso ~ # systemctl enable --now systemd-networkd systemd-resolved iwd
-root@archiso ~ # networkctl status -a
-root@archiso ~ # vim /etc/systemd/network/20-wireless.network # creates new file `20-wireless.network`
+root@archiso ~ systemctl enable --now systemd-networkd systemd-resolved iwd
+root@archiso ~ networkctl status -a
+root@archiso ~ vim /etc/systemd/network/20-wireless.network # creates new file `20-wireless.network`
 ```
 -- in `20-wireless.network`, enter `insert` mode by pressing `i`:
 
@@ -70,18 +75,18 @@ DHCP=yes
 ```
 Save and close the file by pressing `:` followed by `wq`.
 
-[Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl).
+[Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl)</br>
 Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network 
 name can be set (whatever you wifi network's name is):
 
 ```sh
-root@archiso ~ # iwctl
-[iwd]# station wlan0 connect FakeWifiName-5G
-[iwd]# exit
+root@archiso ~ iwctl
+[iwd] station wlan0 connect FakeWifiName-5G
+[iwd] exit
 ```
 
 Also, `wifi-menu` can still be used also, but the 
-[guide](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) uses `iwctl`.
+[installation guide](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) uses `iwctl`.
 
 ```sh
  timedatectl set-ntp true
