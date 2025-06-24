@@ -356,6 +356,8 @@ systemctl start NetworkManager
 
 </details>
 
+<strong>End Obsolete Internet Access Method</strong>
+
 <hr />
 
 ## Setting up GUI stuff starts here
