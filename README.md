@@ -354,9 +354,9 @@ systemctl enable netctl-auto@wlp3s0.service
 systemctl start NetworkManager
 ```
 
-</details>
-
 <strong>End Obsolete Internet Access Method</strong>
+
+</details>
 
 <hr />
 
