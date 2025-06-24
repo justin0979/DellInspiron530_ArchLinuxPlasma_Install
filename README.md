@@ -52,10 +52,38 @@ Here's the link to [Arch Linux Downloads](https://archlinux.org/download/)
 
 After booting from usb:
 
-```sh
- # select your router, I used default name given and then typed in my networks pw
- wifi-menu
+Internet Connection:
 
+```sh
+root@archiso ~ # systemctl enable --now systemd-networkd systemd-resolved iwd
+root@archiso ~ # networkctl status -a
+root@archiso ~ # vim /etc/systemd/network/20-wireless.network # creates new file `20-wireless.network`
+```
+-- in `20-wireless.network`, enter `insert` mode by pressing `i`:
+
+```sh
+[Match]
+Name=wlan0
+
+[Network]
+DHCP=yes
+```
+Save and close the file by pressing `:` followed by `wq`.
+
+[Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl).
+Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network 
+name can be set (whatever you wifi network's name is):
+
+```sh
+root@archiso ~ # iwctl
+[iwd]# station wlan0 connect FakeWifiName-5G
+[iwd]# exit
+```
+
+Also, `wifi-menu` can still be used also, but the 
+[guide](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) uses `iwctl`.
+
+```sh
  timedatectl set-ntp true
 
  fdisk /dev/sda
