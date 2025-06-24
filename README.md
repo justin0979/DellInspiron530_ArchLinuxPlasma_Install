@@ -370,7 +370,15 @@ systemctl start NetworkManager
 # or all defaults
 # If get errors, run: pacman -Sy archlinux-keyring
 pacman -S xorg-server xorg
+```
 
+<hr />
+
+<details>
+
+<summary><strong>Did not run these</strong></summary>
+
+```sh
 # Did NOT need this on last install
 lspci | grep -e VGA -e 3D # shows your video card
 
@@ -396,6 +404,10 @@ pacman -S nvidia # nvidia-390xx is only AUR now.
 ```diff
 - I did NOT run above on last install (pacman -S nvidia). BE SURE TO REFERENCE THE DOC'S
 ```
+
+</details>
+
+<hr />
 
 ```sh
 # Create user and add user to wheel group
