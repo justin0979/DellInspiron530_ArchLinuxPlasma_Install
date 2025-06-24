@@ -67,6 +67,7 @@ root@archiso ~ vim /etc/systemd/network/20-wireless.network # creates new file `
 
 See [systemd-networkd 1.3.3 Wireless adapter](https://wiki.archlinux.org/title/Systemd-networkd#Wireless_adapter)
 
+To exit `insert` mode, press `ctrl-c` (press and hold `ctrl` and then press `c` while still holding `ctrl`).<br/>
 -- in `20-wireless.network`, enter `insert` mode by pressing `i`:
 
 ```sh
@@ -76,7 +77,7 @@ Name=wlan0
 [Network]
 DHCP=yes
 ```
-Save and close the file by typing `:` followed by `wq`.
+Save and close the file by typing `:` followed by `w` then `q` followed by `enter`.
 
 [Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl)<br />
 Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network 
@@ -309,18 +310,40 @@ then enter your password from earlier and type in the following:
 
 Again, to connect to the internet, use `iwd` as opposed to `netctl`.
 
-Also, I can't remember what the command line prompt looked like, so I'll just use `[root@archiso /]`.
+Also, I can't remember what the command line prompt looked like, so I'll just use `[root@archlinux /]`.
 
 ### Sign in
 
 ```sh
- [root@archiso /] username: root
+ [root@archlinux /] username: root
  password: <type in your password> 
 ```
 
 ### Setup internet just like above with `iwd`
 
-<sub>If this section still is not filled in, just follow the same instructions at the beginning</sub>
+```sh
+[root@archlinux ~] systemctl enable --now systemd-networkd systemd-resolved iwd
+[root@archlinux ~] networkctl status -a
+```
+
+The following uses vim to create and open a new file:
+
+```sh
+vim /etc/systemd/network/20-wireless.network
+```
+
+Inside `20-wireless.network`:
+
+```sh
+[Match]
+Name=wlan0
+
+[Network]
+DHCP=yes
+```
+
+To exit `insert` mode, type `ctrl-c` (press and hold `ctrl` and then press `c`, or press `esc`).<br />
+To save and close file, type `:` followed by `w` then `q` then `enter`.
 
 <hr />
 
