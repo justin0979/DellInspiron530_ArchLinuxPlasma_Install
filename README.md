@@ -75,7 +75,7 @@ DHCP=yes
 ```
 Save and close the file by typing `:` followed by `wq`.
 
-[Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl)</br>
+[Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl)<br />
 Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network 
 name can be set (whatever you wifi network's name is):
 
@@ -317,9 +317,13 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 
 ### Setup internet just like above with `iwd`
 
-### Obsolete internet access method
+<sub>If this section still is not filled in, just follow the same instructions at the beginning</sub>
 
-I'm keeping this material in case I go back to `netctl` one day.</br>
+<details>
+
+<summary><strong>Obsolete Internet Access Method</strong><hr /></summary>
+
+I'm keeping this material in case I go back to `netctl` one day.<br />
 
 ```sh
  # select router, I used default name, type in router password
@@ -347,7 +351,8 @@ systemctl enable netctl-auto@wlp3s0.service
 ```sh
 systemctl start NetworkManager
 ```
-### End Obsolete internet access method
+
+</details>
 
 ## Setting up GUI stuff starts here
 
