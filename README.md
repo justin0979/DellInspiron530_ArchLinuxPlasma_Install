@@ -50,26 +50,28 @@ I used `dd` to get a usb iso and booted that way. Here is one guide,
 
 Here's the link to [Arch Linux Downloads](https://archlinux.org/download/)
 
-I've ommitted the command line prompts' `#` symbol (like `root@archiso ~ #`) since in the code blocks, the 
-octothorp is used for comments.
-
 ### Boot from usb:
 
 Just plug it in and hit `f12` or whichever key gets you into the bootloader.
 
-### Set up internet connection:
+### Set up internet connection with `iwd`:
 
-```sh
-root@archiso ~ systemctl enable --now systemd-networkd systemd-resolved iwd
-root@archiso ~ networkctl status -a
-root@archiso ~ vim /etc/systemd/network/20-wireless.network # creates new file `20-wireless.network`
+```
+root@archiso ~ # systemctl enable --now systemd-networkd systemd-resolved iwd
+root@archiso ~ # networkctl status -a
 ```
 
 See [systemd-networkd 1.3.3 Wireless adapter](https://wiki.archlinux.org/title/Systemd-networkd#Wireless_adapter)
 
--- in `20-wireless.network`, enter `insert` mode by pressing `i`:
+Create new file `20-wireless.network`:
 
-```sh
+```
+root@archiso ~ # vim /etc/systemd/network/20-wireless.network
+```
+
+In `20-wireless.network`, enter `insert` mode by pressing `i`:
+
+```
 [Match]
 Name=wlan0
 
@@ -83,10 +85,10 @@ Save and close the file by typing `:` followed by `w` then `q` followed by `<ent
 Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network 
 name can be set (whatever you wifi network's name is):
 
-```sh
-root@archiso ~ iwctl
-[iwd] station wlan0 connect YourWifiNameGoesHere
-[iwd] exit
+```
+root@archiso ~ # iwctl
+[iwd]# station wlan0 connect YourWifiNameGoesHere
+[iwd]# exit
 ```
 
 Also, `wifi-menu` can still be used also, but the 
@@ -94,15 +96,20 @@ Also, `wifi-menu` can still be used also, but the
 
 ### System clock
 
-```sh
-root@archiso ~ timedatectl set-ntp true
+```
+root@archiso ~ # timedatectl set-ntp true
 ```
 
 ### Partitions
 
-```sh
- fdisk /dev/sda
+> [!Note]
+> See [1.9 Partition the disks](https://wiki.archlinux.org/title/Installation_guide#Partition_the_disks)
 
+```
+root@archiso ~ # fdisk /dev/sda
+```
+
+```sh
  # this will clear everything out once the w command is hit, so if you want to dual boot, research another way.
  command (m for help): o
 
@@ -188,46 +195,65 @@ root@archiso ~ timedatectl set-ntp true
 ```
 
 ### Formatting the 3 partitions
-Arch Linux installation: [Format the partitions](https://wiki.archlinux.org/title/Installation_guide#Format_the_partitions)
 
-```sh
- root@archiso ~ mkfs.ext4 /dev/sda1
+Arch Linux installation: [1.10 Format the partitions](https://wiki.archlinux.org/title/Installation_guide#Format_the_partitions)
 
- root@archiso ~ mkfs.ext4 /dev/sda3
+```
+ root@archiso ~ # mkfs.ext4 /dev/sda1
 
- root@archiso ~ mkswap /dev/sda2
+ root@archiso ~ # mkfs.ext4 /dev/sda3
 
- root@archiso ~ swapon /dev/sda2
+ root@archiso ~ # mkswap /dev/sda2
+
+ root@archiso ~ # swapon /dev/sda2
  ```
+
 ### Mounting the file system
 
-```sh 
- root@archiso ~ mount /dev/sda1 /mnt
+``` 
+ root@archiso ~ # mount /dev/sda1 /mnt
 
- root@archiso ~ mkdir /mnt/home
+ root@archiso ~ # mkdir /mnt/home
 
- root@archiso ~ mount /dev/sda3 /mnt/home
+ root@archiso ~ # mount /dev/sda3 /mnt/home
+ ```
 
- # verifies that /dev/sda1 and /dev/sda3 are mounted, they'll be the last two lines (at least in all of my past installs they have been).
+ The following verifies that `/dev/sda1` and `/dev/sda3` are mounted.
+
+ ```
  root@archiso ~ mount
+ ```
+
+`mount` outputs a lot, the last two lines for each of my installs always have been:
+
+```sh
+ /dev/sda1 on /mnt type ext4 (rw,relatime)
+ /dev/sda3 on /mnt/home type ext4 (rw,relatime)
 ```
 
 ## Installation
 
 ### Mirrors
 
-This section is updated since inside of `/etc/pacman.conf`, `[community]`, `[core-testing]`, and some others 
-will not be used anymore. So, besure to open `etc/pacman.conf` and comment these sections out like below:
+Open the file `mirrorlist` and move mirrors closest to your physical location to the top of the list.<br />
+Then save and close the file with `:wq`:
 
-```sh
- # move mirrors closest to your physical location by either
- # commenting out mirrors at top of list, or cut (dd) and
- # paste (p) to top of list
- # save with :wq
- root@archiso ~ vim /etc/pacman.d/mirrorlist
+```
+ root@archiso ~ # vim /etc/pacman.d/mirrorlist
+```
 
- # open the following file and comment out [community]
- root@archiso ~ vim /etc/pacman.conf
+Inside of the file `/etc/pacman.conf`, the sections `[community]`, `[community-testing]`, `[testing]`, 
+`[testing-debug]`, `[staging]`, `[staging-debug]` need to be commented out.
+See [Cleaning up old repositories](https://archlinux.org/news/cleaning-up-old-repositories/) <br />
+Before reading this update, attempting to use `pacstrap` resulted in errors.<br />
+For this install, I only needed to comment out `[community]`, because the rest were already commented out or 
+they were already removed; so, you may not need to do the following:
+
+```
+ root@archiso ~ # vim /etc/pacman.conf
+ ```
+
+ ```sh
  # comment out:
  #  #[community]
  #  #Include = /etc/pacman.d/mirrorlist
@@ -235,41 +261,48 @@ will not be used anymore. So, besure to open `etc/pacman.conf` and comment these
 
 ### Install packages
 
-As mentioned above, I used to use `wifi-menu` from `netctl` to access the internet; but, the intsallation 
-guide says to use `iwd`. So, that is what I did here. 
+> [!Note]
+> I used to connect to the internet with `wifi-menu` from `netcl`, but since the documentation now says to use `iwd`, that is what I install instead of `netctl`.
 
-For internet connections with ethernet or some other way than wifi, look at 
-[1.7 Connect to the internet](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) from 
-the installation guide.
+> [!Tip]
+> For internet connections with ethernet or some other way than wifi, look at [1.7 Connect to the internet](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) from the installation guide.
 
-```sh
- #`networkmanager` can also be installed, but docs show dhcpcd is dependent of netctl.
- # if errors occur, run: pacman -Sy archlinux-keyring
- root@archiso ~ pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers wpa_supplicant dialog iwd
+> [!Important]
+> If errors occur, run: `pacman -Sy archlinux-keyring`
 
- root@archiso ~ genfstab -U -p /mnt >> /mnt/etc/fstab
+```
+ root@archiso ~ # pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers wpa_supplicant dialog iwd
+```
 
- root@archiso ~ cat /mnt/etc/fstab # shows partititions
+> [!Note]
+> `linux-headers` can be intsalled if you need to get `evdi` and `displaylink` from Arch User Repository for dual monitor setup.
 
- root@archiso ~ arch-chroot /mnt
+```
+ root@archiso ~ # genfstab -U -p /mnt >> /mnt/etc/fstab
 
- [root@archiso /] ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+ root@archiso ~ # cat /mnt/etc/fstab # shows partititions
 
- [root@archiso /] hwclock --systohc
+ root@archiso ~ # arch-chroot /mnt
 
- [root@archiso /] locale-gen
+ [root@archiso /]# ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+
+ [root@archiso /]# hwclock --systohc
+
+ [root@archiso /]# locale-gen
  Generating localize...
  Generation complete.
+```
 
- [root@archiso /] vim /etc/locale.gen
-   # type: `177 gg` and press "Enter". This will put cursor on line 177 where
-   # "#en_US.UTF-8 UTF-8" is located at this time.
-   # then press: `x` to delete "#" symbol, then type `:wq` to save and exit file.
-   # without uncommenting above, you will see something like:
-   #   "cannot set LC_MESSAGES...no such file or directory"
-   #     you'll still be able to "sudo wifi-menu" and select your network and browse
-   #     internet
+Open the file `locale.gen` to uncomment `#en_US.UTF-8 UTF-8`. 
 
+```
+ [root@archiso /]# vim /etc/locale.gen
+```
+
+Once inside file `locale.gen`, type `/\#en_US\.UTF-8\ UTF-8` then press`<enter>`. Then type `x` to delete the 
+`#` symbol. 
+
+```
  [root@archiso /] vim /etc/locale.conf
    # press "i" then type: LANG=en_US.UTF-8
    # press cntl-c and type: `:wq`
