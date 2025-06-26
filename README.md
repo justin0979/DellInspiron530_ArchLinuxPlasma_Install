@@ -71,7 +71,9 @@ root@archiso ~ # vim /etc/systemd/network/20-wireless.network
 
 In `20-wireless.network`, enter `insert` mode by pressing `i`:
 
-```
+```sh
+# In /etc/systemd/networkd/20-wireless.network
+
 [Match]
 Name=wlan0
 
@@ -221,12 +223,14 @@ Arch Linux installation: [1.10 Format the partitions](https://wiki.archlinux.org
  The following verifies that `/dev/sda1` and `/dev/sda3` are mounted.
 
  ```
- root@archiso ~ mount
+ root@archiso ~ # mount
  ```
 
 `mount` outputs a lot, the last two lines for each of my installs always have been:
 
 ```sh
+ # after running `mount` outputs
+ ...
  /dev/sda1 on /mnt type ext4 (rw,relatime)
  /dev/sda3 on /mnt/home type ext4 (rw,relatime)
 ```
@@ -244,8 +248,8 @@ Then save and close the file with `:wq`:
 
 Inside of the file `/etc/pacman.conf`, the sections `[community]`, `[community-testing]`, `[testing]`, 
 `[testing-debug]`, `[staging]`, `[staging-debug]` need to be commented out.
-See [Cleaning up old repositories](https://archlinux.org/news/cleaning-up-old-repositories/) <br />
-Before reading this update, attempting to use `pacstrap` resulted in errors.<br />
+See [Cleaning up old repositories](https://archlinux.org/news/cleaning-up-old-repositories/). <br />
+Before reading the above update, attempting to use `pacstrap` resulted in errors.<br />
 For this install, I only needed to comment out `[community]`, because the rest were already commented out or 
 they were already removed; so, you may not need to do the following:
 
@@ -254,15 +258,18 @@ they were already removed; so, you may not need to do the following:
  ```
 
  ```sh
- # comment out:
+ # in /etc/pacman.conf
+
+ ...
  #  #[community]
  #  #Include = /etc/pacman.d/mirrorlist
+ ...
  ```
 
 ### Install packages
 
 > [!Note]
-> I used to connect to the internet with `wifi-menu` from `netcl`, but since the documentation now says to use `iwd`, that is what I install instead of `netctl`.
+> I used to connect to the internet with `wifi-menu` from `netctl`, but since the documentation now says to use `iwd`, that is what I install instead of `netctl`.
 
 > [!Tip]
 > For internet connections with ethernet or some other way than wifi, look at [1.7 Connect to the internet](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) from the installation guide.
@@ -303,42 +310,64 @@ Once inside file `locale.gen`, type `/\#en_US\.UTF-8\ UTF-8` then press`<enter>`
 `#` symbol. 
 
 ```
- [root@archiso /] vim /etc/locale.conf
-   # press "i" then type: LANG=en_US.UTF-8
-   # press cntl-c and type: `:wq`
+ [root@archiso /]# vim /etc/locale.conf
+```
 
- # type in your password twice; as with most linux pw's, you won't see what you are
- # typing.
- [root@archiso /] passwd
+- Enter `insert` mode by typing `i`
+- Save and close file by with `:wq`
+
+```sh
+ # in /etc/locale.conf
+
+ LANG=en_US.UTF-8
+```
+
+### Set root password 
+
+Type in the password twice; usually with linux pw's, password will not show in terminal and cursor will not 
+move.
+
+```
+ [root@archiso /]# passwd
 
 
- [root@archiso /] grub-install --target=i386-pc /dev/sda # UEFI has other instructions
-   # outputs: "Installing for i386-pc platform'
-   #          "Installation finished. No error reported."
+ [root@archiso /]# grub-install --target=i386-pc /dev/sda # UEFI has other instructions
+ Installing for i386-pc platform
+ Installation finished. No error reported.
 
- [root@archiso /] grub-mkconfig -o /boot/grub/grub.cfg
-   # outputs:
-   #   "Generating grub configuration file ...
-   #   Found linux image: /boot/vmlinuz-linux
-   #   Found initrd image: /boot/initramfs-linux.img
-   #   Found fallback initrd image(s) in /boot: initramfs-linux-fallback.img
-   #   done"
+ [root@archiso /]# grub-mkconfig -o /boot/grub/grub.cfg
+ Generating grub configuration file ...
+ Found linux image: /boot/vmlinuz-linux
+ Found initrd image: /boot/initramfs-linux.img
+ Found fallback initrd image(s) in /boot: initramfs-linux-fallback.img
+ done"
    #      Last install output more stuff either here or one line above, install still
    #      worked
    #   if nothing was output after grub-mkconfig, something wasn't input correctly.
 
  # leave arch-chroot mode
- [root@archiso /] exit
+```
 
- root@archiso ~ umount -R /mnt
+> [!Note]
+> On past installs, the output had maybe a few lines more.
 
- root@archiso ~ reboot
+> [!WARNING]
+> If nothing was output after running `grub-mkconfig`, then something wasn't input correctly. Check your work.
+
+```
+ [root@archiso /]# exit
+
+ root@archiso ~ # umount -R /mnt
+
+ root@archiso ~ # reboot
 ```
 
 ## Boot into archlinux without GUI setup yet
 
 If all went well, then you'll reboot to Arch Linux<br />
-For username, type: `root` <br />
+
+> [!Note]
+> For username, type: `root`
 
 Again, to connect to the internet, use `iwd` as opposed to `netctl`.
 
@@ -346,27 +375,29 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 
 ### Sign in
 
-```sh
- [root@archlinux /] username: root
+```
+ [root@archlinux /]# username: root
  password: <type in your password> 
 ```
 
 ### Setup internet just like above with `iwd`
 
-```sh
-[root@archlinux /] systemctl enable --now systemd-networkd systemd-resolved iwd
-[root@archlinux /] networkctl status -a
+```
+[root@archlinux /]# systemctl enable --now systemd-networkd systemd-resolved iwd
+[root@archlinux /]# networkctl status -a
 ```
 
-The following uses vim to create and open a new file:
+The following uses `vim` to create and open a new file:
 
-```sh
-[root@archlinux /] vim /etc/systemd/network/20-wireless.network
+```
+[root@archlinux /]# vim /etc/systemd/network/20-wireless.network
 ```
 
 Inside `20-wireless.network`:
 
 ```sh
+# In /etc/systemd/network/20-wireless.network
+
 [Match]
 Name=wlan0
 
@@ -377,10 +408,10 @@ DHCP=yes
 To exit `insert` mode, type `ctrl-c` (press and hold `ctrl` and then press `c`, or press `esc`).<br />
 To save and close file, type `:` followed by `w` then `q` then `<enter>`.
 
-```sh
-[root@archlinux /] iwctl
-[iwd] station wlan0 connect WifiNetworkName 
-[iwd] exit
+```
+[root@archlinux /]# iwctl
+[iwd]# station wlan0 connect WifiNetworkName 
+[iwd]# exit
 ```
 
 <hr />
@@ -426,11 +457,13 @@ systemctl start NetworkManager
 
 ## Setting up GUI stuff starts here
 
-```sh
-# Last install showed a lot of defaults to enter. I may have either just hit `1`
-# or all defaults
-# If get errors, run: pacman -Sy archlinux-keyring
-pacman -S xorg-server xorg
+Last install had a lot of defaults to enter. I just used the defaults.
+
+> [!Note]
+> If you get errors, run: `pacman -Sy archlinux-keyring`
+
+```
+ [root@archlinux ~]# pacman -S xorg-server xorg
 ```
 
 <hr />
@@ -470,116 +503,128 @@ pacman -S nvidia # nvidia-390xx is only AUR now.
 
 <hr />
 
-```sh
-# Create user and add user to wheel group
-[root@archlinux /] useradd -m -G users,wheel justin
+Create `user` and add `user` to `wheel` group:
+
+```
+[root@archlinux /]# useradd -m -G users,wheel justin
 ```
 
 Setup user's password:
 
-```sh
-[root@archlinux /] passwd justin
+```
+[root@archlinux /]# passwd justin
 ```
 
 ## The following is for selecting a Desktop Environment
 
 I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
 
-```sh
-pacman -S sddm
-  # sddm-kcm is dependency of plasma and is installed with plasma
+```
+[root@archlinux /]# pacman -S sddm
 
-systemctl enable sddm.service
+[root@archlinux /]# systemctl enable sddm.service
 
-# if you want chrome, it's in AUR, which is easy to get with git.
-# after running below, if get trust errors, even from the documented trusted users list,
-# run:
-#   pacman -Sy archlinux-keyring
-# then run below again
-pacman -S plasma konsole dolphin
+[root@archlinux /]# pacman -S plasma konsole dolphin
 ```
 
-You can install `kde-applications` and remove `konsole dolphin` (since those two are included with
-`kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications'
-and either check the kde website or arch to see all of the packages included.
+> [!Note]
+> If you want google chrome, it's in AUR.<br />
+> Also, again, if get errors, run: pacman -Sy archlinux-keyring` and then rerun above install command.
 
--- For instance, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
-
--- So, the command would be: `pacman -S plasma kde-applications`
+> [!Note]
+> You can install `kde-applications` and remove `konsole dolphin` (since those two are included with 
+> `kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications'
+> and either check the kde website or arch to see all of the packages included.
+> > For instance, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
+> So, the command would be: `pacman -S plasma kde-applications`
 
 ## The following is for auto-login
 
 If you don't use this, then on reboot it just asks you to enter in the user's pw before going to
 desktop; otherwise, just goes straight to your desktop.
 
-```sh
-[root@archlinux /] mkdir /etc/sddm.conf.d/
+```
+[root@archlinux /]# mkdir /etc/sddm.conf.d/
 
-[root@archlinux /] vim /etc/sddm.conf.d/autologin.conf
+[root@archlinux /]# vim /etc/sddm.conf.d/autologin.conf
 ```
 
 After opening `autologin.conf` file from above command, press `i` then type: <br />
 
 ```sh
+# In /etc/sddm.conf.d/autologin.conf
+
 [Autologin]
 User=justin
 Session=plasma.desktop
 ```
 
--- then press `cntl-c` or `esc` then type `:wq` (be sure to type `:` before `wq`) <br />
--- note: Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
+- then press `cntl-c` or `esc` then type `:wq` (be sure to type `:` before `wq`) <br />
+> [!Note]
+> Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
 
-```sh
-reboot
+```
+[root@archlinux /]# reboot
 ```
 
 ## User Privileges
 
 In a console, type:
 
-```sh
-sudo EDITOR=vim visudo
-  # Go to near the bottom of file and
-  # uncomment `%wheel ALL=(ALL) ALL`
-  #       OR
-  # uncomment `%wheel ALL=(ALL) ALL NOPASSWD: ALL` to give wheel group members root privileges
-  #   with NOPASSWD: ALL, you will not have to type in pw on commands like `sudo pacman -S nodejs`
 ```
+∫justin ~ sudo EDITOR=vim visudo
+```
+
+Go to near the bottom of file and uncomment
+
+```
+ %wheel ALL=(ALL) ALL
+```
+
+OR, to give wheel group members root privileges, uncomment
+
+```
+%wheel ALL=(ALL) ALL NOPASSWD: ALL 
+```
+> [!Note]
+> With `NOPASSWD: ALL`, you will not have to type in password when using commands like `sudo pacman -S nodejs`
 
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
 Also, some videos show to update with `pacman -Sy`, but the [doc's](https://wiki.archlinux.org/title/Pacman?redirect=no#Usage) (in the `Warning` at bottom of `Usage` section) clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
-If you forgot to install a console, you can either tty console (see below) or use boot disk and mount everything and install.
+If you forgot to install a console, you can either tty console (see below `booting from usb`) or use boot disk and mount everything and install.
 
--- Note: For booting from usb
+> [!Note]
+> For booting from usb
 
-```sh
-mount /dev/sda1 /mnt
-mount /dev/sda3 /mnt/home
-
-pacstrap /mnt konsole
+```
+ ∫justin ~ mount /dev/sda1 /mnt
+ ∫justin ~ mount /dev/sda3 /mnt/home
+ 
+ ∫justin ~ pacstrap /mnt konsole
 ```
 
--- Note: For tty, type `Ctrl+Alt+F3` or whichever F# key (I'm not sure which are all console). <br />
-To get back to GUI, I read `Ctrl+Alt+F2` will work, but it didn't for me.
-I also read somewhere a long time ago to use `Ctrl+Alt+F7`, but I could be mistaken. Just look it up to be sure, otherwise just type `reboot` in whatever console envrionment that you are in and you will reboot to GUI.
+> [!Note]
+> For tty, type `Ctrl+Alt+F3` or whichever F# key (I'm not sure which are all console). <br />
+> To get back to GUI, I read `Ctrl+Alt+F2` will work, but it didn't for me.
+> I also read somewhere a long time ago to use `Ctrl+Alt+F7`, but I could be mistaken. Just look it up to be sure, otherwise just type `reboot` in whatever console envrionment that you are in and you will reboot to GUI.
 
 ### For my dual monitor setup
 
-I'm using a startech.com adapter and I installed `evdi` and `displaylink` from the AUR. Without this, this 
+I'm using a startech.com HDMI adapter and I installed `evdi` and `displaylink` from the AUR. Without this, this 
 adapter was not working of the other monitor; however, I did not try using other "old" cables. I'll have 
 to remember to use other cables first, so these steps <i>might</i> be able to be skipped.
 
-```sh
-git clone https://aur.archlinux.org/evdi.git
-cd evdi
-makepkg -sic
- 
-cd ..
-git clone https://aur.archlinux.org/displaylink.git
-cd displaylink
-makepkg -sic
+```
+ ∫justin ~ git clone https://aur.archlinux.org/evdi.git
+ ∫justin ~ cd evdi
+ ∫justin ~ makepkg -sic
+  
+ ∫justin ~ cd ..
+ ∫justin ~ git clone https://aur.archlinux.org/displaylink.git
+ ∫justin ~ cd displaylink
+ ∫justin ~ makepkg -sic
 ```
 
 See [DisplayLink](https://wiki.archlinux.org/title/DisplayLink) documentation. 
