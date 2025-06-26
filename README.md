@@ -563,6 +563,15 @@ Session=plasma.desktop
 > [!Note]
 > Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
 
+> [!Note]
+> After adding above file and after rebooting and adding installing `evdi` and `displaylink`, if autologin 
+> still not working then:
+> 1. open `System Settings`
+> 2. search `login screen
+> 3. click on `Login Screen (SDDM)`
+> 4. add check `Log in again immediately after logging off`
+> 5. click `Apply`
+
 ```
 [root@archlinux /]# reboot
 ```
