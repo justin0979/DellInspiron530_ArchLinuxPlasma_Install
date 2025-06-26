@@ -567,7 +567,7 @@ Session=plasma.desktop
 > After adding above file and after rebooting and installing `evdi` and `displaylink`, if autologin 
 > still not working then:
 > 1. open `System Settings`
-> 2. search `login screen`
+> 2. type in "login screen" in search box
 > 3. click on `Login Screen (SDDM)`
 > 4. add check `Log in again immediately after logging off`
 > 5. click `Apply`
