@@ -3,6 +3,10 @@
 unzip <br />
 `sudo pacman -S unzip`
 
+pacman-contrib <br />
+- `pacman-contrib` provides `paccache` script.
+- [1.5 Cleaning the package cache](https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache)
+
 ## AURs
 
 flashprint<br />
