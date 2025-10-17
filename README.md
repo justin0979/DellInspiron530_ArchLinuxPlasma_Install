@@ -606,7 +606,7 @@ The doc's go on to help set up iptables, which is a really easy step-by-step exp
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
 Also, some videos show to update with `pacman -Sy`, but the [doc's](https://wiki.archlinux.org/title/Pacman?redirect=no#Usage) (in the `Warning` at bottom of `Usage` section) clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
-If you forgot to install a console, you can either tty console (see below 2<sup>nd</sup>) or use boot disk and mount everything and install.
+If you forgot to install a console, you can either tty console (see 2<sup>nd</sup> Note immediately below) or use boot disk and mount everything and install.
 
 > [!Note]
 > For booting from usb
