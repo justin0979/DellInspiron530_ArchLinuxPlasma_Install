@@ -245,9 +245,6 @@ archjm login: root
 Password:
 ```
 
-> [!Note]
-> After enabling `dhcpcd.service`, the command `systemctl start dhcpcd.service` may have to be run.
-
 ```
 [root@archjm ~]# systemctl enable --now systemd-networkd systemd-resolved dhcpcd iwd
 [root@archjm ~]# iwctl
@@ -255,6 +252,13 @@ Password:
 [iwd]# station wlan0 get-networks
 [iwd]# station wlan0 connect N05
 [iwd]# exit
+```
+
+> [!Note]
+> After enabling `dhcpcd.service`, the command `systemctl start dhcpcd.service` may have to be run if ping is unsuccessful.
+
+```
+[root@archjm ~]# ping ping.archlinux.org
 
 [root@archjm ~]# useradd -m -G users,wheel justin
 [root@archjm ~]# passwd justin
