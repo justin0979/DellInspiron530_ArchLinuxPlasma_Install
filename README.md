@@ -279,7 +279,7 @@ they were already removed; so, you may not need to do the following:
 > If errors occur, run: `pacman -Sy archlinux-keyring`
 
 ```
- root@archiso ~ # pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers wpa_supplicant dialog iwd
+ root@archiso ~ # pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd grub linux-lts-headers wpa_supplicant dialog iwd man-db intel-ucode
 ```
 
 > [!Note]
@@ -346,7 +346,6 @@ move.
    #      worked
    #   if nothing was output after grub-mkconfig, something wasn't input correctly.
 
- # leave arch-chroot mode
 ```
 
 > [!Note]
@@ -356,6 +355,7 @@ move.
 > If nothing was output after running `grub-mkconfig`, then something wasn't input correctly. Check your work.
 
 ```
+ # leave arch-chroot mode
  [root@archiso /]# exit
 
  root@archiso ~ # umount -R /mnt
@@ -384,7 +384,8 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 ### Setup internet just like above with `iwd`
 
 ```
-[root@archlinux /]# systemctl enable --now systemd-networkd systemd-resolved iwd
+[root@archlinux /]# systemctl enable --now systemd-networkd systemd-resolved dhcpcd iwd
+[root@archlinux /]# systemctl start dhcpcd.service
 [root@archlinux /]# networkctl status -a
 ```
 
@@ -458,20 +459,18 @@ systemctl start NetworkManager
 
 ## Setting up GUI stuff starts here
 
-Last install had a lot of defaults to enter. I just used the defaults.
-
 > [!Note]
 > If you get errors, run: `pacman -Sy archlinux-keyring`
+
+<details>
+
+<summary><strong>Did not run these</strong></summary>
 
 ```
  [root@archlinux ~]# pacman -S xorg-server xorg
 ```
 
 <hr />
-
-<details>
-
-<summary><strong>Did not run these</strong></summary>
 
 ```sh
 # Did NOT need this on last install
@@ -500,19 +499,21 @@ pacman -S nvidia # nvidia-390xx is only AUR now.
 - I did NOT run above on last install (pacman -S nvidia). BE SURE TO REFERENCE THE DOC'S
 ```
 
+<strong>End of not run commands</strong>
+
 </details>
 
 <hr />
 
 Create `user` and add `user` to `wheel` group:
 
-```
+```sh
 [root@archlinux /]# useradd -m -G users,wheel justin
 ```
 
 Setup user's password:
 
-```
+```sh
 [root@archlinux /]# passwd justin
 ```
 
@@ -520,17 +521,21 @@ Setup user's password:
 
 I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
 
+Last install had a lot of defaults to enter. I just used the defaults.
+
+> [!Note]
+> Again, if you get errors, run: `pacman -Sy archlinux-keyring` and then rerun above install command.
+
 ```
 [root@archlinux /]# pacman -S sddm
 
 [root@archlinux /]# systemctl enable sddm.service
 
-[root@archlinux /]# pacman -S plasma konsole dolphin
+[root@archlinux /]# pacman -S plasma konsole dolphin git firefox openssh
 ```
 
 > [!Note]
 > If you want google chrome, it's in AUR.<br />
-> Also, again, if get errors, run: pacman -Sy archlinux-keyring` and then rerun above install command.
 
 > [!Note]
 > You can install `kde-applications` and remove `konsole dolphin` (since those two are included with
@@ -575,25 +580,13 @@ Session=plasma.desktop
 > 4. add check `Log in again immediately after logging off`
 > 5. click `Apply`
 
-```
-[root@archlinux /]# reboot
-```
-
 ## User Privileges
 
-In a console, type:
-
 ```
-∫justin ~ sudo EDITOR=vim visudo
+[root@archlinux /]# EDITOR=vim visudo
 ```
 
-Go to near the bottom of file and uncomment
-
-```
- %wheel ALL=(ALL) ALL
-```
-
-OR, to give wheel group members root privileges, uncomment
+Go to near the bottom of the file and uncomment
 
 ```
 %wheel ALL=(ALL) ALL NOPASSWD: ALL
@@ -601,6 +594,10 @@ OR, to give wheel group members root privileges, uncomment
 
 > [!Note]
 > With `NOPASSWD: ALL`, you will not have to type in password when using commands like `sudo pacman -S nodejs`
+
+```
+[root@archlinux /]# reboot
+```
 
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
