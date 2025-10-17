@@ -1,6 +1,3 @@
-> [!Note]
-> Needs styling finished
-
 # Instructions I most recently used to install on ThinkPad 20CD00B1US
 
 ```
@@ -20,27 +17,25 @@ link/loopback 00:00:00:00:00:00
 link/ether f8:16:54:28:63:51 brd ff:ff:ff:ff:ff:ff
 root@archiso ~ # iwctl
 [iwd]# device list
-Devices
-
----
-
-## Name Address Powered Adapter Mode
-
-wlan0 5c:80:b6:99:99:d9 on phy0 station
+                     Devices
+-------------------------------------------------------------
+ Name       Address             Powered    Adapter    Mode
+-------------------------------------------------------------
+ wlan0      5c:80:b6:99:99:d9   on         phy0       station
 
 [iwd]# station wlan0 scan
 [iwd]# station wlan0 get-networks
-Available networks
-
----
-
-## Network name Security Signal
-
-N05 psk \*\*\*
+                 Available networks
+-------------------------------------------------------------
+ Network name        Security              Signal
+-------------------------------------------------------------
+ N05                 psk                   ****
+ Somewifiname        open                  *
 
 [iwd]# station wlan0 connect N05
 Type the network passphrase for N05 psk.
-Passphrase: **\*\*\***
+Passphrase: **********
+
 [iwd]# exit
 
 root@archiso ~ # ping ping.archlinux.org
@@ -50,7 +45,6 @@ PING redirect.archinux.org (95.216.195.133) 56(84) bytes of data.
 ```
 
 ```
-
 root@archiso ~ # timedatectl
 Local time: Thu 2025-10-16 17:56:49 UTC
 Universal time: Thu 2025-10-16 17:56:49 UTC
@@ -136,8 +130,9 @@ Syncing disks.
 
 ## Format the partitions
 
+```
 root@archiso ~ # mkfs.fat -F32 /dev/sda1
-mkfr.fat 4.2 (2021-01-31)
+mkfs.fat 4.2 (2021-01-31)
 
 root@archiso ~ # mkfs.ext4 /dev/sda3
 mke2fs 1.47.3 (8-Jul-2025)
@@ -157,28 +152,39 @@ root@archiso ~ # swapon /dev/sda2
 
 root@archiso ~ # mount /dev/sda3 /mnt
 root@archiso ~ # mount --mkdir /dev/sda1 /mnt/boot
+```
 
 ## Installation
 
+```
 root@archiso ~ # vim /etc/pacman.d/mirrorlist
 root@archiso ~ # pacman -Sy archlinux-keyring
 root@archiso ~ # pacstrap /mnt base base-devel vim linux-lts linux-firmware dhcpcd linux-lts-headers wpa_supplicant dialog iwd intel-ucode man-db efibootmgr grub
+```
 
 ## Configure the system
 
+```
 root@archiso ~ # genfstab -U /mnt >> /mnt/etc/fstab
+```
 
 ### Chroot
 
-arch-chroot /mnt
+```
+root@archiso ~ # arch-chroot /mnt
+
+```
 
 ### Time
 
+```
 [root@archiso /]# ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 [root@archiso /]# hwclock --systohc
+```
 
 ### Localization
 
+```
 [root@archiso /]# vim /etc/locale.gen
 Uncomment en_US.UTF-8 UTF-8
 
@@ -195,9 +201,11 @@ Type in the hostname: I used "archjm" this last time
 New password:
 Retype new password:
 passwd: password updated successfully
+```
 
 ### Boot loader
 
+```
 [root@archiso /]# mkdir /efi
 [root@archiso /]# mount /dev/sda1 /efi
 mount: (hint) your fstab has been modified, but systemb still uses the old version; use 'systemctl daemon-reload' to reload
@@ -205,9 +213,11 @@ mount: (hint) your fstab has been modified, but systemb still uses the old versi
 [root@archiso /]# grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 Installing for x86_64-efi platform.
 Installation finished. No error reported.
+```
 
 #### Generate the main configuration file
 
+```
 [root@archiso /]# grub-mkconfig -o /boot/grub/grub.cfg
 Generation grub configuration file ...
 Found linux image: /boot/vminuz-linux-lts
@@ -220,15 +230,25 @@ Adding boot menu entry for UEFI Firmware Settings ...
 done
 
 [root@archiso /]# exit
+```
 
 ## Reboot
 
+```
 root@archiso ~ # umount -R /mnt
 root@archiso - # reboot
 
+```
+
+```
 archjm login: root
 Password:
+```
 
+> [!Note]
+> After enabling `dhcpcd.service`, the command `systemctl start dhcpcd.service` may have to be run.
+
+```
 [root@archjm ~]# systemctl enable --now systemd-networkd systemd-resolved dhcpcd iwd
 [root@archjm ~]# iwctl
 [iwd]# station wlan0 scan
@@ -247,45 +267,31 @@ resolving dependencies...
 :: There are 11 providers available for ttf-font:
 :: Repository extra
 
-1. gnu-free-fonts 2)...
+1) gnu-free-fonts 2)...
    Enter a number (default=1): 1
 
 [root@archjm ~]# systemctl enable sddm.service
 
+```
+
 ### Setup autologin
+
+```
 
 [root@archjm ~]# mkdir /etc/sddm.conf.d
 [root@archjm ~]# vim /etc/sddm.conf.d/autologin.conf
-In /etc/sddm.conf.d/autologin.conf
+
+```
+
+In /etc/sddm.conf.d/autologin.conf:
+
+```sh
 [Autologin]
 User=justin
 Session=plasma.desktop
+```
 
-[root@archjm ~]# pacman -S plasma konsole dolphin
+```
+[root@archjm ~]# pacman -S plasma konsole dolphin git firefox openssh
 [root@archjm ~]# reboot
-[root@archjm ~]# reboot
-[root@archjm ~]# reboot
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
 ```
