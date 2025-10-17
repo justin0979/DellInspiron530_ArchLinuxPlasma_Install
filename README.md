@@ -63,6 +63,10 @@ root@archiso ~ # networkctl status -a
 
 See [systemd-networkd 1.3.3 Wireless adapter](https://wiki.archlinux.org/title/Systemd-networkd#Wireless_adapter)
 
+<details>
+
+<summary><strong>Did not need to make this file on last install</strong></summary>
+
 Create new file `20-wireless.network`:
 
 ```
@@ -84,6 +88,8 @@ DHCP=yes
 To exit `insert` mode, press `ctrl-c` (press and hold `ctrl` and then press `c` while still holding `ctrl`).<br/>
 Save and close the file by typing `:` followed by `w` then `q` followed by `<enter>`.
 
+</details>
+
 [Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl)<br />
 Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network
 name can be set (whatever you wifi network's name is):
@@ -100,7 +106,13 @@ Also, `wifi-menu` can still be used also, but the
 ### System clock
 
 ```
-root@archiso ~ # timedatectl set-ntp true
+root@archiso ~ # timedatectl set-timezone America/Chicago
+root@archiso ~ # timedatectl
+    Local time: Thu 2025-10-16 12:59:37 CDT
+Universal time: Thu 2025-10-16 17:59:37 UTC
+      RTC time: Thu 2025-10-16 17:59:37
+     Time zone: America/Chicago (CDT, -0500)
+...
 ```
 
 ### Partitions
@@ -240,6 +252,10 @@ root@archiso ~ # mount
 
 ### Mirrors
 
+<details>
+
+<summary><strong>Did not need to do anything with mirrors on last install</strong></summary>
+
 Open the file `mirrorlist` and move mirrors closest to your physical location to the top of the list.<br />
 Then save and close the file with `:wq`:
 
@@ -266,6 +282,8 @@ they were already removed; so, you may not need to do the following:
 #  #Include = /etc/pacman.d/mirrorlist
 ...
 ```
+
+</details>
 
 ### Install packages
 
@@ -389,6 +407,10 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 [root@archlinux /]# networkctl status -a
 ```
 
+<details>
+
+<summary><strong>Did not run these last install</strong></summary>
+
 The following uses `vim` to create and open a new file:
 
 ```
@@ -409,6 +431,8 @@ DHCP=yes
 
 To exit `insert` mode, type `ctrl-c` (press and hold `ctrl` and then press `c`, or press `esc`).<br />
 To save and close file, type `:` followed by `w` then `q` then `<enter>`.
+
+</details>
 
 ```
 [root@archlinux /]# iwctl
@@ -507,13 +531,13 @@ pacman -S nvidia # nvidia-390xx is only AUR now.
 
 Create `user` and add `user` to `wheel` group:
 
-```sh
+```
 [root@archlinux /]# useradd -m -G users,wheel justin
 ```
 
 Setup user's password:
 
-```sh
+```
 [root@archlinux /]# passwd justin
 ```
 
@@ -608,7 +632,7 @@ If you forgot to install a console, you can either tty console (see 2<sup>nd</su
 > [!Note]
 > For booting from usb
 
-```
+```sh
  ∫justin ~ mount /dev/sda1 /mnt
  ∫justin ~ mount /dev/sda3 /mnt/home
 
@@ -626,7 +650,7 @@ I'm using a startech.com HDMI adapter and I installed `evdi` and `displaylink` f
 adapter was not working of the other monitor; however, I did not try using other "old" cables. I'll have
 to remember to use other cables first, so these steps <i>might</i> be able to be skipped.
 
-```
+```sh
  ∫justin ~ git clone https://aur.archlinux.org/evdi.git
  ∫justin ~ cd evdi
  ∫justin ~ makepkg -sic
