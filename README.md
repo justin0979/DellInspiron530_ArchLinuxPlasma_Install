@@ -80,11 +80,12 @@ Name=wlan0
 [Network]
 DHCP=yes
 ```
+
 To exit `insert` mode, press `ctrl-c` (press and hold `ctrl` and then press `c` while still holding `ctrl`).<br/>
 Save and close the file by typing `:` followed by `w` then `q` followed by `<enter>`.
 
 [Arch linux iwd link](https://wiki.archlinux.org/title/Iwd#iwctl)<br />
-Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network 
+Now the interactive prompt can be accessed with `iwctl` and the wifi device (`wlan0` from above) and network
 name can be set (whatever you wifi network's name is):
 
 ```
@@ -93,7 +94,7 @@ root@archiso ~ # iwctl
 [iwd]# exit
 ```
 
-Also, `wifi-menu` can still be used also, but the 
+Also, `wifi-menu` can still be used also, but the
 [installation guide](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet) uses `iwctl`.
 
 ### System clock
@@ -208,23 +209,23 @@ Arch Linux installation: [1.10 Format the partitions](https://wiki.archlinux.org
  root@archiso ~ # mkswap /dev/sda2
 
  root@archiso ~ # swapon /dev/sda2
- ```
+```
 
 ### Mounting the file system
 
-``` 
+```
  root@archiso ~ # mount /dev/sda1 /mnt
 
  root@archiso ~ # mkdir /mnt/home
 
  root@archiso ~ # mount /dev/sda3 /mnt/home
- ```
+```
 
- The following verifies that `/dev/sda1` and `/dev/sda3` are mounted.
+The following verifies that `/dev/sda1` and `/dev/sda3` are mounted.
 
- ```
- root@archiso ~ # mount
- ```
+```
+root@archiso ~ # mount
+```
 
 `mount` outputs a lot, the last two lines for each of my installs always have been:
 
@@ -246,25 +247,25 @@ Then save and close the file with `:wq`:
  root@archiso ~ # vim /etc/pacman.d/mirrorlist
 ```
 
-Inside of the file `/etc/pacman.conf`, the sections `[community]`, `[community-testing]`, `[testing]`, 
+Inside of the file `/etc/pacman.conf`, the sections `[community]`, `[community-testing]`, `[testing]`,
 `[testing-debug]`, `[staging]`, `[staging-debug]` need to be commented out.
 See [Cleaning up old repositories](https://archlinux.org/news/cleaning-up-old-repositories/). <br />
 Before reading the above update, attempting to use `pacstrap` resulted in errors.<br />
-For this install, I only needed to comment out `[community]`, because the rest were already commented out or 
+For this install, I only needed to comment out `[community]`, because the rest were already commented out or
 they were already removed; so, you may not need to do the following:
 
 ```
  root@archiso ~ # vim /etc/pacman.conf
- ```
+```
 
- ```sh
- # in /etc/pacman.conf
+```sh
+# in /etc/pacman.conf
 
- ...
- #  #[community]
- #  #Include = /etc/pacman.d/mirrorlist
- ...
- ```
+...
+#  #[community]
+#  #Include = /etc/pacman.d/mirrorlist
+...
+```
 
 ### Install packages
 
@@ -300,14 +301,14 @@ they were already removed; so, you may not need to do the following:
  Generation complete.
 ```
 
-Open the file `locale.gen` to uncomment `#en_US.UTF-8 UTF-8`. 
+Open the file `locale.gen` to uncomment `#en_US.UTF-8 UTF-8`.
 
 ```
  [root@archiso /]# vim /etc/locale.gen
 ```
 
-Once inside file `locale.gen`, type `/\#en_US\.UTF-8\ UTF-8` then press`<enter>`. Then type `x` to delete the 
-`#` symbol. 
+Once inside file `locale.gen`, type `/\#en_US\.UTF-8\ UTF-8` then press`<enter>`. Then type `x` to delete the
+`#` symbol.
 
 ```
  [root@archiso /]# vim /etc/locale.conf
@@ -322,9 +323,9 @@ Once inside file `locale.gen`, type `/\#en_US\.UTF-8\ UTF-8` then press`<enter>`
  LANG=en_US.UTF-8
 ```
 
-### Set root password 
+### Set root password
 
-Type in the password twice; usually with linux pw's, password will not show in terminal and cursor will not 
+Type in the password twice; usually with linux pw's, password will not show in terminal and cursor will not
 move.
 
 ```
@@ -377,7 +378,7 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 
 ```
  [root@archlinux /]# username: root
- password: <type in your password> 
+ password: <type in your password>
 ```
 
 ### Setup internet just like above with `iwd`
@@ -410,7 +411,7 @@ To save and close file, type `:` followed by `w` then `q` then `<enter>`.
 
 ```
 [root@archlinux /]# iwctl
-[iwd]# station wlan0 connect WifiNetworkName 
+[iwd]# station wlan0 connect WifiNetworkName
 [iwd]# exit
 ```
 
@@ -532,11 +533,12 @@ I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
 > Also, again, if get errors, run: pacman -Sy archlinux-keyring` and then rerun above install command.
 
 > [!Note]
-> You can install `kde-applications` and remove `konsole dolphin` (since those two are included with 
+> You can install `kde-applications` and remove `konsole dolphin` (since those two are included with
 > `kde-applications`) to install a lot of helpful packages for kde, just google 'kde applications'
 > and either check the kde website or arch to see all of the packages included.
+>
 > > For instance, I tried to download a pdf on chrome, it wouldn't work until I downloaded `okular`, which is included in kde-applications.
-> So, the command would be: `pacman -S plasma kde-applications`
+> > So, the command would be: `pacman -S plasma kde-applications`
 
 ## The following is for auto-login
 
@@ -560,12 +562,13 @@ Session=plasma.desktop
 ```
 
 - then press `cntl-c` or `esc` then type `:wq` (be sure to type `:` before `wq`) <br />
-> [!Note]
-> Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
+    > [!Note]
+    > Session=plasma.desktop also is used for a `plasma-desktop` instead of just `plasma` install, I've used both
 
 > [!Note]
-> After adding above file and after rebooting and installing `evdi` and `displaylink`, if autologin 
+> After adding above file and after rebooting and installing `evdi` and `displaylink`, if autologin
 > still not working then:
+>
 > 1. open `System Settings`
 > 2. type in "login screen" in search box
 > 3. click on `Login Screen (SDDM)`
@@ -593,8 +596,9 @@ Go to near the bottom of file and uncomment
 OR, to give wheel group members root privileges, uncomment
 
 ```
-%wheel ALL=(ALL) ALL NOPASSWD: ALL 
+%wheel ALL=(ALL) ALL NOPASSWD: ALL
 ```
+
 > [!Note]
 > With `NOPASSWD: ALL`, you will not have to type in password when using commands like `sudo pacman -S nodejs`
 
@@ -602,7 +606,7 @@ The doc's go on to help set up iptables, which is a really easy step-by-step exp
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
 Also, some videos show to update with `pacman -Sy`, but the [doc's](https://wiki.archlinux.org/title/Pacman?redirect=no#Usage) (in the `Warning` at bottom of `Usage` section) clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
-If you forgot to install a console, you can either tty console (see below `booting from usb`) or use boot disk and mount everything and install.
+If you forgot to install a console, you can either tty console (see below the Note on tty below the Note `booting from usb`) or use boot disk and mount everything and install.
 
 > [!Note]
 > For booting from usb
@@ -610,7 +614,7 @@ If you forgot to install a console, you can either tty console (see below `booti
 ```
  ∫justin ~ mount /dev/sda1 /mnt
  ∫justin ~ mount /dev/sda3 /mnt/home
- 
+
  ∫justin ~ pacstrap /mnt konsole
 ```
 
@@ -621,19 +625,19 @@ If you forgot to install a console, you can either tty console (see below `booti
 
 ### For my dual monitor setup
 
-I'm using a startech.com HDMI adapter and I installed `evdi` and `displaylink` from the AUR. Without this, this 
-adapter was not working of the other monitor; however, I did not try using other "old" cables. I'll have 
+I'm using a startech.com HDMI adapter and I installed `evdi` and `displaylink` from the AUR. Without this, this
+adapter was not working of the other monitor; however, I did not try using other "old" cables. I'll have
 to remember to use other cables first, so these steps <i>might</i> be able to be skipped.
 
 ```
  ∫justin ~ git clone https://aur.archlinux.org/evdi.git
  ∫justin ~ cd evdi
  ∫justin ~ makepkg -sic
-  
+
  ∫justin ~ cd ..
  ∫justin ~ git clone https://aur.archlinux.org/displaylink.git
  ∫justin ~ cd displaylink
  ∫justin ~ makepkg -sic
 ```
 
-See [DisplayLink](https://wiki.archlinux.org/title/DisplayLink) documentation. 
+See [DisplayLink](https://wiki.archlinux.org/title/DisplayLink) documentation.

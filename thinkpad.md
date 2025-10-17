@@ -1,12 +1,21 @@
-uuroot@archiso ~ # cat /sys/firmware/efi/tw_platform_size
+> [!Note]
+> Needs styling finished
+
+```
+uroot@archiso ~ # cat /sys/firmware/efi/tw_platform_size
 64
+
+```
+
+## Connect Network
+
+```
 
 root@archiso ~ # ip link
 1: lo: <LOOPBACK,UP,LOWER_UP> mtl 65536 qdisc...
 link/loopback 00:00:00:00:00:00
 2: wlan0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc
 link/ether f8:16:54:28:63:51 brd ff:ff:ff:ff:ff:ff
-
 root@archiso ~ # iwctl
 [iwd]# device list
 Devices
@@ -15,7 +24,7 @@ Devices
 
 ## Name Address Powered Adapter Mode
 
-wlan0 f8:16:54:28:63:51 on phy0 station
+wlan0 5c:80:b6:99:99:d9 on phy0 station
 
 [iwd]# station wlan0 scan
 [iwd]# station wlan0 get-networks
@@ -23,17 +32,22 @@ Available networks
 
 ---
 
-## Network name
+## Network name Security Signal
 
-N05
+N05 psk \*\*\*
 
 [iwd]# station wlan0 connect N05
 Type the network passphrase for N05 psk.
 Passphrase: **\*\*\***
 [iwd]# exit
+
 root@archiso ~ # ping ping.archlinux.org
 PING redirect.archinux.org (95.216.195.133) 56(84) bytes of data.
 64 bytes from ....
+
+```
+
+```
 
 root@archiso ~ # timedatectl
 Local time: Thu 2025-10-16 17:56:49 UTC
@@ -49,6 +63,12 @@ Universal time: Thu 2025-10-16 17:59:37 UTC
 RTC time Thu 2025-10-16 17:59:37
 Time zone: America/Chicago (CDT, -0500)
 ...
+
+```
+
+## Partitions
+
+```
 
 root@archiso ~ # fdisk -l
 root@archiso ~ # fdisk /dev/sda
@@ -109,6 +129,8 @@ Command (m for help): w
 The partition table has been altered.
 Calling ioctl() to re-read partition table.
 Syncing disks.
+
+```
 
 ## Format the partitions
 
@@ -240,3 +262,28 @@ Session=plasma.desktop
 [root@archjm ~]# pacman -S plasma konsole dolphin
 [root@archjm ~]# reboot
 [root@archjm ~]# reboot
+[root@archjm ~]# reboot
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
