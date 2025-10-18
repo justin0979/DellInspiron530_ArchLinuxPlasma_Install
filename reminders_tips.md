@@ -154,13 +154,13 @@ again.
 <details>
     <summary><strong>Mount USB</strong><hr /></summary>
 
--   Insert USB
--   Open terminal
--   type `sudo fdisk -l`
--   Check where USB is located, example output `/dev/sdb1`
--   If not already done, create usb dir: `sudo mkdir /mnt/usb`
--   Mount: `sudo mount /dev/sdb1 /mnt/usb`
--   `cd /mnt/usb`
+- Insert USB
+- Open terminal
+- type `sudo fdisk -l`
+- Check where USB is located, example output `/dev/sdb1`
+- If not already done, create usb dir: `sudo mkdir /mnt/usb`
+- Mount: `sudo mount /dev/sdb1 /mnt/usb`
+- `cd /mnt/usb`
 
 <hr />
 </details>
@@ -324,12 +324,32 @@ qmk compile
 </details>
 
 <details>
+  <summary><strong>Rust stuff</strong><hr /></summary>
+
+Install `rust` with `pacman -S rust` or follow the book's instructions.
+
+Install `cargo-watch` with:
+
+```
+cargo install cargo-watch
+```
+
+With `cargo-watch`, to watch tests:
+
+```
+cargo watch -x check -x test
+```
+
+<hr />
+</details>
+
+<details>
 <summary><strong>Setup Wacom Cintiq 16 with Startech DisplayLink HDMI to USB</strong><hr /></summary>
 
 Referenced [DisplayLink](https://wiki.archlinux.org/title/DisplayLink), specifically section 1.2.
 
--   [evdi](https://aur.archlinux.org/packages/evdi)
--   [displaylink](https://aur.archlinux.org/packages/displaylink)
+- [evdi](https://aur.archlinux.org/packages/evdi)
+- [displaylink](https://aur.archlinux.org/packages/displaylink)
 
 Then enabling `displaylink.service`:
 
