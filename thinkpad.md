@@ -1,7 +1,7 @@
 # Instructions I most recently used to install on ThinkPad 20CD00B1US
 
 ```
-uroot@archiso ~ # cat /sys/firmware/efi/tw_platform_size
+root@archiso ~ # cat /sys/firmware/efi/tw_platform_size
 64
 
 ```
