@@ -271,8 +271,19 @@ Password:
 
 ```
 [root@archjm ~]# ping ping.archlinux.org
+```
 
+> [!Note]
+> After running `EDITOR=vim visudo` in next section, uncomment `%wheel ALL=(ALL) NOPASSWD: ALL`.
+> Without uncommenting that, users will not be added to `sudoers`.
+> If you forget, run `su` in terminal and then run `EDITOR=vim visudo` and uncomment.
+
+```
 [root@archjm ~]# useradd -m -G users,wheel justin
+[root@archjm ~]# EDITOR=vim visudo
+```
+
+```
 [root@archjm ~]# passwd justin
 New password:
 Retype password:
