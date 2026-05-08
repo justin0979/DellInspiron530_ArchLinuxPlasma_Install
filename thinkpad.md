@@ -8,6 +8,9 @@ root@archiso ~ # cat /sys/firmware/efi/tw_platform_size
 
 ## Connect Network
 
+> [!Note]
+> I had to run `systemctl start dhcpcd` because `systemctl status dhcpcd` showed it was not running. Without it, `ping ping.archlinux.org` would output something like `Name or service not known`.
+
 ```
 
 root@archiso ~ # ip link
