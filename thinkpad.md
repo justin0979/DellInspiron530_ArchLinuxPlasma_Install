@@ -319,6 +319,12 @@ Session=plasma.desktop
 ```
 
 ```
-[root@archjm ~]# pacman -S plasma konsole dolphin git firefox openssh
+[root@archjm ~]# pacman -S plasma konsole dolphin git firefox openssh bluez-utils
 [root@archjm ~]# reboot
+```
+
+### Start bluetooth:
+
+```
+systemctl enable bluetooth.service
 ```
