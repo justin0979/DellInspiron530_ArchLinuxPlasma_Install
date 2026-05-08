@@ -158,6 +158,13 @@ root@archiso ~ # mount --mkdir /dev/sda1 /mnt/boot
 
 ## Installation
 
+### Mirrors
+
+> [!Note]
+> On last install, had to go into `/etc/pacman.conf` and comment out `[community]` section; otherwise, got errors saying something like `community.db could not be found`.
+> Also, inside `/etc/pacman.d/mirrorlist`, I just manually commented out mirrors not used and moved closest
+> mirror to top.
+
 ```
 root@archiso ~ # vim /etc/pacman.d/mirrorlist
 root@archiso ~ # pacman -Sy archlinux-keyring
