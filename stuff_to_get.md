@@ -13,10 +13,10 @@
 ## AURs
 
 - flashprint
-- google-chrome
+- [google-chrome](https://aur.archlinux.org/packages/google-chrome)
 - visual-studio-code
-- evdi-git
-- displaylink
+- [evdi-git](https://aur.archlinux.org/packages/evdi-dkms)
+- [displaylink](https://aur.archlinux.org/packages/displaylink)
 
 ## Chrome Extensions
 
