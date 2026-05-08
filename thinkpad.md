@@ -15,7 +15,8 @@ root@archiso ~ # ip link
 link/loopback 00:00:00:00:00:00
 2: wlan0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc
 link/ether f8:16:54:28:63:51 brd ff:ff:ff:ff:ff:ff
-root@archiso ~ # sudo ystemctl start iwd
+root@archiso ~ # systemctl start dhcpcd
+root@archiso ~ # systemctl start iwd
 root@archiso ~ # iwctl
 [iwd]# device list
                      Devices
