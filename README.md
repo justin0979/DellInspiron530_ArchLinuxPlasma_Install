@@ -57,7 +57,7 @@ Just plug it in and hit `f12` or whichever key gets you into the bootloader.
 ### Set up internet connection with `iwd`:
 
 ```
-root@archiso ~ # systemctl enable --now systemd-networkd systemd-resolved iwd
+root@archiso ~ # systemctl enable --now dhcpcd iwd
 root@archiso ~ # networkctl status -a
 ```
 
@@ -98,6 +98,7 @@ name can be set (whatever you wifi network's name is):
 root@archiso ~ # iwctl
 [iwd]# station wlan0 connect YourWifiNameGoesHere
 [iwd]# exit
+root@archiso ~ # ping ping.archlinux.org
 ```
 
 Also, `wifi-menu` can still be used also, but the
@@ -402,7 +403,7 @@ Also, I can't remember what the command line prompt looked like, so I'll just us
 ### Setup internet just like above with `iwd`
 
 ```
-[root@archlinux /]# systemctl enable --now systemd-networkd systemd-resolved dhcpcd iwd
+[root@archlinux /]# systemctl enable --now dhcpcd iwd
 [root@archlinux /]# systemctl start dhcpcd.service
 [root@archlinux /]# networkctl status -a
 ```
@@ -438,6 +439,7 @@ To save and close file, type `:` followed by `w` then `q` then `<enter>`.
 [root@archlinux /]# iwctl
 [iwd]# station wlan0 connect WifiNetworkName
 [iwd]# exit
+[root@archlinux /]# ping ping.archlinux.org
 ```
 
 <hr />
