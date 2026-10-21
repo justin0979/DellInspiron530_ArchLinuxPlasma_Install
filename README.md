@@ -253,7 +253,7 @@ root@archiso ~ # mount
 
 ### Mirrors
 
-Open the file `mirrorlist` and move mirrors closest to your physical location to the top of the list.<br />
+Open the file `mirrorlist` (with the command below) and move mirrors closest to your physical location to the top of the list.<br />
 Then save and close the file with `:wq`:
 
 ```
