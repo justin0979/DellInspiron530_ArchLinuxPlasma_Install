@@ -253,10 +253,6 @@ root@archiso ~ # mount
 
 ### Mirrors
 
-<details>
-
-<summary><strong>Did not need to do anything with mirrors on last install</strong></summary>
-
 Open the file `mirrorlist` and move mirrors closest to your physical location to the top of the list.<br />
 Then save and close the file with `:wq`:
 
@@ -283,8 +279,6 @@ they were already removed; so, you may not need to do the following:
 #  #Include = /etc/pacman.d/mirrorlist
 ...
 ```
-
-</details>
 
 ### Install packages
 
