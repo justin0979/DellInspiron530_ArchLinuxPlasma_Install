@@ -543,11 +543,70 @@ Setup user's password:
 
 <summary><strong>Xfce install</strong></summary>
 
-On last install, I use Xfce, which I will fill in soon.
+I installed Xfce because my desktop uses an old NVIDIA card that is no longer supported 
+by Wayland (which plasma kde uses).
+
+I used LightDM display manager:
+
+```
+[root@archlinux /]# pacman -S lightdm
+
+[root@archlinux /]# systemctl enable lightdm.service
+
+[root@archlinux /]# pacman -S xfce4 xfce4-goodies dolphin git firefox openssh bluez bluez-utils bluez-deprecated-tools blueman pipewire pipewire-pulse wireplumber pavucontrol
+```
+
+Bluetooth setup is below (after final `reboot`).
+
+## For auto-login
+
+```
+[root@archlinux /]# vim /etc/lightdm/lightdm.conf
+```
+
+Under `[Seat:*]`, there are a lot of commented out lines. Either uncomment and fill in 
+information, or just type in what is missing from below segment:
+
+```sh
+[Seat:*]
+autologin-user=justin
+autologin-user-timeout=0
+autologin-session=xfce
+```
+
+```
+[root@archlinux /]# groupadd -r autologin
+[root@archlinux /]# gpasswd -a justin autologin
+```
+
+Enable interactive passwordless login
+
+```
+[root@archlinux /]# vim /etc/pam.d/lightdm
+```
+
+Add following to the top of file `/etc/pam.d/lightdm`:
+
+```sh
+#%PAM-1.0
+auth     sufficient    pam_succeed_if.so user ingroup nopasswdlogin
+```
+
+To add user to `nopasswdlogin` group:
+
+```
+[root@archlinux /]# groupadd -r nopasswdlogin
+[root@archlinux /]# groupadd -r autologin
+[root@archlinux /]# gpasswd -a justin nopasswdlogin
+[root@archlinux /]# gpasswd -a justin autologin
+
+[root@archlinux /]# useradd -mG autologin,nopasswdlogin justin
+```
 
 </details>
 
-I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
+<details>
+    <summary><strong>Plasma KDE install</strong></summary>
 
 Last install had a lot of defaults to enter. I just used the defaults.
 
@@ -607,6 +666,8 @@ Session=plasma.desktop
 > 3. click on `Login Screen (SDDM)`
 > 4. add check `Log in again immediately after logging off`
 > 5. click `Apply`
+
+</details>
 
 ## User Privileges
 
