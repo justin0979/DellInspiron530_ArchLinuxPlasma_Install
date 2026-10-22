@@ -539,6 +539,14 @@ Setup user's password:
 
 ## The following is for selecting a Desktop Environment
 
+<details>
+
+<summary><strong>Xfce install</strong></summary>
+
+On last install, I use Xfce, which I will fill in soon.
+
+</details>
+
 I went with plasma kde, but the doc's have all the info for gnome, xfce, etc.
 
 Last install had a lot of defaults to enter. I just used the defaults.
