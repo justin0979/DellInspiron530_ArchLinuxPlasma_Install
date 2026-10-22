@@ -627,6 +627,19 @@ Go to near the bottom of the file and uncomment
 [root@archlinux /]# reboot
 ```
 
+<details>
+    <summary><strong>Xfce Bluetooth keyboard connection reminder</strong></summary>
+
+If bluetooth keyboard is connecting but is not outputting any keystrokes then do the
+following:
+
+```
+dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
+sudo systemctl restart bluetooth
+```
+
+</details>
+
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
