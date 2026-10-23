@@ -736,7 +736,8 @@ Restart session manager:
 justin ~ systemctl --user restart wireplumber
 ```
 
-The above has worked so far.
+The above has worked so far; <strong>however</strong>, I had to re-run 
+`systemctl --user restart wireplumber` when I restarted the computer.
 
 ### Add Keyboard Volume Control
 
