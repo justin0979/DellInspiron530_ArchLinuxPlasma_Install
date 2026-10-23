@@ -543,7 +543,7 @@ Setup user's password:
 
 <summary><strong>Xfce install</strong></summary>
 
-I installed Xfce because my desktop uses an old NVIDIA card that is no longer supported 
+I installed Xfce because my desktop uses an old NVIDIA card that is no longer supported
 by Wayland (which plasma kde uses).
 
 I used LightDM display manager:
@@ -564,7 +564,7 @@ Bluetooth setup is below (after final `reboot`).
 [root@archlinux /]# vim /etc/lightdm/lightdm.conf
 ```
 
-Under `[Seat:*]`, there are a lot of commented out lines. Either uncomment and fill in 
+Under `[Seat:*]`, there are a lot of commented out lines. Either uncomment and fill in
 information, or just type in what is missing from below segment:
 
 ```sh
@@ -701,8 +701,8 @@ sudo systemctl restart bluetooth
 
 ### Headphones Issues
 
-My earbuds connected but did not output sound. I read this was caused by `pipewire` 
-losing audio transport connect with `bluez` while actively streaming audio. It explained 
+My earbuds connected but did not output sound. I read this was caused by `pipewire`
+losing audio transport connect with `bluez` while actively streaming audio. It explained
 that this crashes the virtual audio node and drops the sound.<br />
 I ran the following steps:
 
@@ -736,8 +736,7 @@ Restart session manager:
 justin ~ systemctl --user restart wireplumber
 ```
 
-> [!WARNING]
-> The above has worked so far; <strong>however</strong>, I had to re-run `systemctl --user restart wireplumber` when I restarted the computer.
+⚠️ **Warning:** The above has worked so far; <strong>however</strong>, I had to re-run `systemctl --user restart wireplumber` when I restarted the computer.
 
 ### Add Keyboard Volume Control
 
