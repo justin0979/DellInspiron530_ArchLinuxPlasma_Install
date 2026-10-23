@@ -699,6 +699,42 @@ dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
 sudo systemctl restart bluetooth
 ```
 
+### Headphones Issues
+
+My earbuds connected but did not output sound, so I ran the following steps:
+
+```
+justin ~ rm -rf ~/.config/pulse/*
+justin ~ systemctl --user restart pipewire pipewire-pulse wireplumber
+sudo systemctl restart bluetooth
+```
+
+Disabled bluetooth auto-suspend:
+
+```
+justin ~ mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
+justin ~ vim ~/.config wireplumber/wireplumber.conf.d/51-bluetooth-fix.conf
+```
+
+I pasted the following into file `51-bluetooth-fix.conf`:
+
+```sh
+monitor.bluez.properties = {
+    bluez5.roles = [ a2dp_sink a2dp_source bap_sink bap_source hfp_hf hfp_ag ]
+    bluez5.codecs = [ sbc sbc_xq aac ldac aptx aptx_hd aptx_lhdc ]
+    bluez5.enable-hw-volume = true
+    bluez5.headset-roles = [ hsp_hs hfp_hf ]
+}
+```
+
+Restart session manager:
+
+```
+justin ~ systemctl --user restart wireplumber
+```
+
+The above has worked so far.
+
 </details>
 
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
