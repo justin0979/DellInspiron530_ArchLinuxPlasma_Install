@@ -760,6 +760,19 @@ Click `OK`
 
 </details>
 
+<details>
+    <summary><strong>Xfce bash symbols not using UTF-8</strong></summary>
+
+My `.bashrc` was not showing symbols due to UTF-8 not being set.
+
+1. Open terminal
+2. Click `Edit`
+3. Open `Preferences`
+4. Click `Advanced` tab
+5. In `Default character encoding` dropdown, select `UTF-8`
+
+</details>
+
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
