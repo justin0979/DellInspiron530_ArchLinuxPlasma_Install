@@ -736,8 +736,8 @@ Restart session manager:
 justin ~ systemctl --user restart wireplumber
 ```
 
-The above has worked so far; <strong>however</strong>, I had to re-run 
-`systemctl --user restart wireplumber` when I restarted the computer.
+> [!WARNING]
+> The above has worked so far; <strong>however</strong>, I had to re-run `systemctl --user restart wireplumber` when I restarted the computer.
 
 ### Add Keyboard Volume Control
 
@@ -776,7 +776,7 @@ My `.bashrc` was not showing symbols due to UTF-8 not being set.
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
 
 Installing packages is really easy. The AUR has a lot, and the doc's describe really easy ways of downloading those.
-Also, some videos show to update with `pacman -Sy`, but the [doc's](https://wiki.archlinux.org/title/Pacman?redirect=no#Usage) (in the `Warning` at bottom of `Usage` section) clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
+Also, some videos show to update with `pacman -Sy`, but the [doc's](https://wiki.archlinux.org/title/Pacman?redirect=no#Usage) (in the `warning` at bottom of `Usage` section) clearly state to NOT use that and instead use `pacman -Syu` (At least at the time of me typing this up).
 If you forgot to install a console, you can either tty console (see 2<sup>nd</sup> Note immediately below) or use boot disk and mount everything and install.
 
 > [!Note]
