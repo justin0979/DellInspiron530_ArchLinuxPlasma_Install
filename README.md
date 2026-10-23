@@ -738,6 +738,25 @@ justin ~ systemctl --user restart wireplumber
 
 The above has worked so far.
 
+### Add Keyboard Volume Control
+
+Open `Settings > Keyboard`<br />
+Click `Application Shortcuts`<br />
+Click `Add`<br />
+Enter following command to <strong>raise</strong> volume:
+
+```
+pactl set-sink-volume @DEFAULT_SINK@ +5%
+```
+
+Enter following command to <strong>lower</strong> volume:
+
+```
+wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+```
+
+Click `OK`
+
 </details>
 
 The doc's go on to help set up iptables, which is a really easy step-by-step explanation with a good (short) explanation of what each line does.
