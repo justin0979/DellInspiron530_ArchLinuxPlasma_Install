@@ -701,7 +701,10 @@ sudo systemctl restart bluetooth
 
 ### Headphones Issues
 
-My earbuds connected but did not output sound, so I ran the following steps:
+My earbuds connected but did not output sound. I read this was caused by `pipewire` 
+losing audio transport connect with `bluez` while actively streaming audio. It explained 
+that this crashes the virtual audio node and drops the sound.<br />
+I ran the following steps:
 
 ```
 justin ~ rm -rf ~/.config/pulse/*
