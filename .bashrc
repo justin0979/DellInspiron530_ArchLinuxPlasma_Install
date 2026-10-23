@@ -12,6 +12,7 @@ LGREEN='\e[38;5;119m'
 #BLUE='\033[00;34m'
 BLUE='\e[34m'
 LBLUE='\033[01;34m'
+LSKYBLUE='\e[38;5;117m'
 GRAY='\033[01;30m'
 LGRAY='\033[00;37m'
 PURPLE='\e[35m'
@@ -43,10 +44,14 @@ HORBAR="—"
 RFINGER="☞"
 DFINGER="☟"
 RARROW="→"
-DRARR="↳"
-URARR="↱"
-INTEGRAL="∫"
-THEREFORE="∴"
+#DRARR="↳"
+DRARR="\342\206\263"
+#URARR="↱"
+URARR="\342\206\261"
+#INTEGRAL="∫"
+INTEGRAL='\342\210\253'
+#THEREFORE="∴"
+THEREFORE="\342\210\264"
 CGAMMA="ᒥ"
 LFLOOR="ᒪ"
 BOXDR="┌"
@@ -60,7 +65,7 @@ BOXDR="┌"
 #\[${LPURPLE}\]\w
 #\[${LGRAY}\]→ \[${LGREEN}\]\u \[${LGRAY}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
 PS1="
-\[${LGRAY}\]${URARR} \[${LBLUE}${INTEGRAL}\u = \[${LPURPLE}\]\w \[${LBLUE}+ c
+\[${LGRAY}\]${URARR} \[${LBLUE}${INTEGRAL}${LSKYBLUE}\u ${LBLUE}= \[${LPURPLE}\]\w \[${LBLUE}+ ${LSKYBLUE}c
 \[${LGRAY}\]${DRARR} \[${LGREEN}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
 
 # add date and time to each history
