@@ -66,7 +66,7 @@ BOXDR="┌"
 #\[${LGRAY}\]→ \[${LGREEN}\]\u \[${LGRAY}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
 PS1="
 \[${LGRAY}\]${URARR} \[${LBLUE}${INTEGRAL}${LSKYBLUE}\u ${LBLUE}= \[${LPURPLE}\]\w \[${LBLUE}+ ${LSKYBLUE}c
-\[${LGRAY}\]${DRARR} \[${LGREEN}\]\W\[${LGRAY}\]\[${BLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
+\[${LGRAY}\]${DRARR} \[${LGREEN}\]\W\[${LGRAY}\]\[${LBLUE}\]\$(parse_git_branch)\[${NOCOL}\] "
 
 # add date and time to each history
 export HISTTIMEFORMAT="%m.%d.%y %T "
@@ -94,3 +94,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 PATH="$HOME/.local/bin:$PATH"
+. "$HOME/.cargo/env"
