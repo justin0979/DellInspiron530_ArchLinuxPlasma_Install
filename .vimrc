@@ -691,6 +691,23 @@ augroup htmltype
   " autocmd FileType html onoremap < :<c-u.normal! F>lvf<h<cr>
 augroup end 
 " }}}
+
+" cpp format ---------- {{{
+function! FormatCpp()
+  let l:view = winsaveview()
+  silent! %!clang-format
+  if v:shell_error > 0
+    silent! undo
+  endif
+  call winrestview(l:view)
+endfunction
+
+augroup CppFormatOnSave
+  autocmd!
+  autocmd BufWritePre *.cpp,*.hpp,*.cc,*.c,*.h call FormatCpp()
+augroup END
+" }}}
+
 " }}}
 
 " Groupings ----------------- {{{
