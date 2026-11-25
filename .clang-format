@@ -1,0 +1,4 @@
+# install clang with: sudo pacman -S clang
+BasedOnStyle: LLVM
+ColumnLimit: 75
+BreakTemplateDeclarations: Yes
